@@ -138,7 +138,7 @@ public class CenterController {
 		log.info("qno : "+qno);
 		String strResult = "{ \"result\":\"FAIL\" }";
 //		ServletContext context = request.getServletContext();
-		String context = "C:/Users/keduit/git/DangGun/army/src/main/webapp/";
+		String context = "C:/Users/keduit/git/DanggunNew/army/src/main/webapp/";
 
 		// 가상 경로에 대한 실제 경로 가져오기
 //		String contextRoot = context.getRealPath("/");

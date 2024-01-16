@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <!-- Basic Page Needs
 ================================================== -->
   <meta charset="utf-8">
