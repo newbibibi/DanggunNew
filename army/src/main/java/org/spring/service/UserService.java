@@ -13,4 +13,5 @@ public interface UserService {
 	public int modifyCal(CalendarVO vo);
 	public int delCal(int Calno);
 	public int delUser(String id);
+	public CalendarVO list(int calNo);
 }

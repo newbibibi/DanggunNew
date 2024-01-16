@@ -62,11 +62,11 @@
 				console.log(operation);
 				
 				if(operation == "delete"){
-					formObj.attr("action","/calendar/remove")
+					formObj.attr("action","/user/myCalendar/remove")
 						.attr("method", "post");
 				}
 				else if(operation == "modify"){
-					formObj.attr("action","/calendar/calendarmodify")
+					formObj.attr("action","/user/myCalendar/modifySchedule")
 					.attr("method", "post");
 				}
 				formObj.submit();

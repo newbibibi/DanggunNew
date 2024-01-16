@@ -33,7 +33,7 @@ $(document).ready(function() {
 				
 			}
 			else if(operation == "create"){
-				formObj.attr("action","/calendar/create")
+				formObj.attr("action","/user/myCalendar/scheduleRegister")
 				.attr("method", "post");
 			}
 			formObj.submit();

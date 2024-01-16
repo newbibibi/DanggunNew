@@ -1,12 +1,14 @@
 package org.spring.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
+import org.spring.domain.CalendarVO;
 import org.spring.domain.SnsAuthResponse;
 import org.spring.domain.UserVO;
 import org.spring.service.LoginService;
@@ -16,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,7 +27,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import lombok.extern.log4j.Log4j;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/login")
 @Log4j
 public class UserController {
 	@Autowired
@@ -32,7 +35,7 @@ public class UserController {
 	@Autowired
 	private UserService us;
 
-	@RequestMapping("/") // user/ 시 로그인 화면으로
+	@RequestMapping("/login") // / 시 로그인 화면으로
 	public String start() {
 		return "login/login";
 	}
@@ -57,9 +60,9 @@ public class UserController {
 		if (ls.snsLogin(snsID) == 0) { // USER DB에서 sns 컬럼에 동일한 것이 있는지 확인
 			url = "login/snsHide"; // 없다면 snsHide.jsp로 이동 후 바로 회원가입으로 redirect(snsID를 숨기기 위함)
 			model.addAttribute("snsID", snsID);
-			model.addAttribute("url", "../user/login/join");
+			model.addAttribute("url", "../login/login/join");
 		} else {
-			url = "redirect:../user/main"; // 있다면 sns로 이미 회원가입한 회원이 있다는 뜻이므로 main page로 이동
+			url = "redirect:../login/main"; // 있다면 sns로 이미 회원가입한 회원이 있다는 뜻이므로 main page로 이동
 			request.getSession().setAttribute("user", ls.getUser("sns", snsID)); // 첫번째 매개변수는 가져올 컬럼 두번째 매개변수는 비교할 값(유저
 																					// VO를 세션에 저장)
 		}
@@ -183,4 +186,5 @@ public class UserController {
 		log.info(result);
 		return result;
 	}
+	
 }

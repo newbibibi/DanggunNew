@@ -1,4 +1,4 @@
-<%@ include file="../includes/header.jsp" %>
+<%@ include file="../../includes/header.jsp" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 		<div id="showing">
 
@@ -36,7 +36,7 @@
 			</table>
 					
 		</div>
-		<a href="/calendar/create">이동하기</a>
+		<a href="/user/myCalendar/scheduleRegister">이동하기</a>
 		<script type="text/javascript">
 		
 	$(document).ready(function() {
@@ -50,7 +50,7 @@
 	        // - 전체 페이지를 새로고침 하지 않고 필요한 부분만을 업데이트 할 수 있다
 	        // - 자원과 시간을 절약, 깜박거리거나 멈추지 않고 부드럽게 작동
 	        $.ajax({
-	            url: "/calendar/calendar", // 요청할 서버 uri 지정
+	            url: "/user/myCalendar/mySchedule", // 요청할 서버 uri 지정
 	            type: "POST", //요청 방식 지정
 	            dataType: "json", // 서버 응답의 데이터 타입(대표적:json,xml)
 	            data: {
@@ -80,7 +80,7 @@
 	                    // 동적으로 데이터 처리
 	                    let row = $("<tr>");
 	                    row.append($("<td>").text(board.calNo));
-	                    let titleLink = $("<a>").attr("href","/calendar/calendarmodify?calNo="+board.calNo).text(board.content);
+	                    let titleLink = $("<a>").attr("href","/user/myCalendar/modifySchedule?calNo="+board.calNo).text(board.content);
                         let titleTd = $("<td>").append(titleLink);
                         row.append(titleTd);
 	                    row.append($("<td>").text(board.nickname));
@@ -102,4 +102,4 @@
 	}); // // -- $(document).ready 함수 선언 종료
 </script>
 	<!-- Footer -->
-<%@ include file="../includes/footer.jsp" %>	
+<%@ include file="../../includes/footer.jsp" %>	

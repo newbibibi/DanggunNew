@@ -145,6 +145,10 @@ public class CenterServiceImp implements CenterService{
 		System.out.println("확인용");
 		return centerMapper.getFileList(qno);
 	}
-
+	@Override
+	public int getTN(Criteria cri) {
+		// TODO Auto-generated method stub
+		return centerMapper.getTCN(cri);
+	}
 
 }

@@ -11,7 +11,7 @@ import org.spring.domain.QuestionsVO;
 import org.spring.domain.SaleVO;
 
 public interface CenterService {
-	public List<NoticeVO> noticeListAll();
+	public List<NoticeVO> noticeListAll(Criteria cri);
 	public NoticeVO selectNotice(int nno);
 	public List<NoticeVO> searchNotice(String search,String category);
 	public int addNotice(NoticeVO vo);
@@ -38,4 +38,5 @@ public interface CenterService {
 	public int upload(FileVO vo);
 	
 	public List<FileVO> fileList(int qno);
+	public int getTN(Criteria cri);
 }

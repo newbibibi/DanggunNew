@@ -12,6 +12,7 @@ import org.apache.commons.io.FileUtils;
 import org.spring.domain.Criteria;
 import org.spring.domain.FAQVO;
 import org.spring.domain.FileVO;
+import org.spring.domain.NoticeVO;
 import org.spring.domain.PageDTO;
 import org.spring.domain.QuestionsVO;
 import org.spring.domain.SaleVO;
@@ -179,5 +180,43 @@ public class CenterController {
 		}
 		return strResult;
 	}
-
+	@GetMapping("/notice/notice")
+	public void asdsa(Criteria cri,Model model) {
+		log.info("benefit시작");
+		int total = centerService.getTN(cri);
+		PageDTO pageResult = new PageDTO(cri, total);
+		model.addAttribute("pageMaker", pageResult);
+		log.info(pageResult);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/notice/noticeList",method = RequestMethod.POST)
+	public List<NoticeVO> getn(Criteria cri){
+		log.info("getfaqlist Ajax실행");
+		return centerService.noticeListAll(cri);
+	}
+	
+	@GetMapping({"/notice/modify","/notice/get"})
+	public void getnl(@RequestParam("nno") int nno, Model model){
+		model.addAttribute("vo",centerService.selectNotice(nno));
+	}
+	
+	@PostMapping("/notice/modify")
+	public String modn(NoticeVO vo) {
+		log.info(vo);
+		centerService.modifyNotice(vo);
+		return "redirect:/center/notice/noticeList";
+	}
+	
+	@GetMapping("/notice/delete")
+	public void dd() {
+		
+	}
+	@PostMapping("/notice/delete")
+	public String deln(int nno) {
+		log.info(nno);
+		centerService.delNotice(nno);
+		return "redirect:/center/notice/noticeList";
+	}
 }
+

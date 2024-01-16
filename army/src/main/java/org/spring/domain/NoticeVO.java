@@ -9,6 +9,6 @@ public class NoticeVO {
 	private int nno;
 	private String title;
 	private String content;
-	private Date regDate;
+	private String regDate;
 	private String category;
 }

@@ -16,7 +16,7 @@ public interface CenterMapper {
 	public int removeNotice(int nno);
 	public NoticeVO showNotice(int nno);
 	public List<NoticeVO> noticeList(String search, String category);
-	public List<NoticeVO> noticeListAll();
+	public List<NoticeVO> noticeListAll(Criteria cri);
 	public List<FAQVO> listFAQ(String category);
 	public int createQuestion(QuestionsVO vo);
 	public int modifyQuestion(QuestionsVO vo);
@@ -33,4 +33,5 @@ public interface CenterMapper {
 	public int maxQno();
 	public int uploadData(FileVO vo);
 	public List<FileVO> getFileList(int qno);
+	public int getTCN(int nno);
 }
