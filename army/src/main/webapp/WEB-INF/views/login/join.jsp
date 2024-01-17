@@ -115,7 +115,7 @@ body {
 		
 		nick.bind("blur", function() {
 			$.ajax({
-				url : '../../user/checker',
+				url : '../../login/checker',
 				method : 'POST',
 				data : {
 					checkValue : nick.val(), checkColumn : "nickname"
@@ -144,7 +144,7 @@ body {
 
 		id.bind("blur", function() {
 			$.ajax({
-				url : '../../user/checker',
+				url : '../../login/checker',
 				method : 'POST',
 				data : {
 					checkValue : id.val(), checkColumn : "id"
@@ -173,7 +173,7 @@ body {
 
 		email.bind("blur", function() {
 			$.ajax({
-				url : '../../user/checker',
+				url : '../../login/checker',
 				method : 'POST',
 				data : {
 					checkValue : email.val(), checkColumn : "email"
@@ -206,7 +206,7 @@ body {
 		$("body").on("click",'#eauth',function()
 		{ // 인증 버튼을 누르게 되면 ajax로 ec에 랜덤코드 넣어줌
 			$.ajax({
-				url : '../../user/emailauth',
+				url : '../../login/emailauth',
 				method : 'POST',
 				data : {
 					email : email.val()

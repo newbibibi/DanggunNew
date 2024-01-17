@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>로그인</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+
 <style type="text/css">
 body {
 	font-family: 'Noto Sans KR', sans-serif;
@@ -79,21 +81,22 @@ body{
 }
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript">
 $(document).ready(() => {
     $(".signup").click(() => {
-      window.location.href = "../user/login/join";
+      window.location.href = "../login/login/join";
     });
 
     $(".findAccount").click(function(){
-    	window.open("../user/login/find", "아이디/비밀번호 찾기", "width=400,height=600,left=100,top=50,resizable=yes,scrollbars=no");
+    	$("#finder").modal("show");
     });
 });
 	function login(){
 		let id=$("[name=id]");
 		let pw=$("[name=pw]");
 		$.ajax({
-			url : '../../user/login/login',
+			url : '../../login/login/login',
 			method : 'POST',
 			contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
 			data : {
@@ -101,7 +104,7 @@ $(document).ready(() => {
 			},
 			success : function(data) {
 				if(data.includes("성공")){
-					window.location.href="../user/main";
+					window.location.href="../login/main";
 				}else{
 					$(".loginResult").css("color","red");
 					$(".loginResult").html(data);
@@ -135,17 +138,34 @@ $(document).ready(() => {
 		</div>
 
 		<div>
-			<a href="../user/authReq?v=k"><img class="loginBtn" alt=""
+			<a href="../login/authReq?v=k"><img class="loginBtn" alt=""
 				src="/resources/img/KakaoBtn.png"></a> <a
-				href="../user/authReq?v=n"><img class="loginBtn" alt=""
+				href="../login/authReq?v=n"><img class="loginBtn" alt=""
 				src="/resources/img/NaverBtn.png"></a> <a
-				href="../user/authReq?v=g"><img class="loginBtn" alt=""
+				href="../login/authReq?v=g"><img class="loginBtn" alt=""
 				src="/resources/img/GoogleBtn.png"></a>
 		</div>
 
 	</div>
 
-
+<!-- Modal Start -->
+<div class="modal" id="finder" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">아이디 찾기</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>

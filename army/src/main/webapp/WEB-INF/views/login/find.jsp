@@ -47,7 +47,7 @@ window.onload = function() {
     $("body").on("click", "#idfinder", () => {
     	console.log("email val"+$("[name=email]").val());
     	$.ajax({
-            url: '../../user/checker',
+            url: '../../login/checker',
             method: 'POST',
             data: {
                 checkValue: $("[name=email]").val(),
@@ -71,7 +71,7 @@ window.onload = function() {
     $("body").on("click","#pwfinder", () => {
         $("#result").text("로딩 중..")
     	$.ajax({
-            url: '../../user/checker',
+            url: '../../login/checker',
             method: 'POST',
             data: {
                 checkValue: $("[name=id]").val(),
@@ -81,7 +81,7 @@ window.onload = function() {
             	if(data!=""){
             		console.log(data.email);
             		$.ajax({
-        				url : '../../user/emailauth',
+        				url : '../../login/emailauth',
         				method : 'POST',
         				data : {
         					email : data.email
@@ -142,7 +142,7 @@ window.onload = function() {
         	        let pw = { "pw": $("#pw").val(), "id":id};
         	        console.log(pw);
         	        $.ajax({
-        	            url: '../../user/modify',
+        	            url: '../../login/modify',
         	            method: 'POST',
         	            contentType: "application/json",
         	            data: JSON.stringify(pw),
