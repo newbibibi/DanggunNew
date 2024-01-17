@@ -54,22 +54,51 @@
 								</tr>
 							</c:if>
 							<c:if test="${!empty user}">
-									<tr>
-										<td>닉네임</td> <td>${user.nickname}</td>
-									</tr>
-									<tr>
-										<td></td> <td>${user.id}</td>
-									</tr>
-									<tr>
-										<td>아이디</td> <td>${user.id}</td>
-									</tr>
-									<tr>
-										<td>아이디</td> <td>${user.id}</td>
-									</tr>
-									<tr>
-										<td>아이디</td> <td>${user.id}</td>
-									</tr>
-									
+								<tr>
+									<td>닉네임</td>
+									<td><input type="text" name="nickname"
+										value="${user.nickname}"></td>
+								</tr>
+								<tr>
+									<td>아이디</td>
+									<td><input type="text" disabled="disabled"
+										value="${user.id}"></td>
+								</tr>
+								<tr>
+									<td>비밀번호</td>
+									<td><input type="password" name="pw" value=""></td>
+								</tr>
+								<tr>
+									<td>비밀번호확인</td>
+									<td><input type="password" name="pwc" value=""></td>
+								</tr>
+								<tr>
+									<td>군종</td>
+									<td><input type="text" disabled="disabled"
+										value="${user.armygroup}"></td>
+								</tr>
+								<tr>
+									<td>입대일</td>
+									<td><input type="text" disabled="disabled"
+										value="${user.enlisting}"></td>
+								</tr>
+								<tr>
+									<td>이메일</td>
+									<td><input type="text" disabled="disabled"
+										value="${user.email}"></td>
+								</tr>
+								<tr>
+									<td>SNS 연동</td>
+									<td><img alt="" src="/resources/images/<c:if test='${user.sns.startsWith("n")}'>NaverBtn.png</c:if><c:if test='${user.sns.startsWith("k")}'>KakaoBtn.png</c:if><c:if test='${user.sns.startsWith("g")}'>GoogleBtn.png</c:if><c:if test='${empty user.sns}'>x.png</c:if>
+									">
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2"><a href="javascript:void(0);" onclick="modify()">수정하기</a></td>
+								</tr>
+
+
+
 							</c:if>
 						</table>
 					</div>
@@ -82,6 +111,23 @@
 </section>
 <!-- Project area end -->
 
+<script type="text/javascript">
+let id=$("[name=id]");
+let pw=$("[name=pw]");
+let nickname=$("[name=nickname]");
+let data={"id":id.val(),"pw":pw.val(),"nickname":nickname.val()}
+let modify=function(){
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", "../login/modify", true);
+	xhr.setRequestHeader("Content-Type", "application/json");
+	xhr.onreadystatechange = function() {
+	  if (xhr.readyState === 4 && xhr.status === 200) {
+	    // 응답 처리
+	  }
+	};
+	xhr.send(JSON.stringify(data));
+}
+</script>
 
 <%@include file="../includes/footer.jsp"%>
 

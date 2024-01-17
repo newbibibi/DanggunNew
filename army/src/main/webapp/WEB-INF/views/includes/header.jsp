@@ -78,7 +78,7 @@
                     </div>
                   </li>
                   <li class="header-get-a-quote">
-                    <a class="btn btn-primary" href="contact.html">로그아웃</a>
+                    <a class="btn btn-primary" href="/login/logout">로그아웃</a>
                   </li>
                 </ul><!-- Ul end -->
             </div><!-- header right end -->

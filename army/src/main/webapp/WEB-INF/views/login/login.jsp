@@ -139,11 +139,11 @@ $(document).ready(() => {
 
 		<div>
 			<a href="../login/authReq?v=k"><img class="loginBtn" alt=""
-				src="/resources/img/KakaoBtn.png"></a> <a
+				src="/resources/images/KakaoBtn.png"></a> <a
 				href="../login/authReq?v=n"><img class="loginBtn" alt=""
-				src="/resources/img/NaverBtn.png"></a> <a
+				src="/resources/images/NaverBtn.png"></a> <a
 				href="../login/authReq?v=g"><img class="loginBtn" alt=""
-				src="/resources/img/GoogleBtn.png"></a>
+				src="/resources/images/GoogleBtn.png"></a>
 		</div>
 
 	</div>

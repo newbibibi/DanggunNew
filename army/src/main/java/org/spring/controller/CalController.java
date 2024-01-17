@@ -70,4 +70,14 @@ public class CalController {
 		us.addCal(vo);
 		  return "redirect:/user/myCalendar/mySchedule";
 	}
+	
+	@GetMapping("/myPage")
+	public String myPage() {
+		return "user/myPage";
+	}
+	
+	@GetMapping("/myModify")
+	public String myModify() {
+		return "user/myModify";
+	}
 }
