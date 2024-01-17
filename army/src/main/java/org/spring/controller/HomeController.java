@@ -12,10 +12,9 @@ import lombok.extern.log4j.Log4j;
 @Controller
 @RequestMapping("/*")
 @AllArgsConstructor
-@Log4j
 public class HomeController {
 	
-	@GetMapping("/main")
+	@GetMapping("/index")
 	public void mainpage() {
 
 	}
