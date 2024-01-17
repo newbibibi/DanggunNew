@@ -41,7 +41,7 @@ public class TestController {
 	@Test
 	public void testModify(){
 		int result=1;
-		result=result&mapper.modifyUser("pw", "44", "a123");
+		result=result&mapper.modifyUser("pw", "44", "바뀜");
 		log.info(result);
 	}
 }
