@@ -10,6 +10,19 @@ Description: Constra - Construction Html5 Template
 @import url(https://fonts.googleapis.com/css?family=Montserrat:300,400,400i,500,500i,600,600i,700,700i,800|Open+Sans:400,400i,600,600i,700,700i,800&display=swap);
 /* Typography
 ================================================== */
+
+@font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 100;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.otf) format('opentype');}
+
+@font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 300;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.otf) format('opentype');}
+
+@font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 400;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.otf) format('opentype');}
+
+@font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 500;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.otf) format('opentype');}
+
+@font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 700;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.otf) format('opentype');}
+
+@font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 900;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.otf) format('opentype');}
+
 .logb{
 	width:38px;
 	height: 38px;
@@ -41,11 +54,12 @@ Description: Constra - Construction Html5 Template
 body {
   background: #fff;
   color: #555;
+  
 }
 
 body,
 p {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Noto Sans KR", sans-serif;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased !important;
   line-height: 26px;
@@ -3818,4 +3832,104 @@ select {
     background-color: #fff;
     border-radius: 3px;
     color: rgb(50 137 76);
+}
+
+.recon-top {
+    padding: 0;
+    border-top: 1px solid #000;
+    font-family: "Noto Sans KR", sans-serif;
+}
+.recon-top h3 {
+    display: inline-block;
+    line-height: 7rem;
+    font-size: 2.1rem;
+    font-weight: 500;
+    margin-bottom: 0;
+    font-family: "Noto Sans KR", sans-serif;
+}
+
+.recon-tit {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    letter-spacing: -0.15rem;
+    word-break: keep-all;
+    font-family: "Noto Sans KR", sans-serif;
+}
+
+.recon-top .write-date {
+    display: block;
+    font-size: .1.6rem;
+    color: #aaa;
+    font-family: "Noto Sans KR", sans-serif;
+}
+.recon-body {
+    padding: 4rem 0 6rem;
+    word-break: keep-all;
+    border-top: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
+    font-family: "Noto Sans KR", sans-serif;
+}
+
+.recon-body>p {
+    line-height: 2rem;
+    font-size: 1.2rem;
+    color: #666666;
+    font-family: "Noto Sans KR", sans-serif;
+}
+
+.badgeset {
+    display: inline-block;
+    margin-right: 0.8rem;
+    width: 5.7rem;
+    height: 3.2rem;
+    line-height: 3.2rem;
+    color: #ffffff;
+    font-size: 1.4rem;
+    text-align: center;
+    background-color: rgb(50 137 76);
+    font-family: "Noto Sans KR", sans-serif;
+}
+
+.maright {
+	margin-right: 6px;
+}
+
+/* 추가한 부분
+================================================== */
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.7);
+}
+
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: auto;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }
