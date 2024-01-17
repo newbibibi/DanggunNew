@@ -26,9 +26,9 @@
 </div><!-- Banner area end --> 
 <section id="main-container" class="main-container">
    <div class="container">
-<div class="shuffle-btn-group">
-<form id="searchForm" action="/center/cscenter/fqna" method="get">
-		<div class="" hidden>
+
+		<div class="shuffle-btn-group">
+		<form id="searchForm" action="/center/cscenter/fqna" method="get">
 			<select id="type" class="" name="type">
 				<option value=""
 					<c:out value="${pageMaker.cri.type == null?'selected':''}"/>>전체</option>
@@ -37,19 +37,11 @@
 				<option value="X"
 					<c:out value="${pageMaker.cri.type == 'X'?'selected':''}"/>>미해결</option>
 			</select>
+			<a href="/center/cscenter/fqnaRegister" class="btn btn-primary header-right">문의사항 작성</a>
+		</form>
+			
 		</div>
-	</form>
-   <label class="" for="all">
-        <input class="" id="all" value="">전체
-    </label>
-    <label class="" for="solution">
-        <input class="" id="solution" value="O" >해결
-    </label>
-    <label class="" for="Unresolved" >
-        <input class="" id="Unresolved" value="X">미해결
-    </label>
-    <a href="/center/cscenter/fqnaRegister" class="btn btn-primary header-right">글작성</a>
-</div>
+	
 <div class="tableset container-md">
       	<div class="tableset-inner">
       		<table class="tableset-table table table-hover">
@@ -110,16 +102,7 @@
 			function() {
 				loadTableData();
 				console.log(result);
-				var selectedType = $("#type").val();
-			    $('#type option[value="' + selectedType + '"]').prop('selected', true);
-			    
-			    // 해당 라벨을 찾아 'active' 클래스 추가
-			    $('#type label').each(function() {
-			        var inputValue = $(this).find('input').val();
-			        if (inputValue === selectedType) {
-			            $(this).addClass('active');
-			        }
-			    });
+
 				function loadTableData() {
 					$.ajax({
 						url : "/center/cscenter/fqnaList",
@@ -138,14 +121,12 @@
 							let boardTbody = $("tbody");
 							$.each(data, function(index, fqna) {
 								let row = $("<tr>");
-
-								let titleLink = $("<a>").attr(
-										"href",
-										"/center/cscenter/fqnaSelect?qno="
-												+ fqna.qno).text(fqna.title);
+								
+								
+								let titleLink = $("<a>").attr("href","/center/cscenter/fqnaSelect?qno="+fqna.qno).text(fqna.title);
 								let titleTd = $("<td>").append(titleLink);
 								row.append(titleTd);
-
+								
 								if (fqna.answer === null) {
 									row.append($("<td>").text("미답변"));
 								} else {
@@ -161,13 +142,12 @@
 					});
 
 					let actionForm = $("#actionForm");
-					
 					$(".paginate_button a").on(
 							"click",
 							function(e) {
 								e.preventDefault();
-								actionForm.find("input[name='pageNum']").val(
-										$(this).attr("href"));
+								actionForm.find("input[name='pageNum']")
+										.val($(this).attr("href"));
 								actionForm.submit();
 							});
 
