@@ -54,11 +54,22 @@
 								</tr>
 							</c:if>
 							<c:if test="${!empty user}">
-								<c:forEach items="${user.declaredFields}" var="info">
 									<tr>
-										<td>${info.name}</td> <td>${user[info.name]}</td>
+										<td>닉네임</td> <td>${user.nickname}</td>
 									</tr>
-								</c:forEach>
+									<tr>
+										<td></td> <td>${user.id}</td>
+									</tr>
+									<tr>
+										<td>아이디</td> <td>${user.id}</td>
+									</tr>
+									<tr>
+										<td>아이디</td> <td>${user.id}</td>
+									</tr>
+									<tr>
+										<td>아이디</td> <td>${user.id}</td>
+									</tr>
+									
 							</c:if>
 						</table>
 					</div>

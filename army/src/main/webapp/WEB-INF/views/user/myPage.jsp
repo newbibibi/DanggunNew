@@ -43,7 +43,7 @@
 			<div class="container-fluid pt-4 px-4">
 				<div class="bg-light text-center rounded p-4">
 					<div class="d-flex align-items-center justify-content-between mb-4">
-						<a href="/myModify"><h6 class="mb-0">내 정 보</h6></a>
+						<a href="../user/myModify"><h6 class="mb-0">내 정 보</h6></a>
 					</div>
 					<div class="d-flex align-items-center justify-content-between mb-4">
 						<h6 class="mb-0"><a href="/?">내 일 정</a></h6>

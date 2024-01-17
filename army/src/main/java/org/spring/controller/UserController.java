@@ -40,6 +40,11 @@ public class UserController {
 		return "login/login";
 	}
 
+	@RequestMapping("/logout") // / 시 로그인 화면으로
+	public String end(HttpServletRequest request) {
+		request.getSession().setMaxInactiveInterval(0);
+		return "login/login";
+	}
 	// SNS!!!!!!!!!!!!!!!!!!!
 	@RequestMapping(value = "/authReq", method = RequestMethod.GET) // SNS 버튼 눌렀을 시 해당 메서드
 	public String snsLogin(@RequestParam("v") String portal) {
