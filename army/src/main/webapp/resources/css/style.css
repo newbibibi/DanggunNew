@@ -14,7 +14,7 @@ Description: Constra - Construction Html5 Template
 	width:38px;
 	height: 38px;
 	padding: 6px 6px 0 6px;
-	
+
 }
 .info-box-subtitle{
 	font-size:20px;
@@ -23,7 +23,8 @@ Description: Constra - Construction Html5 Template
 	margin-left:auto;
 	margin-top:auto;
 	margin-botton:auto;
-	
+	float:right;
+	display:none;
 }
 .navlogo{
 	display: none;
@@ -31,8 +32,11 @@ Description: Constra - Construction Html5 Template
 .navinfo-box{
 	display:none;
 }
-.info-box-subtitle{
+.info-box-subtitle .info-box-title{
 	text-align:center;
+}
+.info-box-content{
+	line-height:1;
 }
 body {
   background: #fff;
@@ -716,7 +720,7 @@ ul.top-info li p.info-text {
   display: block;
   color: white;
   padding-right: 10px;
-  
+
   }
   .nlogout{
   	display:block;
@@ -880,7 +884,6 @@ ul.top-info-box li .info-box .info-box-subtitle {
   font-size: 15px;
   font-weight: 700;
   color: #111;
-
 }
 
 /*-- Search start --*/
@@ -1254,7 +1257,8 @@ ul.navbar-nav > li > a {
 }
 
 .header-get-a-quote .btn-primary:hover {
-  background: #272d33;
+  background: #fff;
+  border: 0.1px solid rgb(50 137 76);
   color: rgb(50 137 76) !important;
 }
 
