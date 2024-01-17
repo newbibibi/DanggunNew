@@ -10,6 +10,34 @@ Description: Constra - Construction Html5 Template
 @import url(https://fonts.googleapis.com/css?family=Montserrat:300,400,400i,500,500i,600,600i,700,700i,800|Open+Sans:400,400i,600,600i,700,700i,800&display=swap);
 /* Typography
 ================================================== */
+.logb{
+	width:38px;
+	height: 38px;
+	padding: 6px 6px 0 6px;
+
+}
+.info-box-subtitle{
+	font-size:20px;
+}
+.nlogout{
+	margin-left:auto;
+	margin-top:auto;
+	margin-botton:auto;
+	float:right;
+	display:none;
+}
+.navlogo{
+	display: none;
+}
+.navinfo-box{
+	display:none;
+}
+.info-box-subtitle .info-box-title{
+	text-align:center;
+}
+.info-box-content{
+	line-height:1;
+}
 body {
   background: #fff;
   color: #555;
@@ -680,6 +708,23 @@ ul.top-info li p.info-text {
   .navbar-collapse.collapse {
     overflow-y: auto;
   }
+  .logo-area {
+  display:none;
+  }
+  .navlogo{
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  }
+  .navinfo-box{
+  display: block;
+  color: white;
+  padding-right: 10px;
+
+  }
+  .nlogout{
+  	display:block;
+  }
 }
 
 .header-one ul.navbar-nav > li {
@@ -793,6 +838,14 @@ ul.top-info-box li {
     flex: 0 0 100%;
     margin-top: 15px;
   }
+  
+  .nprom{
+  	display:none;
+  }
+  .nclass{
+  	display:none;
+  }
+  
 }
 
 ul.top-info-box li:last-child {
@@ -1204,7 +1257,8 @@ ul.navbar-nav > li > a {
 }
 
 .header-get-a-quote .btn-primary:hover {
-  background: #272d33;
+  background: #fff;
+  border: 0.1px solid rgb(50 137 76);
   color: rgb(50 137 76) !important;
 }
 
