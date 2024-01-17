@@ -12,7 +12,7 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
-		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/my_db?useSSL=false&amp;serverTimezone=Asia/Seoul"/>
+		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/army_db?useSSL=false&amp;serverTimezone=Asia/Seoul"/>
 		<property name="username" value="root"/>
 		<property name="password" value="0000"/>
 	</bean>
