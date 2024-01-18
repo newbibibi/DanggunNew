@@ -14,10 +14,14 @@
 						<h1 class="banner-title">커뮤니티</h1>
 						<nav aria-label="breadcrumb">
 							<ol class="breadcrumb justify-content-center">
-								<li class="breadcrumb-item"><a href="/board/list?category=best">BEST</a></li>
-								<li class="breadcrumb-item"><a href="/board/list?category=ssul">썰</a></li>
-								<li class="breadcrumb-item"><a href="/board/list?category=tip">팁</a></li>
-								<li class="breadcrumb-item"><a href="/board/list?category=free">자유</a></li>
+								<li class="breadcrumb-item"><a
+									href="/board/list?category=best">BEST</a></li>
+								<li class="breadcrumb-item"><a
+									href="/board/list?category=ssul">썰</a></li>
+								<li class="breadcrumb-item"><a
+									href="/board/list?category=tip">팁</a></li>
+								<li class="breadcrumb-item"><a
+									href="/board/list?category=free">자유</a></li>
 							</ol>
 						</nav>
 					</div>
@@ -35,11 +39,12 @@
 
 <section id="main-container" class="main-container">
 	<div class="container">
-		<h2>${pageMaker.cri.category}</h2>
-		<button id="regBtn" type="button">글 작성</button>
+		<h2>${pageMaker.cri.category} 게시판</h2>
+		
+
 		<form id="searchForm" action="/board/list" method="get">
 			<div class="form-group col-xs-4">
-				<select id="type" class="form-control formcol" name="type">
+				<select id="type" class="form-control formcol" name="type" style="float: left;">
 					<option value="All"
 						<c:out value="${pageMaker.cri.type == 'All'?'selected':''}"/>>전체</option>
 					<option value="title"
@@ -49,17 +54,20 @@
 					<option value="nickname"
 						<c:out value="${pageMaker.cri.type == 'nickname'?'selected':''}"/>>작성자</option>
 					<option value="TC"
-						<c:out value="${pageMaker.cri.type == 'TC'?'selected':''}"/>>제목+내용</option>					
-				
-				</select> 
-				<select id="category" class="form-control" name="category" style="display: none;">
-    <option value="best" <c:out value="${pageMaker.cri.category == 'best'?'selected':''}"/> >베스트</option>
-    <option value="ssul" <c:out value="${pageMaker.cri.category == 'ssul'?'selected':''}"/> >썰</option>
-    <option value="tip" <c:out value="${pageMaker.cri.category == 'tip'?'selected':''}"/> >팁</option>
-    <option value="free" <c:out value="${pageMaker.cri.category == 'free'?'selected':''}"/> >자유</option>
-</select>
-			</div>
-			<div class="col-xs-6">
+						<c:out value="${pageMaker.cri.type == 'TC'?'selected':''}"/>>제목+내용</option>
+
+				</select> <select id="category" class="form-control" name="category"
+					style="display: none;">
+					<option value="best"
+						<c:out value="${pageMaker.cri.category == 'best'?'selected':''}"/>>베스트</option>
+					<option value="ssul"
+						<c:out value="${pageMaker.cri.category == 'ssul'?'selected':''}"/>>썰</option>
+					<option value="tip"
+						<c:out value="${pageMaker.cri.category == 'tip'?'selected':''}"/>>팁</option>
+					<option value="free"
+						<c:out value="${pageMaker.cri.category == 'free'?'selected':''}"/>>자유</option>
+				</select>
+				<div class="col-xs-6" style="float: right; padding-top: 13px;">
 				<div class="form-group input-group">
 					<input type='text' name='keyword'
 						value='<c:out value="${pageMaker.cri.keyword}"/>' /> <input
@@ -70,6 +78,8 @@
 						<button class="btn btn-default">검색</button>
 					</span>
 				</div>
+			</div>
+			
 			</div>
 		</form>
 		<table id="boardTable" class="tableset-table table table-hover">
@@ -88,7 +98,9 @@
 
 
 			</tbody>
+			
 		</table>
+		<button id="regBtn" type="button" style="float: right;">글 작성</button>
 		<nav class="pagiset pagiset-circ">
 			<div class="pagiset-ctrl paginate_button">
 				<c:if test="${pageMaker.prev }">
@@ -171,107 +183,73 @@
 										});
 
 						function loadTableData() {
-							$
-									.ajax({
-										url : "/board/getList",
-										type : "POST",
-										dataType : "json",
-										data : {
-											pageNum : $(
-													"#actionFrom input[name='pageNum']")
-													.val(),
-											amount : $(
-													"#actionFrom input[name='amount']")
-													.val(),
-											type : $(
-													"#searchForm select[name='type']")
-													.val(),
-											keyword : $(
-													"#searchForm input[name='keyword']")
-													.val(),
-											category : $(
-													"#searchForm select[name='category']")
-													.val()
-										},
-										success : function(data) {
-											let boardTbody = $("#boardTable tbody");
-											boardTbody.empty(); // 새로운 데이터를 추가하기 전에 테이블 바디를 비움
+						    $
+						        .ajax({
+						            url: "/board/getList",
+						            type: "POST",
+						            dataType: "json",
+						            data: {
+						                pageNum: $("#actionFrom input[name='pageNum']").val(),
+						                amount: $("#actionFrom input[name='amount']").val(),
+						                type: $("#searchForm select[name='type']").val(),
+						                keyword: $("#searchForm input[name='keyword']").val(),
+						                category: $("#searchForm select[name='category']").val()
+						            },
+						            success: function (data) {
+						                let boardTbody = $("#boardTable tbody");
+						                boardTbody.empty(); // Clear the table body before adding new data
 
-											$
-													.each(
-															data,
-															function(index,
-																	list) {
-																var displayName = list.anonymous == 1 ? '익명'
-																		: list.nickname;
-																let regDate = new Date(
-																		list.regDate);
-																console
-																		.log(regDate)
-																let options = {
-																	year : "numeric",
-																	month : "2-digit",
-																	day : "2-digit",
-																	hour : "2-digit",
-																	minute : "2-digit"
-																}
-																let formatDate = regDate
-																		.toLocaleString(
-																				"ko-KR",
-																				options);
+						                $.each(data, function (index, list) {
+						                    var displayName = list.anonymous == 1 ? '익명' : list.nickname;
+						                    let regDate = new Date(list.regDate);
+						                    console.log(regDate);
 
-																let row = $("<tr>");
-																row
-																		.append($(
-																				"<td>")
-																				.text(
-																						list.bno));
+						                    let currentDate = new Date();
+						                    let options;
 
-																let titleLink = $(
-																		"<a>")
-																		.attr(
-																				"href",
-																				"/board/view/"
-																						+ list.bno)
-																		.text(
-																				list.title);
-																let titleTd = $(
-																		"<td>")
-																		.append(
-																				titleLink);
+						                    if (
+						                        regDate.getDate() === currentDate.getDate() &&
+						                        regDate.getMonth() === currentDate.getMonth() &&
+						                        regDate.getFullYear() === currentDate.getFullYear()
+						                    ) {
+						                        // If the post was written today, show only hours and minutes
+						                        options = {
+						                            hour: "2-digit",
+						                            minute: "2-digit"
+						                        };
+						                    } else {
+						                        // If the post was not written today, show month and day
+						                        options = {
+						                            month: "2-digit",
+						                            day: "2-digit"
+						                        };
+						                    }
 
-																row
-																		.append(titleTd);
-																row
-																		.append($(
-																				"<td>")
-																				.text(
-																						displayName));
-																row
-																		.append($(
-																				"<td>")
-																				.text(
-																						formatDate));
-																row
-																		.append($(
-																				"<td>")
-																				.text(
-																						list.views));
-																row
-																		.append($(
-																				"<td>")
-																				.text(
-																						list.likes));
+						                    let formatDate = regDate.toLocaleString("ko-KR", options);
 
-																boardTbody
-																		.append(row);
-															});
-										},
-										error : function(e) {
-											console.log(e);
-										}
-									});
+						                    let row = $("<tr>");
+						                    row.append($("<td>").text(list.bno));
+
+						                    let titleLink = $("<a>")
+						                        .attr("href", "/board/view/" + list.bno)
+						                        .text(list.title + '[' + list.commentCnt + ']');
+						                    let titleTd = $("<td>").append(titleLink);
+
+						                    row.append(titleTd);
+						                    row.append($("<td>").text(displayName));
+						                    row.append($("<td>").text(formatDate));
+						                    row.append($("<td>").text(list.views));
+						                    row.append($("<td>").text(list.likes));
+
+						                    boardTbody.append(row);
+						                });
+						            },
+						            error: function (e) {
+						                console.log(e);
+						            }
+						        });
 						}
+
 
 						let actionForm = $("#actionFrom");
 						$(".paginate_button a").on(

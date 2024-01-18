@@ -16,29 +16,26 @@
 <body>
 	<section id="main-container" class="main-container">
 		<div class="container">
-			<h1>게시글 상세보기</h1>
-			<p>
-				게시글 번호: <span>${board.bno}</span>
+			<h1 style="float:left;"><span>${board.title}</span></h1>
+			
+			<p style="float:right;">
+				조회수: <span>${board.views}</span>
 			</p>
-			<p>
-				제목: <span>${board.title}</span>
+			<p style="float:right;">
+				좋아요: <span>${board.likes}  </span>
 			</p>
-			<p>
+			<p style="float:right;">
+			<span><fmt:formatDate value="${board.regDate}"
+						pattern="yyyy-MM-dd HH:mm:ss" />     </span>
+			</p>
+			<hr>
+			
+			<!--  <p>
 				작성자: <span> <c:choose>
 						<c:when test="${board.anonymous == 1}">익명</c:when>
 						<c:otherwise>${board.nickname}</c:otherwise>
 					</c:choose></span>
-			</p>
-			<p>
-				조회수: <span>${board.views}</span>
-			</p>
-			<p>
-				좋아요: <span>${board.likes}</span>
-			</p>
-			<p>
-				작성일: <span><fmt:formatDate value="${board.regDate}"
-						pattern="yyyy-MM-dd HH:mm:ss" /></span>
-			</p>
+			</p>-->			
 			<!--<c:if test="${not empty imageList}">
 			<div class="image-gallery">
 				<c:forEach items="${imageList}" var="imageUrl">
@@ -111,7 +108,7 @@
 				</c:otherwise>
 			</c:choose>
 
-			<a href="/board/list">목록으로 돌아가기</a>
+			<a href="/board/list">목록으로</a>
 
 
 
