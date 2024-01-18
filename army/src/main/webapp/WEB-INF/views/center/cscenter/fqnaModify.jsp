@@ -1,75 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
+    pageEncoding="UTF-8"%>
 
-        #page-wrapper {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+<%@include file="../../includes/header.jsp" %>
 
-        h1.page-header {
-            color: #333;
-        }
-
-        form {
-            margin-bottom: 20px;
-        }
-
-        textarea {
-            resize: none;
-        }
-
-        .btn-group {
-            margin-bottom: 20px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-    </style>
-</head>
-<body>
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-
-	<div id="page-wrapper">
-		<div class="row">
-			<div class="col-lg-12">
-				<h1 class="page-header">1:1문의 수정</h1>
-			</div>
-			<!-- /.col-lg-12 -->
-		</div>
-		<!-- /.row -->
-		<div class="row">
-			<div class="col-lg-12">
-				<div class="panel panel-default">
-					<div class="panel-heading">fqnaModify</div>
-					<!-- /.panel-heading -->
-					<div class="panel-body">
-						<form name="dataForm" id="dataForm">
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+  <div id="banner-area" class="banner-area" style="background-color: rgb(50 137 76)">
+  <div class="banner-text">
+    <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+              <div class="banner-heading">
+                <h1 class="banner-title">고객센터</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center">
+                      <li class="breadcrumb-item"><a href="/center/cscenter/faq">FAQ</a></li>
+                      <li class="breadcrumb-item"><a href="/center/cscenter/fqna">1:1문의</a></li>
+                    </ol>
+                </nav>
+              </div>
+          </div><!-- Col end -->
+        </div><!-- Row end -->
+    </div><!-- Container end -->
+  </div><!-- Banner text end -->
+</div><!-- Banner area end -->
+<section id="main-container" class="main-container">
+   <div class="container">
+   <form name="dataForm" id="dataForm">
 							<button id="btn-upload" type="button"
 								style="border: 1px solid #ddd; outline: none;">파일 추가</button>
 							<input id="input_file" multiple="multiple" type="file"
@@ -78,11 +35,11 @@
 								가능합니다.</span>
 							<div class="data_file_txt" id="data_file_txt"
 								style="margin: 40px;">
-								<span>첨부 파일</span> <br />
+								
 								<div id="articlefileChange"></div>
 							</div>
 							<div class="form-group">
-								<input type="hidden" name="nickname" value="홍길동"> <input
+								<input type="hidden" name="nickname" value="${user.nickname }"> <input
 									type="hidden" name="qno" value="${board.qno }">
 							</div>
 							<div class="form-group">
@@ -93,16 +50,14 @@
 								<label>내용</label>
 								<textarea class="form-control" rows="5" cols="40" name="content">${board.content }</textarea>
 							</div>
-							<button type="button" class="btn btn-default" data-oper="modify">수정완료</button>
-							<button type="button" class="btn btn-default" data-oper="remove">삭제</button>
+							<a class="btn-primary" href="/center/cscenter/fqna">목록으로</a>
+							<button type="button" class="btn btn-primary header-right" data-oper="modify">수정완료</button>
+							<button type="button" class="btn btn-primary header-right maright" data-oper="remove">삭제</button>
 						</form>
-						<a href="/center/cscenter/fqna"><button>목록으로</button></a>
-					</div>
-				</div>
-			</div>
-		</div>
+						
+   </div>
+</section>
 
-	</div>
 
 
 	<script type="text/javascript">
@@ -176,7 +131,7 @@
 													+ '<font style="font-size:12px">'
 													+ f.name
 													+ '</font>'
-													+ '<img src="/img/icon_minus.png" style="width:20px; height:auto; vertical-align: middle; cursor: pointer;"/>'
+													+ '<img src="../../../resources/images/Xicon.PNG" style="width:20px; height:auto; vertical-align: middle; cursor: pointer;"/>'
 													+ '<div/>');
 							fileNum++;
 						};
@@ -231,6 +186,4 @@
 			});
 		}
 	</script>
-</body>
-
-</html>
+<%@include file="../../includes/footer.jsp"%>

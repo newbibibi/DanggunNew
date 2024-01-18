@@ -51,7 +51,7 @@
 			</c:if>
 			<form role="form">
 				<div class="form-group" id="actionf">
-					<input type="hidden" name="nickname" value="홍길동"> <input
+					<input type="hidden" name="nickname" value="${user.nickname }"> <input
 						id="qno" type="hidden" name="qno" value="${board.qno }">
 				</div>
 				<a class="btn btn-primary" href="/center/cscenter/fqna">목록으로</a>
