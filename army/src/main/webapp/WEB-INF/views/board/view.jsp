@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,17 +17,20 @@
 <body>
 	<section id="main-container" class="main-container">
 		<div class="container">
-			<div class="viewHeader">
-				<h1 style="display: inline-block;">
+			<div
+				style="display: flex; justify-content: space-between; align-items: center; text-align: right;">
+				<h1 style="margin-right: 10px;">
 					<span>${board.title}</span>
 				</h1>
 
 				<p>
 					<span><fmt:formatDate value="${board.regDate}"
-							pattern="yyyy-MM-dd HH:mm:ss" /></span> <span>조회수:
-						${board.views}</span> <span>좋아요: ${board.likes}</span>
+							pattern="yyyy-MM-dd HH:mm:ss" /></span> <span
+						style="margin-left: 10px;">조회수: ${board.views}</span> <span
+						style="margin-left: 10px;">좋아요: ${board.likes}</span>
 				</p>
 			</div>
+
 
 			<!--  <p>
 				작성자: <span> <c:choose>
@@ -41,7 +45,7 @@
 				</c:forEach>
 			</div>
 		</c:if>-->
-			
+
 			<div>${board.content}</div>
 
 

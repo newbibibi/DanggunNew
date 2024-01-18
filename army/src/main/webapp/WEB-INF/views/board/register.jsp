@@ -19,7 +19,10 @@
     </div><!-- Container end -->
   </div><!-- Banner text end -->
 </div><!-- Banner area end --> 
+<script src="/resources/summernote-0.8.18-dist/summernote-lite.js"></script>
+<script src="/resources/summernote-0.8.18-dist/lang/summernote-ko-KR.js"></script>
 
+<link rel="stylesheet" href="\resources\summernote-0.8.18-dist\summernote-lite.css">
 
 <form id="postForm" class="col-x" action="register.do" method="post" enctype="multipart/form-data">
     <!-- 나머지 폼 필드 -->
@@ -60,10 +63,7 @@
     </div>
 </form>
 
-<script src="/resources/summernote-0.8.18-dist/summernote-lite.js"></script>
-<script src="/resources/summernote-0.8.18-dist/lang/summernote-ko-KR.js"></script>
 
-<link rel="stylesheet" href="\resources\summernote-0.8.18-dist\summernote-lite.css">
 <script>
     $(document).ready(function () {
         $('#summernote').summernote({
