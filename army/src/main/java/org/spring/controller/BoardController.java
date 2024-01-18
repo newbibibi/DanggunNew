@@ -54,10 +54,10 @@ public class BoardController {
 	public void list(Criteria cri, Model model) {
 		log.info("------- controller in list -------");
 		
-		if(cri.getCategory() == null) {
-			cri.setCategory("best");
-			cri.setType("All");
-		}
+		if(cri.getCategory() == null) cri.setCategory("best");			
+		if(cri.getType() == null) cri.setType("All");	
+		if(cri.getKeyword() == null) cri.setKeyword("");
+		
 		log.info(cri);
 		int total = boardService.getTotal(cri); // tbl_board테이블의 모든 행의 갯수
 
