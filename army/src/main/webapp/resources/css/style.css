@@ -22,7 +22,26 @@ Description: Constra - Construction Html5 Template
 @font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 700;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.otf) format('opentype');}
 
 @font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 900;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.otf) format('opentype');}
+.viewHeader span{
+	padding-right: 15px;
+	text-align:right;
+}
+.col-x{
+	width:80%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top:20px;
+	margin-bottom: 20px;
+}
+.formcol{
+	width:130px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
 
+#title{
+	width:100%;
+}
 .logb{
 	width:38px;
 	height: 38px;
