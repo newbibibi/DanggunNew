@@ -16,6 +16,7 @@ import org.spring.domain.NoticeVO;
 import org.spring.domain.PageDTO;
 import org.spring.domain.QuestionsVO;
 import org.spring.domain.SaleVO;
+import org.spring.domain.UserVO;
 import org.spring.service.CenterService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -68,11 +69,13 @@ public class CenterController {
 	}
 	
 	@GetMapping("/cscenter/fqna")
-	public void fqnalist(Criteria cri ,Model model) {
-		cri.setNickname("홍길동");
-		// 닉네임가져오는 부분은 나중에 수정
+	public void fqnalist(Criteria cri ,Model model,HttpServletRequest request) {
+		UserVO user = (UserVO) request.getSession().getAttribute("user");
+		if(user!=null) {
+		cri.setNickname(user.getNickname());
+		}
 		int total = centerService.getfqnaTotal(cri);
-		log.info("nickname : " +cri.getNickname());
+		log.info("nickname1 : " +cri.getNickname());
 		PageDTO pageResult = new PageDTO(cri, total);
 		model.addAttribute("pageMaker", pageResult);
 	}
@@ -81,7 +84,7 @@ public class CenterController {
 	@RequestMapping(value="/cscenter/fqnaList",method = RequestMethod.POST)
 	public List<QuestionsVO> getFqnalist(Criteria cri){
 		log.info("getfqnalist Ajax실행");
-		log.info("nickname : "+cri.getNickname());
+		log.info("nickname2 : "+cri.getNickname());
 		log.info("start값 : "+cri.getStart());
 		return centerService.myFqnaList(cri);
 	}
