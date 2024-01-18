@@ -43,22 +43,24 @@
 			<div class="container-fluid pt-4 px-4">
 				<div class="bg-light text-center rounded p-4">
 					<div class="d-flex align-items-center justify-content-between mb-4">
-						<h6 class="mb-0"><a href="../user/myModify">내 정 보</a></h6>
+						<h6 class="mb-0"><a href="../admin/report">신고 확인</a></h6>
 					</div>
 					<div class="d-flex align-items-center justify-content-between mb-4">
-						<h6 class="mb-0"><a href="/?">내 일 정</a></h6>
+						<h6 class="mb-0"><a href="/?">유저 관리</a></h6>
 					</div>
 					<div class="d-flex align-items-center justify-content-between mb-4">
-						<h6 class="mb-0"><a href="/?">내 문 의</a></h6>
+						<h6 class="mb-0"><a href="/?">문의 확인</a></h6>
 					</div>
 
 					<div class="table-responsive">
-
+					<table>
+					
+					</table>
 					</div>
 				</div>
 			</div>
-			<!-- Content row end -->
 		</div>
+		<!-- Content row end -->
 	</div>
 	<!--/ Container end -->
 </section>

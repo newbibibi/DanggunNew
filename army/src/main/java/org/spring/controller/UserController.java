@@ -133,11 +133,9 @@ public class UserController {
 	@ResponseBody
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
 	public int modify(@RequestBody Map<String, String> map) { // 유저 정보 다중 변경
-		log.info(map);
 		int result = 1;
 		for (String key : map.keySet()) {
 			if (!key.equals("id")) {
-				log.info(key);
 				result = result & us.modifyInfo(key,map.get(key),map.get("id"));
 			}
 		}
