@@ -173,4 +173,19 @@
 	<select id="getFileList" resultType="FileVO" parameterType="Integer">
 		SELECT * FROM fileupload WHERE qno=#{qno}
 	</select>
+	<select id="noticeListAll" resultType="NoticeVO" parameterType="Criteria">
+		select * from notice order by nno desc limit #{start},#{amount};
+	</select>
+	<select id="getTCN" resultType="int" parameterType="Criteria">
+    	select count(nno) from notice;
+	</select>
+	<select id="showNotice" resultType="NoticeVO">
+		select * from notice where nno = #{nno};
+	</select>
+	<update id ="modifyNotice" parameterType="NoticeVO">
+		update notice set content = #{content}, title = #{title} where nno = #{nno};
+	</update>
+	<delete id="removeNotice" parameterType="NoticeVO">
+		delete from notice where nno = #{nno};
+	</delete>
 </mapper>

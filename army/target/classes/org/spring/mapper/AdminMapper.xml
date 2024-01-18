@@ -5,8 +5,22 @@
 <mapper namespace="org.spring.mapper.AdminMapper">
 	<update id="answerQ" parameterType="QuestionsVO">
 		UPDATE questions
-		SET answer=#{answer}
+		SET
+		answer=#{answer}
 		WHERE qno=#{qno}
 	</update>
 
+	<select id="listReport" resultType="ReportVO">
+		SELECT r.bno, r.cno, COUNT(*) AS count,
+		COALESCE(b.nickname, c.nickname) AS nickname
+		FROM report r
+		LEFT JOIN board b ON r.bno = b.bno
+		LEFT JOIN comment c ON r.cno = c.cno
+		GROUP BY r.bno, r.cno
+		HAVING count(*) > 2 limit;
+	</select>
+	
+	<select id="ReportInfo" parameterType="java.util.Map" resultType="ReportVO">
+	select reporter,reason from report where ${type} like #{no};
+	</select>
 </mapper>
