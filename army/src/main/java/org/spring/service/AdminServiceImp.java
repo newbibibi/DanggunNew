@@ -1,6 +1,9 @@
 package org.spring.service;
 
+import java.util.List;
+
 import org.spring.domain.QuestionsVO;
+import org.spring.domain.ReportVO;
 import org.spring.domain.UserVO;
 import org.spring.mapper.AdminMapper;
 import org.springframework.stereotype.Service;
@@ -20,9 +23,8 @@ public class AdminServiceImp implements AdminService{
 	}
 
 	@Override
-	public int userBan(UserVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
+	public List<ReportVO> reportList() {
+		return adminMapper.listReport();
 	}
 
 }

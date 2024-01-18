@@ -10,7 +10,7 @@ public interface AdminMapper {
 	public UserVO showProfile();
 	public List<UserVO> listUser();
 	public List<ReportVO> listReport();
-	public int ban(UserVO vo);
 	public List<QuestionsVO> listQ();
 	public int answerQ(QuestionsVO vo);
+	public List<ReportVO> ReportInfo(String type,String no);
 }
