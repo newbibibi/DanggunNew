@@ -28,7 +28,7 @@ import lombok.extern.log4j.Log4j;
 public class BoardServiceImp implements BoardService {
 
 	 // 파일을 저장할 디렉터리의 경로입니다. 실제 환경에 맞게 수정해야 합니다.
-    private final Path rootLocation = Paths.get("C:/Users/keduit/Desktop/STSWS/army/src/main/webapp/resources/boardImage/");
+    private final Path rootLocation = Paths.get("C:/Users/keduit/Documents/DanggunNew/army/src/main/webapp/resources/boardImage/");
 	private final BoardMapper boardmapper;
 
 	// 페이징하고 게시물 불러오기
