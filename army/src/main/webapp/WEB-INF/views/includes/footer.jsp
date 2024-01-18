@@ -48,26 +48,7 @@
   ================================================== -->
 
   <!-- initialize jQuery Library -->
-  <script src="../../../resources/plugins/jQuery/jquery.min.js"></script>
-  <!-- Bootstrap jQuery -->
-  <script src="../../../resources/plugins/bootstrap/bootstrap.min.js" defer></script>
-  <!-- Slick Carousel -->
-  <script src="../../../resources/plugins/slick/slick.min.js"></script>
-  <script src="../../../resources/plugins/slick/slick-animation.min.js"></script>
-  <!-- Color box -->
-  <script src="../../../resources/plugins/colorbox/jquery.colorbox.js"></script>
-  <!-- shuffle -->
-  <script src="../../../resources/plugins/shuffle/shuffle.min.js" defer></script>
-
-
-  <!-- Google Map API Key-->
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU" defer></script>
-  <!-- Google Map Plugin-->
-  <script src="../../../resources/plugins/google-map/map.js" defer></script>
-
-  <!-- Template custom -->
-  <script src="../../../resources/js/script.js"></script>
-
+  
   </div><!-- Body inner end -->
   </body>
 
