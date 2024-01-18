@@ -61,16 +61,16 @@
 								</tr>
 								<tr>
 									<td>아이디</td>
-									<td><input type="text" disabled="disabled"
+									<td><input type="text" name="id" disabled="disabled"
 										value="${user.id}"></td>
 								</tr>
 								<tr>
 									<td>비밀번호</td>
-									<td><input type="password" name="pw" value=""></td>
+									<td><input type="password" name="pw"></td>
 								</tr>
 								<tr>
 									<td>비밀번호확인</td>
-									<td><input type="password" name="pwc" value=""></td>
+									<td><input type="password" name="pwc"></td>
 								</tr>
 								<tr>
 									<td>군종</td>
@@ -94,7 +94,7 @@
 									</td>
 								</tr>
 								<tr>
-									<td colspan="2"><a href="javascript:void(0);" onclick="modify()">수정하기</a></td>
+									<td colspan="2"><a href="javascript:modify();">수정하기</a></td>
 								</tr>
 
 
@@ -112,17 +112,25 @@
 <!-- Project area end -->
 
 <script type="text/javascript">
-let id=$("[name=id]");
-let pw=$("[name=pw]");
-let nickname=$("[name=nickname]");
-let data={"id":id.val(),"pw":pw.val(),"nickname":nickname.val()}
+
 let modify=function(){
+	let id=$("[name=id]");
+	let pw=$("[name=pw]");
+	let nickname=$("[name=nickname]");
+	let data={"id":id.val(),"pw":pw.val(),"nickname":nickname.val()}
+
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", "../login/modify", true);
 	xhr.setRequestHeader("Content-Type", "application/json");
 	xhr.onreadystatechange = function() {
 	  if (xhr.readyState === 4 && xhr.status === 200) {
-	    // 응답 처리
+	   		if(xhr.response==1){
+	   			alert("변경 완료 다시 로그인 하세요.");
+	   			location.href("../login/login");
+	   		}else{
+	   			alert("변경 실패 지속 시 1:1 문의 부탁드립니다.");
+	   		}
+		  
 	  }
 	};
 	xhr.send(JSON.stringify(data));

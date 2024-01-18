@@ -42,8 +42,8 @@ public class UserController {
 
 	@RequestMapping("/logout") // / 시 로그인 화면으로
 	public String end(HttpServletRequest request) {
-		request.getSession().setMaxInactiveInterval(0);
-		return "login/login";
+		request.getSession().invalidate();
+		return "redirect:../login/login";
 	}
 	// SNS!!!!!!!!!!!!!!!!!!!
 	@RequestMapping(value = "/authReq", method = RequestMethod.GET) // SNS 버튼 눌렀을 시 해당 메서드
@@ -101,6 +101,7 @@ public class UserController {
 		if (result == 1) {
 			model.addAttribute("result", "입대 축하합니다.");
 			request.getSession().setAttribute("user", ls.getUser("id", vo.getId()));
+			request.getSession().setMaxInactiveInterval(600);
 			return "/main";
 		} else {
 			model.addAttribute("result", "회원 등록 실패 관리자에게 문의 바랍니다.");
@@ -132,9 +133,11 @@ public class UserController {
 	@ResponseBody
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
 	public int modify(@RequestBody Map<String, String> map) { // 유저 정보 다중 변경
+		log.info(map);
 		int result = 1;
 		for (String key : map.keySet()) {
 			if (!key.equals("id")) {
+				log.info(key);
 				result = result & us.modifyInfo(key,map.get(key),map.get("id"));
 			}
 		}
