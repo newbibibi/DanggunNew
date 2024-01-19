@@ -14,9 +14,9 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 public class HomeController {
 	
-	@GetMapping("/index")
-	public void mainpage() {
-
+	@GetMapping("/")
+	public String mainpage() {
+		return "index";
 	}
 	
 	@GetMapping("/main2")

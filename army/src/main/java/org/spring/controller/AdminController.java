@@ -1,6 +1,8 @@
 package org.spring.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.spring.domain.Criteria;
 import org.spring.domain.PageDTO;
@@ -60,11 +62,14 @@ public class AdminController {
 	
 	@ResponseBody
 	@GetMapping("/reportList")
-	public List<ReportVO> reportView(Criteria cri,Model model) {
-		PageDTO paging=new PageDTO(cri, adminService.reportCount());
-		log.info(paging);
-		model.addAttribute("pageMaker",paging);
-		return adminService.reportList(cri);
+	public Map<String, Object> reportView(Criteria cri) {
+	    PageDTO paging = new PageDTO(cri, adminService.reportCount());
+	    List<ReportVO> reportList = adminService.reportList(cri);
+	    
+	    Map<String, Object> responseData = new HashMap<>();
+	    responseData.put("pageMaker", paging);
+	    responseData.put("reportList", reportList);
+	    
+	    return responseData;
 	}
-	
 }

@@ -69,7 +69,6 @@ public class UserController {
 		} else {
 			url = "redirect:../login/main"; // 있다면 sns로 이미 회원가입한 회원이 있다는 뜻이므로 main page로 이동
 			request.getSession().setAttribute("user", ls.getUser("sns", snsID)); // 첫번째 매개변수는 가져올 컬럼 두번째 매개변수는 비교할 값(유저
-																					// VO를 세션에 저장)
 		}
 		return url;
 	}
