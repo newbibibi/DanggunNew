@@ -106,6 +106,7 @@ function fileCheck(e) {
         $('#articlefileChange').append(
        		'<div id="file' + fileNum + '" onclick="fileDelete(\'file' + fileNum + '\')">'
        		+ '<font style="font-size:12px">' + f.name + '</font>'  
+       		+ '<img src="' + e.target.result + '" class="file-preview" style="width:100px; height:auto; cursor: pointer;"/>'
        		+ '<img src="../../../resources/images/Xicon.PNG" style="width:20px; height:auto; vertical-align: middle; cursor: pointer;"/>' 
        		+ '<div/>'
 		);
