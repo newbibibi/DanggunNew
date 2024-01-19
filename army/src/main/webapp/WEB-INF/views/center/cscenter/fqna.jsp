@@ -33,9 +33,12 @@
 <section id="main-container" class="main-container">
 	<div class="container">
 		<c:if test="${empty user}">
-			<tr>
-				<td>로그인되어 있지 않은 비정상 사용자</td>
-			</tr>
+			<div style="display: flex;
+      align-items: center;
+      justify-content: center;">
+			<h3>로그인되어 있지 않은 사용자 입니다.</h3>
+			<a class="btn-primary" href="/login/login">로그인</a>
+		</div>
 		</c:if>
 		<c:if test="${!empty user}">
 			<div class="shuffle-btn-group">
