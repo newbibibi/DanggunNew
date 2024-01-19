@@ -2,6 +2,7 @@ package org.spring.service;
 
 import java.util.List;
 
+import org.spring.domain.Criteria;
 import org.spring.domain.QuestionsVO;
 import org.spring.domain.ReportVO;
 import org.spring.domain.UserVO;
@@ -23,8 +24,15 @@ public class AdminServiceImp implements AdminService{
 	}
 
 	@Override
-	public List<ReportVO> reportList() {
-		return adminMapper.listReport();
+	public int reportCount() {
+		return adminMapper.reportCount();
+	}
+
+	@Override
+	public List<ReportVO> reportList(Criteria cri) {
+		// TODO Auto-generated method stub
+		return adminMapper.listReport(cri);
+
 	}
 
 }

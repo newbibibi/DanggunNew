@@ -5,6 +5,7 @@ import java.util.List;
 import org.spring.domain.Criteria;
 import org.spring.domain.PageDTO;
 import org.spring.domain.QuestionsVO;
+import org.spring.domain.ReportVO;
 import org.spring.service.AdminService;
 import org.spring.service.CenterService;
 import org.springframework.stereotype.Controller;
@@ -50,6 +51,20 @@ public class AdminController {
 	public String fqnaAnswerModify(QuestionsVO vo, RedirectAttributes rttr) {
 		int num = adminService.updateAnswer(vo);
 		return "redirect:/admin/adminFqna";
+	}
+	
+	@GetMapping("/report")
+	public String report() {
+		return "admin/report";
+	}
+	
+	@ResponseBody
+	@GetMapping("/reportList")
+	public List<ReportVO> reportView(Criteria cri,Model model) {
+		PageDTO paging=new PageDTO(cri, adminService.reportCount());
+		log.info(paging);
+		model.addAttribute("pageMaker",paging);
+		return adminService.reportList(cri);
 	}
 	
 }
