@@ -54,7 +54,7 @@
       			<thead class="thead-border-top">
       				<tr>
       					<th class="#"><span>제목</span></th>
-      					<th class="short"><span>작성자</span></th>
+      					<th class="#"><span>작성자</span></th>
       					<th class="short"><span>답변유무</span></th>
       				</tr>
       			</thead>
