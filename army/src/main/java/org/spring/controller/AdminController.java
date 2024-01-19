@@ -59,17 +59,17 @@ public class AdminController {
 	public String report() {
 		return "admin/report";
 	}
+    @ResponseBody
+    @GetMapping("/reportList")
+    public Map<String, Object> reportView(Criteria cri) {
+        PageDTO paging = new PageDTO(cri, adminService.reportCount());
+        List<ReportVO> reportList = adminService.reportList(cri);
+        
+        Map<String, Object> responseData = new HashMap<>();
+        responseData.put("pageMaker", paging);
+        responseData.put("reportList", reportList);
+        
+        return responseData;
+    }
 	
-	@ResponseBody
-	@GetMapping("/reportList")
-	public Map<String, Object> reportView(Criteria cri) {
-	    PageDTO paging = new PageDTO(cri, adminService.reportCount());
-	    List<ReportVO> reportList = adminService.reportList(cri);
-	    
-	    Map<String, Object> responseData = new HashMap<>();
-	    responseData.put("pageMaker", paging);
-	    responseData.put("reportList", reportList);
-	    
-	    return responseData;
-	}
 }

@@ -3,35 +3,17 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.spring.mapper.AdminMapper">
-	<update id="answerQ" parameterType="QuestionsVO">
-		UPDATE questions
-		SET
-		answer=#{answer}
-		WHERE qno=#{qno}
-	</update>
-
-		<select id="listReport" parameterType="Criteria"
-		resultType="ReportVO">
-		SELECT r.bno, r.cno, COUNT(*) AS count,
-		COALESCE(b.nickname, c.nickname) AS nickname
-		FROM report r
-		LEFT JOIN
-		board b ON r.bno = b.bno
-		LEFT JOIN comment c ON r.cno = c.cno
-		GROUP BY
-		r.bno, r.cno
-		HAVING count(*) > 2 limit #{start}, #{amount};
-	</select>
-
+	<update id="answerQ" parameterType="QuestionsVO"> UPDATE questions SET
+		answer=#{answer} WHERE qno=#{qno} </update>
+	<select id="listReport" parameterType="Criteria"
+		resultType="ReportVO"> SELECT r.bno, r.cno, COUNT(*) AS count,
+		COALESCE(b.nickname, c.nickname) AS nickname FROM report r LEFT JOIN
+		board b ON r.bno = b.bno LEFT JOIN comment c ON r.cno = c.cno GROUP BY
+		r.bno, r.cno HAVING count(*) > 2 limit #{start}, #{amount}; </select>
 	<select id="ReportInfo" parameterType="java.util.Map"
-		resultType="ReportVO">
-		select reporter,reason from report where ${type} like #{no};
-	</select>
-
-	<select id="reportCount" resultType="int">
-   		SELECT count(*) from (
-		SELECT COUNT(*) FROM report r
-		GROUP BY r.bno, r.cno
-		HAVING count(*)>2) AS sub
-	</select>
+		resultType="ReportVO"> select reporter,reason from report where ${type} like
+		#{no}; </select>
+	<select id="reportCount" resultType="int"> SELECT count(*) from (
+		SELECT COUNT(*) FROM report r GROUP BY r.bno, r.cno HAVING count(*)>2)
+		AS sub </select>
 </mapper>
