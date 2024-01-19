@@ -131,7 +131,7 @@
 
 								<div id="navbar-collapse" class="collapse navbar-collapse">
 									<ul class="nav navbar-nav mr-auto">
-										<li class="nav-item"><a class="nav-link" href="main">Home</a></li>
+										<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}">Home</a></li>
 
 										<li class="nav-item"><a class="nav-link"
 											href="/center/notice/noticeList">Notice</a></li>
