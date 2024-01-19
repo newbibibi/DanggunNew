@@ -33,7 +33,7 @@
 <section id="main-container" class="main-container">
 	<div class="container">
 		<c:if test="${empty user}">
-		<div style="display: flex;
+			<div style="display: flex;
       align-items: center;
       justify-content: center;">
 			<h3>로그인되어 있지 않은 사용자 입니다.</h3>

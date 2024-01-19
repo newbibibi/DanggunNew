@@ -52,10 +52,8 @@
   </div><!-- Body inner end -->
   <script type="text/javascript">
     var currentDate = new Date();
-
     var x = "${user.armygroup}";
     var startDate = new Date('${user.enlisting}');
-
     var firstP = new Date(startDate);
     firstP.setMonth(startDate.getMonth() + 2);
     var secondP = new Date(startDate);
@@ -94,13 +92,11 @@
     console.log(x);
     console.log(startDate.getDate());
     console.log(dayDif);
-
     switch (x) {
         case "earth":
         	var endDate = new Date(startDate);
             endDate.setFullYear(startDate.getFullYear() + 1);
             endDate.setMonth(startDate.getMonth() + 6);
-
             var timeDif = endDate.getTime() - currentDate.getTime();
             var dayDif = timeDif / (1000 * 60 * 60 * 24);
             var remains = Math.floor(dayDif);
@@ -117,7 +113,6 @@
         	var endDate = new Date(startDate);
             endDate.setFullYear(startDate.getFullYear() + 1);
             endDate.setMonth(startDate.getMonth() + 8);
-
             var timeDif = endDate.getTime() - currentDate.getTime();
             var dayDif = timeDif / (1000 * 60 * 60 * 24);
             var remains = Math.floor(dayDif);
@@ -133,7 +128,6 @@
         	var endDate = new Date(startDate);
             endDate.setFullYear(startDate.getFullYear() + 1);
             endDate.setMonth(startDate.getMonth() + 9);
-
             var timeDif = endDate.getTime() - currentDate.getTime();
             var dayDif = timeDif / (1000 * 60 * 60 * 24);
             var remains = Math.floor(dayDif);
