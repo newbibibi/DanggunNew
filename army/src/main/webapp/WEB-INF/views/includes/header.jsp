@@ -70,7 +70,7 @@
 						<div class="row align-items-center">
 							<div
 								class="logo col-lg-3 text-center text-lg-left mb-3 mb-md-5 mb-lg-0">
-								<a class="d-block" href="main"> <img loading="lazy"
+								<a class="d-block" href="${pageContext.request.contextPath}/login/main""> <img loading="lazy"
 									src="../../../resources/images/logo.PNG" alt="Constra">
 								</a>
 							</div>
@@ -103,7 +103,7 @@
 										</div>
 									</li>
 									<li class="header-get-a-quote"><a class="btn btn-primary"
-										href="contact.html">로그아웃</a></li>
+										href="${pageContext.request.contextPath}/login/logout">로그아웃</a></li>
 								</ul>
 								<!-- Ul end -->
 							</div>
