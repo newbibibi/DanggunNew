@@ -82,7 +82,7 @@
 										<div class="info-box">
 											<div class="info-box-content">
 												<p class="info-box-title">계급</p>
-												<p class="info-box-subtitle">이등병</p>
+												<p id="currentRank" class="info-box-subtitle"></p>
 											</div>
 										</div>
 									</li>
@@ -90,7 +90,7 @@
 										<div class="info-box">
 											<div class="info-box-content">
 												<p class="info-box-title">다음 진급일</p>
-												<p class="info-box-subtitle">D-35</p>
+												<p id="promotionDates" class="info-box-subtitle"></p>
 											</div>
 										</div>
 									</li>
@@ -98,12 +98,12 @@
 										<div class="info-box last">
 											<div class="info-box-content">
 												<p class="info-box-title">전역일</p>
-												<p class="info-box-subtitle">D-9999</p>
+												<p id="remainDates" class="info-box-subtitle"></p>
 											</div>
 										</div>
 									</li>
 									<li class="header-get-a-quote"><a class="btn btn-primary"
-										href="${pageContext.request.contextPath}/login/logout">로그아웃</a></li>
+										href="contact.html">로그아웃</a></li>
 								</ul>
 								<!-- Ul end -->
 							</div>
