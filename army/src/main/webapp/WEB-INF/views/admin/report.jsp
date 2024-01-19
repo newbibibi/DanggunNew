@@ -43,7 +43,6 @@
 	<!-- Banner text end -->
 </div>
 
-
 <section id="project-area" class="project-area solid-bg">
 	<div class="container">
 		<!--/ Title row end -->
@@ -52,8 +51,8 @@
 			<div class="container-fluid pt-4 px-4">
 				<div class="bg-light text-center rounded p-4">
 					<div class="table-responsive">
-						<table id="viewer" border="1">
-							
+						<table id="viewer" border="1" style="text-align: center;">
+
 						</table>
 					</div>
 				</div>
@@ -69,6 +68,32 @@
 $("document").ready(()=>{
 	report(1);
 });
+function baned(no,gubun){ // 번호와 게시글 댓글 구분
+	$.ajax({
+		  url: '/admin/baned', // 요청을 보낼 서버의 URL을 입력하세요.
+		  method: 'POST', // 요청 메서드를 선택하세요(GET, POST, 등).
+		  contentType: 'application/json',
+		  data: JSON.stringify({"no":no, "gubun":gubun, "baned":$("[name="+no+gubun+"punishment]").val()}), // 요청에 포함될 데이터를 객체 형태로 입력하세요.
+		  success: function(data) {
+		  	console.log(data);
+		  },
+		  error: function(xhr, status, error) {
+		    console.log(error); // 에러 메시지를 출력하거나 에러 처리를 수행하세요.
+		  }
+		});
+}
+
+
+$("body").on("change","[name='sel']", function() {
+	if ($("[name='sel']").prop("checked")) {
+		$("[type='checkbox']").prop("checked", true);
+	} else {
+		$("[type='checkbox']").prop("checked", false);
+	}
+	});
+
+
+
 function report(pageNum){
 	console.log(pageNum);
 	$.ajax({
@@ -81,13 +106,17 @@ function report(pageNum){
 		    	$("#viewer").append("<tr><td colspan='5'>비어있음</td></tr>");
 		    }else{
 		    $("#viewer").html("");
-		    $("#viewer").append("<tr><td>다중 선택</td><td>종류</td><td>가해자 닉네임</td><td>"+"신고자 닉네임"+"</td><td>처벌 수위</td><td>실행</td></tr>");
+		    $("#viewer").append("<tr style='color:red; background-color:black;'><td><input type=checkbox name=sel></td><td>종류</td><td>게시자</td><td>"+"고발자"+"</td><td>처벌 수위</td><td><a href=''>선택 실행</a></td></tr>");
 		    
 		    for(let vo of data.reportList){
 		    	if(vo.bno==0){
-		    		$("#viewer").append("<tr><td><input type=checkbox name=selc value="+vo.cno+"></td><td>댓글</td><td>"+vo.nickname+"</td><td>"+"신고자 나중에"+"</td><td><select></select></td><td><a href=''>처리</a></td></tr>");
+		    		$("#viewer").append("<tr><td><input type=checkbox name=selc value="+vo.cno+
+		    				"></td><td>댓글</td><td>"+vo.nickname+"</td><td>"+"신고자 나중에"+
+		    				"</td><td><select name="+vo.cno+"cpunishment><option value='0'>무죄</option><option value='3'>3일 정지</option><option value='7'>7일 정지</option><option value='15'>15일 정지</option><option value='30'>30일 정지</option><option value='9999'>9999일 정지</option></select></td><td><a href=javascript:baned("+vo.cno+",'c')>실행</a></td></tr>");
 			    }else if(vo.cno==0){
-			    	$("#viewer").append("<tr><td><input type=checkbox name=selb value="+vo.bno+"><td>게시글</td><td>"+vo.nickname+"</td><td>"+"신고자 나중에"+"</td><td><select></select></td><td><a href=''>처리</a></td></tr>");
+			    	$("#viewer").append("<tr><td><input type=checkbox name=selb value="+vo.bno+
+			    			"><td>게시글</td><td>"+vo.nickname+"</td><td>"+"신고자 나중에"+
+			    			"</td><td><select name="+vo.bno+"bpunishment><option value='0'>무죄</option><option value='3'>3일 정지</option><option value='7'>7일 정지</option><option value='15'>15일 정지</option><option value='30'>30일 정지</option><option value='9999'>9999일 정지</option></select></td><td><a href=javascript:baned("+vo.bno+",'b')>실행</a></td></tr>");
 				}else{
 					console.log("실패");
 			    }
@@ -111,8 +140,8 @@ function report(pageNum){
 		    console.log(error); // 에러 메시지를 출력하거나 에러 처리를 수행하세요.
 		  }
 		});
-
 }
+
 
 </script>
 

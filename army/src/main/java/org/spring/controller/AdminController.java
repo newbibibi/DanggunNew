@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -70,6 +71,14 @@ public class AdminController {
         responseData.put("reportList", reportList);
         
         return responseData;
+    }
+    
+    @ResponseBody
+    @PostMapping("/baned")
+    public String baned(@RequestBody Map<String, Object> map) {
+    	log.info(map);
+        log.info("컨트롤러 들어옴");
+        return "안녕";
     }
 	
 }
