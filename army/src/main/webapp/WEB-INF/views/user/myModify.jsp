@@ -6,30 +6,32 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-
-<section class="call-to-action-box no-padding">
-	<div class="container">
-		<div class="action-style-box">
-			<div class="row align-items-center">
-				<div class="col-md-8 text-center text-md-left">
-					<div class="call-to-action-text">
-						<h3 class="action-title">내 정보 수정</h3>
+<div id="banner-area" class="banner-area"
+	style="background-color: rgb(50, 137, 76)">
+	<div class="banner-text">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="banner-heading">
+						<h1 class="banner-title">내 정 보</h1>
+						<nav aria-label="breadcrumb">
+							<ol class="breadcrumb justify-content-center">
+								<li class="breadcrumb-item"><a href="myModify">내 정보 수정</a></li>
+								<li class="breadcrumb-item"><a href="?">내 일 정</a></li>
+								<li class="breadcrumb-item"><a href="#">내 문 의</a></li>
+							</ol>
+						</nav>
 					</div>
 				</div>
 				<!-- Col end -->
-				<div class="col-md-4 text-center text-md-right mt-3 mt-md-0">
-					<div class="call-to-action-btn">
-						<a class="btn btn-dark" href="#">바로 가기</a>
-					</div>
-				</div>
-				<!-- col end -->
 			</div>
-			<!-- row end -->
+			<!-- Row end -->
 		</div>
-		<!-- Action style box -->
+		<!-- Container end -->
 	</div>
-	<!-- Container end -->
-</section>
+	<!-- Banner text end -->
+</div>
+<!-- Banner area end -->
 <!-- Action end -->
 <!-- Feature are end -->
 
@@ -89,7 +91,8 @@
 								</tr>
 								<tr>
 									<td>SNS 연동</td>
-									<td><img alt="" src="/resources/images/<c:if test='${user.sns.startsWith("n")}'>NaverBtn.png</c:if><c:if test='${user.sns.startsWith("k")}'>KakaoBtn.png</c:if><c:if test='${user.sns.startsWith("g")}'>GoogleBtn.png</c:if><c:if test='${empty user.sns}'>x.png</c:if>
+									<td><img alt=""
+										src="/resources/images/<c:if test='${user.sns.startsWith("n")}'>NaverBtn.png</c:if><c:if test='${user.sns.startsWith("k")}'>KakaoBtn.png</c:if><c:if test='${user.sns.startsWith("g")}'>GoogleBtn.png</c:if><c:if test='${empty user.sns}'>x.png</c:if>
 									">
 									</td>
 								</tr>
@@ -112,29 +115,32 @@
 <!-- Project area end -->
 
 <script type="text/javascript">
+	let modify = function() {
+		let id = $("[name=id]");
+		let pw = $("[name=pw]");
+		let nickname = $("[name=nickname]");
+		let data = {
+			"id" : id.val(),
+			"pw" : pw.val(),
+			"nickname" : nickname.val()
+		}
 
-let modify=function(){
-	let id=$("[name=id]");
-	let pw=$("[name=pw]");
-	let nickname=$("[name=nickname]");
-	let data={"id":id.val(),"pw":pw.val(),"nickname":nickname.val()}
+		let xhr = new XMLHttpRequest();
+		xhr.open("POST", "../login/modify", true);
+		xhr.setRequestHeader("Content-Type", "application/json");
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState === 4 && xhr.status === 200) {
+				if (xhr.response == 1) {
+					alert("변경 완료 다시 로그인 하세요.");
+					window.location.href="../login/login";
+				} else {
+					alert("변경 실패 지속 시 1:1 문의 부탁드립니다.");
+				}
 
-	let xhr = new XMLHttpRequest();
-	xhr.open("POST", "../login/modify", true);
-	xhr.setRequestHeader("Content-Type", "application/json");
-	xhr.onreadystatechange = function() {
-	  if (xhr.readyState === 4 && xhr.status === 200) {
-	   		if(xhr.response==1){
-	   			alert("변경 완료 다시 로그인 하세요.");
-	   			location.href("../login/login");
-	   		}else{
-	   			alert("변경 실패 지속 시 1:1 문의 부탁드립니다.");
-	   		}
-		  
-	  }
-	};
-	xhr.send(JSON.stringify(data));
-}
+			}
+		};
+		xhr.send(JSON.stringify(data));
+	}
 </script>
 
 <%@include file="../includes/footer.jsp"%>
