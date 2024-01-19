@@ -53,7 +53,7 @@
 				<div class="bg-light text-center rounded p-4">
 					<div class="table-responsive">
 						<table id="viewer" border="1">
-
+							
 						</table>
 					</div>
 				</div>
@@ -70,7 +70,7 @@ $("document").ready(()=>{
 	report(1);
 });
 function report(pageNum){
-	
+	console.log(pageNum);
 	$.ajax({
 		  url: '../admin/reportList', // 요청을 보낼 서버의 URL을 입력하세요.
 		  method: 'GET', // 요청 메서드를 선택하세요(GET, POST, 등).
@@ -81,12 +81,13 @@ function report(pageNum){
 		    	$("#viewer").append("<tr><td colspan='5'>비어있음</td></tr>");
 		    }else{
 		    $("#viewer").html("");
-		    $("#viewer").append("<tr><td>종류</td><td>가해자 닉네임</td><td>"+"신고자 닉네임"+"</td><td>처벌 수위</td><td>실행</td></tr>");
+		    $("#viewer").append("<tr><td>다중 선택</td><td>종류</td><td>가해자 닉네임</td><td>"+"신고자 닉네임"+"</td><td>처벌 수위</td><td>실행</td></tr>");
+		    
 		    for(let vo of data.reportList){
 		    	if(vo.bno==0){
-		    		$("#viewer").append("<tr><td>댓글</td><td>"+vo.nickname+"</td><td>"+"신고자 나중에"+"</td><td><select></select></td><td><a href=''>처리</a></td></tr>");
+		    		$("#viewer").append("<tr><td><input type=checkbox name=selc value="+vo.cno+"></td><td>댓글</td><td>"+vo.nickname+"</td><td>"+"신고자 나중에"+"</td><td><select></select></td><td><a href=''>처리</a></td></tr>");
 			    }else if(vo.cno==0){
-			    	$("#viewer").append("<tr><td>게시글</td><td>"+vo.nickname+"</td><td>"+"신고자 나중에"+"</td><td><select></select></td><td><a href=''>처리</a></td></tr>");
+			    	$("#viewer").append("<tr><td><input type=checkbox name=selb value="+vo.bno+"><td>게시글</td><td>"+vo.nickname+"</td><td>"+"신고자 나중에"+"</td><td><select></select></td><td><a href=''>처리</a></td></tr>");
 				}else{
 					console.log("실패");
 			    }
@@ -97,13 +98,11 @@ function report(pageNum){
 		    for(let i=1; i<data.pageMaker.endPage+1; i++){
 		    	let pm=data.pageMaker;
 		    	let p="";
-		    	
 		    	p+=pm.prev ? "<a href='javascript:report(${"+pm.startPage+"})'>이전</a>" : "";
-		    	p+="<a href='javascript:report(${"+i+"})'>"+i+"</a>";
+		    	p+="<a href=javascript:report("+i+")>"+i+"</a>";
 		    	p+=pm.next ? "<a href='javascript:report(${"+pm.endPage+"})'>다음</a>" : "";
 		    	tr.append(p);
 		    	$("#viewer").append(tr);
-				   
 	    	}
 		    
 		    }

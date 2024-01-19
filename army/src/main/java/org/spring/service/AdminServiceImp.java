@@ -25,12 +25,13 @@ public class AdminServiceImp implements AdminService{
 
 	@Override
 	public List<ReportVO> reportList(Criteria cri) {
-		// TODO Auto-generated method stub
 		return adminMapper.listReport(cri);
 	}
-	@Override
-    public int reportCount() {
-        return adminMapper.reportCount();
-    }
 
+	@Override
+	public int reportCount() {
+		return adminMapper.reportCount();
+	}
+
+	
 }
