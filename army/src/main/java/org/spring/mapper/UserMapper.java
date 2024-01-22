@@ -15,4 +15,5 @@ public interface UserMapper {
 	public int removeCal(int calNo);
 	public CalendarVO showCal(int calNo);
 	public List<CalendarVO> showAllCal(String nickname);
+	public int deleteUser(String id);
 }

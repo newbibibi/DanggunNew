@@ -69,13 +69,20 @@ $("document").ready(()=>{
 	report(1);
 });
 function baned(no,gubun){ // 번호와 게시글 댓글 구분
+	let banDate;
+	if($("[name="+no+gubun+"punishment]").val()!=0){
+		banDate=new Date(new Date().getTime() + ($("[name="+no+gubun+"punishment]").val()*24*60*60*1000+(60*1000*60*9)));
+	}else{
+		banDate=null;
+	}
 	$.ajax({
 		  url: '/admin/baned', // 요청을 보낼 서버의 URL을 입력하세요.
 		  method: 'POST', // 요청 메서드를 선택하세요(GET, POST, 등).
 		  contentType: 'application/json',
-		  data: JSON.stringify({"no":no, "gubun":gubun, "baned":$("[name="+no+gubun+"punishment]").val()}), // 요청에 포함될 데이터를 객체 형태로 입력하세요.
+		  data: JSON.stringify({"no":no, "gubun":gubun+"no", "baned":banDate}), // 요청에 포함될 데이터를 객체 형태로 입력하세요.
 		  success: function(data) {
 		  	console.log(data);
+		  	report(1);
 		  },
 		  error: function(xhr, status, error) {
 		    console.log(error); // 에러 메시지를 출력하거나 에러 처리를 수행하세요.
@@ -103,6 +110,8 @@ function report(pageNum){
 		  success: function(data) {
 		    console.log(data); // 응답 데이터를 출력하거나 원하는 작업을 수행하세요.
 		    if(data.reportList==null){
+		    	$("#viewer").html("");
+			    $("#viewer").append("<tr style='color:red; background-color:black;'><td><input type=checkbox name=sel></td><td>종류</td><td>게시자</td><td>"+"고발자"+"</td><td>처벌 수위</td><td><a href=''>선택 실행</a></td></tr>");
 		    	$("#viewer").append("<tr><td colspan='5'>비어있음</td></tr>");
 		    }else{
 		    $("#viewer").html("");

@@ -1,6 +1,7 @@
 package org.spring.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.spring.domain.Criteria;
 import org.spring.domain.QuestionsVO;
@@ -31,6 +32,16 @@ public class AdminServiceImp implements AdminService{
 	@Override
 	public int reportCount() {
 		return adminMapper.reportCount();
+	}
+
+	@Override
+	public int baned(Map<String, Object> map) {
+		return adminMapper.baned(map);
+	}
+
+	@Override
+	public int reportDelete(Map<String, Object> map) {
+		return adminMapper.reportDelete(map);
 	}
 
 	

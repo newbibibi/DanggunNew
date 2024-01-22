@@ -1,5 +1,8 @@
 package org.spring.controller;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -75,10 +78,18 @@ public class AdminController {
     
     @ResponseBody
     @PostMapping("/baned")
-    public String baned(@RequestBody Map<String, Object> map) {
+    public int baned(@RequestBody Map<String, Object> map) {
     	log.info(map);
-        log.info("컨트롤러 들어옴");
-        return "안녕";
+    	
+    	if(adminService.baned(map)==1) {
+    		adminService.reportDelete(map);
+    		return 1;
+    	}else {
+    		return 0;
+    	}
+    	
+    	
     }
 	
+    
 }

@@ -1,3 +1,4 @@
+<%@page import="org.spring.domain.UserVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -76,8 +77,10 @@
 								</tr>
 								<tr>
 									<td>군종</td>
+									<%UserVO u=(UserVO)request.getSession().getAttribute("user");
+										String result=u.getArmygroup().equals("earth") ? "(휴먼굴림체)육군" : u.getArmygroup().equals("sea") ? "해군" : "공군";%>
 									<td><input type="text" disabled="disabled"
-										value="${user.armygroup}"></td>
+										value="<%=result%>"></td>
 								</tr>
 								<tr>
 									<td>입대일</td>
@@ -99,7 +102,9 @@
 								<tr>
 									<td colspan="2"><a href="javascript:modify();">수정하기</a></td>
 								</tr>
-
+								<tr>
+									<td colspan="2"><a href="javascript:delUser();">회원탈퇴</a></td>
+								</tr>
 
 
 							</c:if>
@@ -140,6 +145,25 @@
 			}
 		};
 		xhr.send(JSON.stringify(data));
+	}
+	let delUser=function(){
+		let id=${user.id}
+		console.log(id);
+		console.log("진입");
+		let xhr = new XMLHttpRequest();
+		xhr.open("POST", "../login/delete", true);
+		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState === 4 && xhr.status === 200) {
+				if (xhr.response == 1) {
+					alert("회원 탈퇴가 완료되었습니다.");
+					window.location.href="../login/login"; //아직 header에 세션 불일치 시 로그인 화면 이동 구현 안해서 넣어둠
+				} else {
+					alert("탈퇴 실패 관리자에게 문의하세요.");
+				}
+			}
+		};
+		xhr.send("id="+id);
 	}
 </script>
 

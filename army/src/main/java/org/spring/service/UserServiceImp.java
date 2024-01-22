@@ -50,7 +50,7 @@ public class UserServiceImp implements UserService{
 	@Override
 	public int delUser(String id) {
 		// TODO Auto-generated method stub
-		return 0;
+		return mapper.deleteUser(id);
 	}
 
 	@Override

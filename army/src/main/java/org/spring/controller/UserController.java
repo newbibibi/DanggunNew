@@ -69,6 +69,7 @@ public class UserController {
 		} else {
 			url = "redirect:../login/main"; // 있다면 sns로 이미 회원가입한 회원이 있다는 뜻이므로 main page로 이동
 			request.getSession().setAttribute("user", ls.getUser("sns", snsID)); // 첫번째 매개변수는 가져올 컬럼 두번째 매개변수는 비교할 값(유저
+																					// VO를 세션에 저장)
 		}
 		return url;
 	}
@@ -129,14 +130,30 @@ public class UserController {
 		return ls.getUser(Column, value);
 	}
 
+	// 계정 정보 변경
 	@ResponseBody
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
-	public int modify(@RequestBody Map<String, String> map) { // 유저 정보 다중 변경
+	public int modify(@RequestBody Map<String, String> map,HttpServletRequest request) { // 유저 정보 다중 변경
 		int result = 1;
 		for (String key : map.keySet()) {
 			if (!key.equals("id")) {
 				result = result & us.modifyInfo(key,map.get(key),map.get("id"));
 			}
+		}
+		if(result==1) {
+			request.getSession().invalidate();
+		}
+		return result;
+	}
+	
+	//계정 정보 삭제
+	@ResponseBody
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	public int delete(@RequestParam("id") String id,HttpServletRequest request) { // 유저 정보 다중 변경
+		log.info(id);
+		int result=us.delUser(id);
+		if(result==1) {
+			request.getSession().invalidate();
 		}
 		return result;
 	}

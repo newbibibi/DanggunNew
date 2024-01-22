@@ -24,5 +24,8 @@
 	<select id="showCal" resultType="CalendarVO">
 		select * from calendar where calNo = #{calNo};
 	</select>
+	<delete id="deleteUser" parameterType="String">
+		DELETE FROM USER WHERE id=#{id}
+	</delete>
 	
 </mapper>
