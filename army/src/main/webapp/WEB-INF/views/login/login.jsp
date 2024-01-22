@@ -89,7 +89,7 @@ $(document).ready(() => {
     });
 
     $(".findAccount").click(function(){
-    	$("#finder").modal("show");
+    	window.open("../login/login/find", "아이디/비밀번호 찾기", "width=400,height=600,left=100,top=50,resizable=yes,scrollbars=no");
     });
 });
 	function login(){
@@ -148,24 +148,6 @@ $(document).ready(() => {
 
 	</div>
 
-<!-- Modal Start -->
-<div class="modal" id="finder" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">아이디 찾기</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p></p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 </body>
 </html>

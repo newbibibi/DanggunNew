@@ -15,7 +15,7 @@
 	</select>
 
 	<select id="ReportInfo" parameterType="java.util.Map"
-		resultType="ReportVO"> select reporter,reason from report where ${type} like
+		resultType="java.util.Map"> select reporter,reason from report where ${type} like
 		#{no};
 	</select>
 
@@ -54,5 +54,4 @@
 	<delete id="reportDelete" parameterType="java.util.Map">
 		DELETE FROM report WHERE ${gubun} LIKE #{no}
 	</delete>
-
 </mapper>

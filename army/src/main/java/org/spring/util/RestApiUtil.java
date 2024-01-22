@@ -90,19 +90,19 @@ public class RestApiUtil {
 		nmap.put("uri", "https://nid.naver.com/oauth2.0/authorize");
 		nmap.put("response_type", "code");
 		nmap.put("client_id", "wHHigv5v7qWxvZa99IXH");
-		nmap.put("redirect_uri", "http://localHost:8090/user/auth?v=n");
+		nmap.put("redirect_uri", "http://localHost:8090/login/auth?v=n");
 		nmap.put("state", "nloginForDanggun");
 
 		gmap.put("uri", "https://accounts.google.com/o/oauth2/v2/auth");
 		gmap.put("response_type", "code");
 		gmap.put("client_id", "701798029806-45sh6d0gnheca5ka2e29ktr2ude0du1g.apps.googleusercontent.com");
-		gmap.put("redirect_uri", "http://localHost:8090/user/auth?v=g");
+		gmap.put("redirect_uri", "http://localHost:8090/login/auth?v=g");
 		gmap.put("scope", "email");
 
 		kmap.put("uri", "https://kauth.kakao.com/oauth/authorize");
 		kmap.put("response_type", "code");
 		kmap.put("client_id", "db298f996b480565adcb0c586b747932");
-		kmap.put("redirect_uri", "http://localHost:8090/user/auth?v=k");
+		kmap.put("redirect_uri", "http://localHost:8090/login/auth?v=k");
 
 		switch (v) {
 		case "n":
@@ -156,13 +156,13 @@ public class RestApiUtil {
 		gmap.put("client_id", "701798029806-45sh6d0gnheca5ka2e29ktr2ude0du1g.apps.googleusercontent.com");
 		gmap.put("code", response.getCode());
 		gmap.put("client_secret", "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");
-		gmap.put("redirect_uri", "http://localHost:8090/user/auth?v=g");
+		gmap.put("redirect_uri", "http://localHost:8090/login/auth?v=g");
 
 		kheader.put("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
 		kmap.put("uri", "https://kauth.kakao.com/oauth/token");
 		kmap.put("grant_type", "authorization_code");
 		kmap.put("client_id", "db298f996b480565adcb0c586b747932");
-		kmap.put("redirect_uri", "http://localHost:8090/user/auth?v=k");
+		kmap.put("redirect_uri", "http://localHost:8090/login/auth?v=k");
 		kmap.put("code", response.getCode());
 
 		switch (portal) {
