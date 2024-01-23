@@ -4,79 +4,52 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>로그인</title>
-<style type="text/css">
-body {
-	background-image: url("/resources/img/background.png");
-	background-repeat: no-repeat;
-	background-size: cover;
-	font-family: Arial, sans-serif;
-	margin: 0;
-	padding: 0;
-}
-
-#container {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	height: 100vh;
-}
-
-.head {
-	background-color: #333;
-	color: #fff;
-	padding: 10px;
-	text-align: center;
-	width: 100%;
-}
-
-.logo {
-	font-size: 24px;
-	font-weight: bold;
-}
-
-.intro {
-	margin-top: 20px;
-	font-size: 18px;
-	text-align: center;
-}
-
-a {
-	display: inline-block;
-	margin-top: 20px;
-	padding: 10px 20px;
-	background-color: #333;
-	color: #fff;
-	text-decoration: none;
-	border-radius: 5px;
-	font-size: 16px;
-}
-
-a:hover {
-	background-color: #555;
-}
-</style>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="text/javascript">
-$(document).ready(() => {
-
-});
-</script>
+<title>인덱스</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="/resources/index/assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="/resources/index/assets/css/noscript.css" /></noscript>
 </head>
-<body>
-	<div id="container">
-	
-	<div class="head">
-		<div class="logo">당군</div>
-	</div>
-	<div class="intro">
-	이 사이트는 영국에서부터 시작되어.. 10명에게 소개하지 않으면..(대충 소개)
-	</div>
-	<a href="login/login">시작하기</a>
-	</div>
+<body class="is-preload">
 
+		<!-- Wrapper -->
+			<div id="wrapper">
 
+				<!-- Header -->
+					<header id="header">
+						<div class="logo">
+							
+						</div>
+						<div class="content">
+							<div class="inner">
+								<h1>당신의 군대</h1>
+								<p>당군은 당신의 군생활을 돕기위해 만들어진 사이트입니다.</br> 당신의 군생활을 응원합니다.</p>
+							</div>
+						</div>
+						<nav>
+							<ul>
+								<li><a href="/login/login">시작하기</a></li>
+							</ul>
+						</nav>
+					</header>
 
-</body>
+					
+
+				<!-- Footer -->
+					<footer id="footer">
+						<p class="copyright">&copy; DangGoon. Design: TeamDang</p>
+					</footer>
+
+			</div>
+
+		<!-- BG -->
+			<div id="bg"></div>
+
+		<!-- Scripts -->
+			<script src="/resources/index/assets/js/jquery.min.js"></script>
+			<script src="/resources/index/assets/js/browser.min.js"></script>
+			<script src="/resources/index/assets/js/breakpoints.min.js"></script>
+			<script src="/resources/index/assets/js/util.js"></script>
+			<script src="/resources/index/assets/js/main.js"></script>
+
+	</body>
 </html>
