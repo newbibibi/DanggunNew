@@ -27,6 +27,12 @@
     
  <section id="main-container" class="main-container">
    <div class="container">
+   <c:if test="${empty user}">
+		<script>
+                    // 사용자가 비어 있으면 로그인 페이지로 자동 이동
+                    window.location.href = "/login/login";
+                </script>
+             </c:if>
    <div class="shuffle-btn-group">
    <label class="active" for="all">
         <input type="radio" name="shuffle-filter" class="category-radio" id="all" value="all" checked="checked">전체

@@ -6,7 +6,12 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-
+<c:if test="${empty user}">
+		<script>
+                    // 사용자가 비어 있으면 로그인 페이지로 자동 이동
+                    window.location.href = "/login/login";
+                </script>
+             </c:if>
 <div class="banner-carousel banner-carousel-1 mb-0">
   <div class="banner-carousel-item" style="background-image:url(../../../resources/images/slider-main/movie.png)">
     <div class="slider-content text-right">

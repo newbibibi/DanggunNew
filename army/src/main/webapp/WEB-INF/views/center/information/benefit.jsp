@@ -26,6 +26,12 @@
 </div><!-- Banner area end --> 
 <section id="main-container" class="main-container">
    <div class="container">
+   <c:if test="${empty user}">
+		<script>
+                    // 사용자가 비어 있으면 로그인 페이지로 자동 이동
+                    window.location.href = "/login/login";
+                </script>
+             </c:if>
    <form id="searchForm" action="/center/information/benefit"
 			method="get">
 			<div class="">
