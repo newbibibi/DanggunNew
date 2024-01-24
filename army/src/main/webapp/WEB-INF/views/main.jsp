@@ -8,7 +8,25 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <div class="banner-carousel banner-carousel-1 mb-0">
-  <div class="banner-carousel-item" style="background-image:url(../../../resources/images/slider-main/할인배너.png)">
+  <div class="banner-carousel-item" style="background-image:url(../../../resources/images/slider-main/movie.png)">
+    <div class="slider-content text-right">
+        <div class="container h-100">
+          <div class="row align-items-center h-100">
+              <div class="col-md-12">
+                <h2 class="slide-title" data-animation-in="slideInDown">군 할인 혜택</h2>
+                <h3 class="slide-sub-title" data-animation-in="fadeIn">영화관 할인혜택</h3>
+                <p class="slider-description lead" data-animation-in="slideInRight">현역 병사라면 누구나!</p>
+                <div data-animation-in="slideInLeft">
+                    
+                    <a href="/center/information/benefit" class="slider btn btn-primary border" aria-label="learn-more-about-us">확인하기</a>
+                </div>
+              </div>
+          </div>
+        </div>
+    </div>
+  </div>
+
+  <div class="banner-carousel-item" style="background-image:url(../../../resources/images/slider-main/국군.png)">
     <div class="slider-content">
         <div class="container h-100">
           <div class="row align-items-center h-100">
@@ -25,14 +43,14 @@
     </div>
   </div>
 
-  <div class="banner-carousel-item" style="background-image:url(../../../resources/images/slider-main/배너2.png)">
+  <div class="banner-carousel-item" style="background-image:url(../../../resources/images/slider-main/할인23.png)">
     <div class="slider-content text-left">
         <div class="container h-100">
           <div class="row align-items-center h-100">
               <div class="col-md-12">
-                <h2 class="slide-title-box" data-animation-in="slideInDown">군적금</h2>
-                <h3 class="slide-title" data-animation-in="fadeIn">당신도 할 수 있다!</h3>
-                <h3 class="slide-sub-title" data-animation-in="slideInLeft">군 장병 금융혜택</h3>
+                <h2 class="slide-title-box" data-animation-in="slideInDown">군 할인 혜택</h2>
+                <h3 class="slide-title" data-animation-in="fadeIn">현역 병사라면 누구나</h3>
+                <h3 class="slide-sub-title" data-animation-in="slideInLeft">군 장병 할인 혜택</h3>
                 <p data-animation-in="slideInRight">
                     <a href="services.html" class="slider btn btn-primary border">자세히 보기</a>
                 </p>
@@ -42,23 +60,7 @@
     </div>
   </div>
 
-  <div class="banner-carousel-item" style="background-image:url(../../../resources/images/slider-main/배너3.png)">
-    <div class="slider-content text-right">
-        <div class="container h-100">
-          <div class="row align-items-center h-100">
-              <div class="col-md-12">
-                <h2 class="slide-title" data-animation-in="slideInDown">군 할인 혜택</h2>
-                <h3 class="slide-sub-title" data-animation-in="fadeIn">군 장병 할인 혜택</h3>
-                <p class="slider-description lead" data-animation-in="slideInRight">현역 병사라면 누구나</p>
-                <div data-animation-in="slideInLeft">
-                    
-                    <a href="/center/information/benefit" class="slider btn btn-primary border" aria-label="learn-more-about-us">확인하기</a>
-                </div>
-              </div>
-          </div>
-        </div>
-    </div>
-  </div>
+  
 </div>
 
 <section class="call-to-action-box no-padding">
