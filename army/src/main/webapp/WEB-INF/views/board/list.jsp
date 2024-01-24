@@ -16,7 +16,7 @@
         System.out.println("Nickname: " + (userVO != null ? userVO.getNickname() : "null"));
 
         response.sendRedirect("/login/login"); // Redirect to the login page if userVO or nickname is not present
-    }
+    }String nickname = userVO.getNickname();
 %>
 
 <div id="banner-area" class="banner-area"
@@ -183,19 +183,14 @@
 							$("#myModal").modal("show");
 						}
 
-						$("#regBtn")
-								.click(
-										function() {
-											var form = $('<form action="/board/register" method="post"></form>');
-											var categoryValue = $('#category')
-													.val();
-											form
-													.append('<input type="hidden" name="nickname" value="d">'); // 닉네임 추가
-											form
-													.append('<input type="hidden" name="categoryval" value="' + categoryValue + '">');
-											$('body').append(form);
-											form.submit();
-										});
+						$("#regBtn").click(function() {
+						    var form = $('<form action="/board/register" method="post"></form>');
+						    var categoryValue = $('#category').val();
+						    form.append('<input type="hidden" name="nickname" value="<%=nickname %>">'); // 닉네임 추가
+						    form.append('<input type="hidden" name="categoryval" value="' + categoryValue + '">');
+						    $('body').append(form);
+						    form.submit();
+						});
 
 						function loadTableData() {
 						    $

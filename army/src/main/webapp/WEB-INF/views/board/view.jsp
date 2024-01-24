@@ -252,7 +252,7 @@ String nickname = userVO.getNickname();
 					<form action="/board/report" method="post">
 						<input type="hidden" name="bno" value="${board.bno}"> <input
 							type="hidden" name="nickname" value="${board.nickname}">
-						<input type="hidden" name="reporter" value="d"><br> <label
+						<input type="hidden" name="reporter" value=<%=nickname %>><br> <label
 							for="reason">신고 이유:</label> <select name="reason" id="reason">
 							<option value="광고">광고</option>
 							<option value="도배">도배</option>
@@ -345,7 +345,7 @@ String nickname = userVO.getNickname();
 											<input type="hidden" name="cno" value="${comment.cno}">
 											<input type="hidden" name="nickname"
 												value="${board.nickname}"> <input type="hidden"
-												name="reporter" value="d"><br> <label
+												name="reporter" value=<%=nickname %>><br> <label
 												for="reason">신고 이유:</label> <select name="reason"
 												id="reason">
 												<option value="광고">광고</option>
@@ -434,7 +434,7 @@ String nickname = userVO.getNickname();
 													<input type="hidden" name="cno" value="${reply.cno}">
 													<input type="hidden" name="nickname"
 														value="${board.nickname}"> <input type="hidden"
-														name="reporter" value="d"><br> <label
+														name="reporter" value=<%=nickname %>><br> <label
 														for="reason">신고 이유:</label> <select name="reason"
 														id="reason">
 														<option value="광고">광고</option>
