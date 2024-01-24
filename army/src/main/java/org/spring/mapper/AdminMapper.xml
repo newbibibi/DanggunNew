@@ -8,10 +8,16 @@
 	</update>
 
 	<select id="listReport" parameterType="Criteria"
-		resultType="ReportVO"> SELECT r.bno, r.cno, COUNT(*) AS count,
-		COALESCE(b.nickname, c.nickname) AS nickname FROM report r LEFT JOIN
-		board b ON r.bno = b.bno LEFT JOIN comment c ON r.cno = c.cno GROUP BY
-		r.bno, r.cno HAVING count(*) > 2 limit #{start}, #{amount};
+		resultType="java.util.Map">SELECT r.bno, r.cno, GROUP_CONCAT(r.reason
+		SEPARATOR '/') AS reasons,GROUP_CONCAT(r.reporter SEPARATOR
+		'/') AS reporter, COUNT(*) AS count,
+		COALESCE(b.nickname, c.nickname) AS nickname, COALESCE(b.content, c.content) AS content,
+		title
+		FROM report r
+		LEFT JOIN board b ON r.bno = b.bno
+		LEFT JOIN comment c ON r.cno = c.cno
+		GROUP BY r.bno, r.cno
+		HAVING count(*) > 2 ORDER BY cno DESC,bno DESC limit #{start}, #{amount};
 	</select>
 
 	<select id="ReportInfo" parameterType="java.util.Map"
@@ -24,34 +30,20 @@
 		AS sub
 	</select>
 
-<update id="baned" parameterType="java.util.Map">
-	<if test="baned != null">
-		UPDATE USER SET baned = STR_TO_DATE(#{baned}, '%Y-%m-%dT%H:%i:%s.%fZ') WHERE
-		nickname LIKE (
-			SELECT nickname FROM
-			<if test="gubun == 'cno'">
-				comment WHERE ${gubun} LIKE #{no}
-			</if>
-			<if test="gubun == 'bno'">
-				board WHERE ${gubun} LIKE #{no}
-			</if>
-		)
-	</if>
-	<if test="baned == null">
-		UPDATE USER SET baned = null WHERE
-		nickname LIKE (
-			SELECT nickname FROM
-			<if test="gubun == 'cno'">
-				comment WHERE ${gubun} LIKE #{no}
-			</if>
-			<if test="gubun == 'bno'">
-				board WHERE ${gubun} LIKE #{no}
-			</if>
-		)
-	</if>
-</update>
+	<update id="baned" parameterType="java.util.Map">
+		<if test="baned != null">
+			UPDATE USER SET baned = STR_TO_DATE(#{baned},
+			'%Y-%m-%dT%H:%i:%s.%fZ') WHERE
+			nickname LIKE #{nickname}
+		</if>
+		<if test="baned == null">
+			UPDATE USER SET baned = null WHERE
+			nickname LIKE #{nickname}
+		</if>
+	</update>
 
 	<delete id="reportDelete" parameterType="java.util.Map">
-		DELETE FROM report WHERE ${gubun} LIKE #{no}
+		DELETE FROM report WHERE
+		${gubun} LIKE #{no}
 	</delete>
 </mapper>

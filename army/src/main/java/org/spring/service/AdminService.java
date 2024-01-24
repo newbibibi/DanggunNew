@@ -10,7 +10,7 @@ import org.spring.domain.UserVO;
 
 public interface AdminService {
 	public int updateAnswer(QuestionsVO vo);
-	public List<ReportVO> reportList(Criteria cri);
+	public List<Map<String,Object>> reportList(Criteria cri);
 	public int reportCount();
 	public int baned(Map<String, Object> map);
 	public int reportDelete(Map<String, Object> map);

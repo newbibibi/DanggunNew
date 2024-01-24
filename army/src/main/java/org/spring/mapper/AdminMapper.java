@@ -14,7 +14,7 @@ import org.spring.domain.UserVO;
 public interface AdminMapper {
 	public UserVO showProfile();
 	public List<UserVO> listUser();
-	public List<ReportVO> listReport(Criteria cri);
+	public List<Map<String,Object>> listReport(Criteria cri);
 	public List<QuestionsVO> listQ();
 	public int answerQ(QuestionsVO vo);
 	public List<ReportVO> ReportInfo(String type,String no);

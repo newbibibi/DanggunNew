@@ -10,6 +10,7 @@ import org.spring.domain.QuestionsVO;
 import org.spring.domain.ReportVO;
 import org.spring.service.AdminService;
 import org.spring.service.CenterService;
+import org.spring.service.Board.BoardService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,6 +31,7 @@ import lombok.extern.log4j.Log4j;
 public class AdminController {
 	private final AdminService adminService;
 	private final CenterService centerService;
+	private final BoardService boardService;
 	
 	@GetMapping("/adminFqna")
 	public void adminFqna(Criteria cri,Model model) {
@@ -64,7 +66,7 @@ public class AdminController {
     @GetMapping("/reportList")
     public Map<String, Object> reportView(Criteria cri) {
         PageDTO paging = new PageDTO(cri, adminService.reportCount());
-        List<ReportVO> reportList = adminService.reportList(cri);
+        List<Map<String, Object>> reportList = adminService.reportList(cri);
         
         Map<String, Object> responseData = new HashMap<>();
         responseData.put("pageMaker", paging);

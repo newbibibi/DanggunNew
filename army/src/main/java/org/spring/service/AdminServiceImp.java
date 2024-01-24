@@ -25,7 +25,7 @@ public class AdminServiceImp implements AdminService{
 	}
 
 	@Override
-	public List<ReportVO> reportList(Criteria cri) {
+	public List<Map<String,Object>> reportList(Criteria cri) {
 		return adminMapper.listReport(cri);
 	}
 
