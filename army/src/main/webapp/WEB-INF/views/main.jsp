@@ -52,7 +52,7 @@
                 <h3 class="slide-title" data-animation-in="fadeIn">현역 병사라면 누구나</h3>
                 <h3 class="slide-sub-title" data-animation-in="slideInLeft">군 장병 할인 혜택</h3>
                 <p data-animation-in="slideInRight">
-                    <a href="services.html" class="slider btn btn-primary border">자세히 보기</a>
+                    <a href="/center/information/benefit" class="slider btn btn-primary border">자세히 보기</a>
                 </p>
               </div>
           </div>
@@ -74,7 +74,7 @@
           </div><!-- Col end -->
           <div class="col-md-4 text-center text-md-right mt-3 mt-md-0">
               <div class="call-to-action-btn">
-                <a class="btn btn-dark" href="#">바로 가기</a>
+                <a class="btn btn-dark" href="/board/list">바로 가기</a>
               </div>
           </div><!-- col end -->
         </div><!-- row end -->
@@ -100,13 +100,13 @@
         <div class="col-lg-4 col-md-6 mb-4">
           <div class="latest-post">
               <div class="latest-post-media">
-                <a href="news-single.html" class="latest-post-img">
+                <a href="/user/myCalendar/mySchedule" class="latest-post-img">
                     <img loading="lazy" class="img-fluid" src="../../../resources/images/news/calendar.PNG" alt="img">
                 </a>
               </div>
               <div class="post-body">
                 <h4 class="post-title">
-                    <a href="news-single.html" class="d-inline-block">오늘의 일정 확인하기</a>
+                    <a href="/user/myCalendar/mySchedule" class="d-inline-block">오늘의 일정 확인하기</a>
                 </h4>
                 <div class="latest-post-meta">
                     <span class="post-item-date">
@@ -120,13 +120,13 @@
         <div class="col-lg-4 col-md-6 mb-4">
           <div class="latest-post">
               <div class="latest-post-media">
-                <a href="news-single.html" class="latest-post-img">
+                <a href="/center/information/mealSchedule" class="latest-post-img">
                     <img loading="lazy" class="img-fluid" src="../../../resources/images/news/food2.png" alt="img">
                 </a>
               </div>
               <div class="post-body">
                 <h4 class="post-title">
-                    <a href="news-single.html" class="d-inline-block">오늘의 메뉴 확인하기</a>
+                    <a href="/center/information/mealSchedule" class="d-inline-block">오늘의 메뉴 확인하기</a>
                 </h4>
                 <div class="latest-post-meta">
                     <span class="post-item-date">
@@ -140,13 +140,13 @@
         <div class="col-lg-4 col-md-6 mb-4">
           <div class="latest-post">
               <div class="latest-post-media">
-                <a href="news-single.html" class="latest-post-img">
+                <a href="/center/cscenter/faq" class="latest-post-img">
                     <img loading="lazy" class="img-fluid" src="../../../resources/images/news/center.PNG" alt="img">
                 </a>
               </div>
               <div class="post-body">
                 <h4 class="post-title">
-                    <a href="news-single.html" class="d-inline-block">FAQ</a>
+                    <a href="/center/cscenter/faq" class="d-inline-block">FAQ</a>
                 </h4>
                 <div class="latest-post-meta">
                     <span class="post-item-date">
@@ -183,7 +183,7 @@
                 <div class="bg-light text-center rounded p-4">
                     <div class="d-flex align-items-center justify-content-between mb-4">
                         <h6 class="mb-0">공지사항 게시판</h6>
-                        <a href="">더 보기</a>
+                        <a href="/center/notice/noticeList">더 보기</a>
                     </div>
                     <div class="table-responsive">
                         <table class="table text-start align-middle table-bordered table-hover mb-0">
@@ -239,7 +239,7 @@
                 <div class="bg-light text-center rounded p-4 ">
                     <div class="d-flex align-items-center justify-content-between mb-4">
                         <h6 class="mb-0">커뮤니티 게시판</h6>
-                        <a href="">더 보기</a>
+                        <a href="/board/list">더 보기</a>
                     </div>
                     <div class="table-responsive">
                         <table class="table text-start align-middle table-bordered table-hover mb-0">
