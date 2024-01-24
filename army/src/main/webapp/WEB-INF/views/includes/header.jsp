@@ -1,9 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <!-- Basic Page Needs
 ================================================== -->
 <meta charset="utf-8">
@@ -180,6 +183,17 @@
 												<li><a href="/user/myPage">MyPage</a></li>
 												<li><a href="/user/myCalendar">Calendar</a></li>
 											</ul></li>
+										<c:if test="${user.admin == 1}">
+										<li class="nav-item dropdown"><a href="#"
+											class="nav-link dropdown-toggle" data-toggle="dropdown">admin
+												<i class="fa fa-angle-down"></i>
+										</a>
+											<ul class="dropdown-menu" role="menu">
+												<li><a href="/admin/report">Report</a></li>
+												<li><a href="/admin/userManage">UserManage</a></li>
+												<li><a href="/admin/adminFqna">FqnaAnswer</a></li>
+											</ul></li>
+										</c:if>
 
 									</ul>
 								</div>
