@@ -7,16 +7,15 @@
 
 <%
 // Check if the userVO is present in the session and contains a non-empty nickname
-UserVO userVO = (UserVO) session.getAttribute("user");
-
+UserVO userVO = null;
+userVO = (UserVO) session.getAttribute("user");
+String nickname = null;
 if (userVO == null || userVO.getNickname() == null || userVO.getNickname().isEmpty()) {
 	// Log the details for debugging
-	System.out.println("Redirecting to login page. User: " + userVO);
-	System.out.println("Nickname: " + (userVO != null ? userVO.getNickname() : "null"));
-
 	response.sendRedirect("/login/login"); // Redirect to the login page if userVO or nickname is not present
+}else{
+	nickname = userVO.getNickname();
 }
-String nickname = userVO.getNickname();
 %>
 <!DOCTYPE html>
 <html>
