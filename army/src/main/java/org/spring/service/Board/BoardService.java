@@ -43,15 +43,17 @@ public interface BoardService {
 
 	public int isLiked(int bno, String nickname);
 
-	public void addLike(int bno, String nickname);
+	public void addLike(int bno, String nickname, int likestatus);
 
 	public void removeLike(int bno, String nickname);
 
-	public void updateLikes(int bno);
+	public void updateLikes(int bno, int likestatus);
 
-	public int toggleLikeComment(Integer cno, String nickname);
+	public int toggleLikeComment(Integer cno, String nickname, int likestatus);
 
 	public String saveFile(MultipartFile file);
+
+	
 
 
 

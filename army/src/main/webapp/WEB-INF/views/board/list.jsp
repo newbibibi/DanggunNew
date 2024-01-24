@@ -1,9 +1,24 @@
+<%@page import="org.spring.domain.UserVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="../includes/header.jsp"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
+<%
+    // Check if the userVO is present in the session and contains a non-empty nickname
+    UserVO userVO = (UserVO) session.getAttribute("user");
+	
+    if (userVO == null || userVO.getNickname() == null || userVO.getNickname().isEmpty()) {
+        // Log the details for debugging
+        System.out.println("Redirecting to login page. User: " + userVO);
+        System.out.println("Nickname: " + (userVO != null ? userVO.getNickname() : "null"));
+
+        response.sendRedirect("/login/login"); // Redirect to the login page if userVO or nickname is not present
+    }
+%>
+
 <div id="banner-area" class="banner-area"
 	style="background-color: rgb(50, 137, 76)">
 	<div class="banner-text">

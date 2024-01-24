@@ -8,4 +8,5 @@ public class LikestatusVO {
 	private int cno;
 	private int bno;
 	private String nickname;
+	private int likestatus;
 }

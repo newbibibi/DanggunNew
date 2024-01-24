@@ -15,6 +15,7 @@ import org.spring.domain.CommentVO;
 import org.spring.domain.Criteria;
 import org.spring.domain.PageDTO;
 import org.spring.domain.ReportVO;
+import org.spring.domain.UserVO;
 import org.spring.service.Board.BoardService;
 import org.spring.util.JsonUtils;
 import org.springframework.http.HttpStatus;
@@ -31,6 +32,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -44,12 +46,19 @@ import lombok.extern.log4j.Log4j;
 
 @Controller
 @RequestMapping("/board/*")
+@SessionAttributes("user")
 @Log4j
 @AllArgsConstructor
 public class BoardController {
 	
     private final BoardService boardService;
-
+    
+    @ModelAttribute("user")
+    public UserVO getUserVO(HttpSession session) {
+        // 세션에서 userVO를 검색하여 반환합니다.
+        return (UserVO) session.getAttribute("user");
+    }
+    
 	@GetMapping("/list")
 	public void list(Criteria cri, Model model) {
 		log.info("------- controller in list -------");
@@ -152,9 +161,9 @@ public class BoardController {
 	        boardService.plusView(bno);
 	        session.setAttribute("view" + bno, true); // 세션에 'view' + 게시물 ID값을 키로 하는 속성 추가
 	    }
-	  //(String) session.getAttribute("nickname")
-	    String nickname = "d"; // 세션에서 사용자 닉네임 가져오기
-	    boolean liked = boardService.isLiked(bno, nickname) >= 1 ? false:true ; // 사용자가 게시물에 좋아요를 눌렀는지 여부 확인
+	  UserVO uservo = (UserVO)session.getAttribute("user");
+	    String nickname = uservo.getNickname();
+	    int liked = boardService.isLiked(bno, nickname); // 사용자가 게시물에 좋아요를 눌렀는지 여부 확인
 	    log.info("likedCnt:"+boardService.isLiked(bno, nickname));
 	    // 모델에 게시물 정보와 댓글 목록 추가
 	    if(!(board.getImg() == null || board.getImg().isEmpty())) {
@@ -181,7 +190,8 @@ public class BoardController {
     public String addComment(CommentVO comment, RedirectAttributes redirectAttributes) {
         // 댓글 추가 로직을 구현합니다.
         // 예를 들면, boardService.addComment(comment); 와 같이 서비스 계층을 호출할 수 있습니다.
-        boardService.addComment(comment);
+        log.info(comment);
+		boardService.addComment(comment);
         boardService.cntcmt(comment.getBno());
        log.info("부모:"+comment.getParentCno());
         // 댓글이 추가된 후에 원래의 게시물 상세보기 페이지로 리다이렉트합니다.
@@ -287,21 +297,24 @@ public class BoardController {
     }
     
     @PostMapping("/like")
-    public String likeProcess(@RequestParam("like") String like, @RequestParam("bno") int bno, HttpSession session) {
+    public String likeProcess(@RequestParam("like") String like, @RequestParam("bno") int bno, @RequestParam("likestatus") int likestatus , HttpSession session) {
         // 세션에서 사용자 닉네임 가져오기
         //String nickname = (String) session.getAttribute("nickname");
-    	String nickname = "d";
+    	 UserVO uservo = (UserVO)session.getAttribute("user");
+ 	    String nickname = uservo.getNickname();
+    	log.info(likestatus);
         // "like" 값에 따라 분기 처리
         if (like.equals("like")) {
             // 좋아요 처리
         	log.info("좋아요");
-            boardService.addLike(bno, nickname);
+            boardService.addLike(bno, nickname, likestatus);
         } else if (like.equals("unlike")) {
             // 좋아요 취소 처리
         	log.info("좋아요 취소");
             boardService.removeLike(bno, nickname);
         }
-        boardService.updateLikes(bno);
+        
+        boardService.updateLikes(bno,likestatus);
         // 게시물 상세 페이지로 리다이렉트
         return "redirect:/board/view/" + bno;
     }
@@ -332,11 +345,12 @@ public class BoardController {
     public Map<String, Object> likeComment(@RequestBody Map<String, Object> params) {
         Integer cno = (Integer) params.get("cno");
         String nickname = (String) params.get("nickname");
+        Integer likestatus = (Integer) params.get("likestatus");
         Map<String, Object> result = new HashMap<>();
         log.info(cno+nickname);
 
         try {
-            int likes = boardService.toggleLikeComment(cno, nickname);
+            int likes = boardService.toggleLikeComment(cno, nickname, likestatus);
             log.info(likes);
             result.put("success", true);
             result.put("likes", likes);

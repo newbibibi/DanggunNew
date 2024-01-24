@@ -26,9 +26,12 @@
 		LIKE '%' || #{search} || '%'
 	</select>
 
-	<select id="chkLiked" resultType="int">
-		SELECT count(*) FROM Likestatus
-		WHERE bno = #{bno} AND nickname Like #{nickname}
+	<select id="chkLiked" resultType="java.lang.Integer">
+		SELECT COALESCE(
+		(SELECT
+		likestatus FROM Likestatus WHERE bno = #{bno} AND nickname =
+		#{nickname}), -1
+		) AS likestatus
 	</select>
 
 	<select id="showCmt" resultType="org.spring.domain.CommentVO">
@@ -52,7 +55,13 @@
 
 	<select id="cntLike" resultType="int">
 		SELECT count(*) FROM Likestatus
-		WHERE bno = #{bno}
+		WHERE bno = #{bno} and likestatus = 1
+	</select>
+
+	<select id="cntdisLike" resultType="int">
+		SELECT count(*) FROM
+		Likestatus
+		WHERE bno = #{bno} and likestatus = 0
 	</select>
 
 	<update id="updateLike">
@@ -60,7 +69,11 @@
 		SET likes = #{cnt}
 		WHERE bno = #{bno}
 	</update>
-
+	<update id="updatedisLike">
+		UPDATE Board
+		SET dislikes = #{cnt}
+		WHERE bno = #{bno}
+	</update>
 	<update id="modifyBoard">
 		UPDATE Board SET title=#{title}, content=#{content},
 		anonymous=#{anonymous}, img=#{img} WHERE bno=#{bno}
@@ -77,9 +90,9 @@
 
 	<!-- 좋아요 추가 -->
 	<insert id="addlike">
-		INSERT INTO Likestatus (bno, nickname)
+		INSERT INTO Likestatus (bno, nickname, likestatus)
 		VALUES
-		(#{bno},#{nickname})
+		(#{bno},#{nickname},#{likestatus})
 	</insert>
 
 	<!-- 좋아요 취소 -->
@@ -91,40 +104,69 @@
 
 	<update id="cntViews">
 		UPDATE Board SET views = views + 1 WHERE bno = #{bno}
+		<!-- 댓글의 좋아요 또는 싫어요 수를 증가시키는 쿼리 -->
 	</update>
-	<!-- 댓글의 좋아요 수를 증가시키는 쿼리 -->
 	<update id="increase">
 		UPDATE comment
-		SET likes = likes + 1
+		SET
+		likes = CASE
+		WHEN #{likestatus} = 1
+		THEN likes + 1
+		ELSE likes
+		END,
+		dislikes = CASE
+		WHEN #{likestatus} = 0
+		THEN dislikes + 1
+		ELSE dislikes
+		END
 		WHERE cno = #{cno}
 	</update>
 
+
 	<!-- 댓글의 좋아요 수를 감소시키는 쿼리 -->
+	<!-- 댓글의 좋아요 또는 싫어요 수를 증가시키는 쿼리 -->
 	<update id="decrease">
 		UPDATE comment
-		SET likes = likes - 1
+		SET
+		likes = CASE
+		WHEN #{likestatus} = 1 THEN likes - 1
+		ELSE likes
+		END,
+		dislikes = CASE
+		WHEN #{likestatus} = 0 THEN dislikes - 1
+		ELSE dislikes
+		END
 		WHERE cno = #{cno}
 	</update>
+
 
 	<!-- 댓글의 현재 좋아요 수를 가져오는 쿼리 -->
 	<select id="getLikes" resultType="int">
-		SELECT likes
+		SELECT
+		CASE
+		WHEN #{likestatus} =
+		1 THEN likes
+		WHEN #{likestatus} = 0 THEN dislikes
+		ELSE NULL
+		END AS count
 		FROM comment
 		WHERE cno = #{cno}
 	</select>
 	<insert id="reportBoard">
-    INSERT INTO Report (bno, cno, reporter, nickname, reason, details)
-    VALUES (
-        <if test="bno == 0">NULL</if>
-        <if test="bno != 0">#{bno}</if>,
-        <if test="cno == 0">NULL</if>
-        <if test="cno != 0">#{cno}</if>,
-        #{reporter},
-        #{nickname},
-        #{reason},
-        #{details}
-    )
-</insert>
+		INSERT INTO Report (bno, cno, reporter, nickname, reason, details)
+		VALUES (
+		<if test="bno == 0">NULL</if>
+		<if test="bno != 0">#{bno}</if>
+		,
+		<if test="cno == 0">NULL</if>
+		<if test="cno != 0">#{cno}</if>
+		,
+		#{reporter},
+		#{nickname},
+		#{reason},
+		#{details}
+		)
+	</insert>
 
 
 	<insert id="createCmt" useGeneratedKeys="true" keyProperty="cno">
@@ -169,13 +211,15 @@
 		#{nickname}
 	</select>
 	<insert id="insertLikeStatus">
-		INSERT INTO likestatus (cno, nickname)
-		VALUES (#{cno}, #{nickname})
+		INSERT INTO likestatus (cno, nickname, likestatus)
+		VALUES (#{cno}, #{nickname}, #{likestatus})
 	</insert>
 
 	<delete id="deleteLikeStatus">
 		DELETE FROM likestatus
-		WHERE cno = #{cno} AND nickname = #{nickname}
+		WHERE cno = #{cno} AND
+		nickname
+		= #{nickname}
 	</delete>
 
 
@@ -197,7 +241,8 @@
 						>= 10
 					</if>
 					<if test="type eq 'content'">
-						AND content LIKE CONCAT('%', #{keyword}, '%') AND likes
+						AND content LIKE CONCAT('%', #{keyword}, '%') AND
+						likes
 						>= 10
 					</if>
 					<if test="type eq 'nickname'">
@@ -205,7 +250,8 @@
 						likes >= 10 AND anonymous not like 1
 					</if>
 					<if test="type eq 'TC'">
-						AND (title LIKE CONCAT('%', #{keyword}, '%') OR content
+						AND (title LIKE CONCAT('%', #{keyword}, '%') OR
+						content
 						LIKE
 						CONCAT('%', #{keyword}, '%')) AND likes >= 10
 					</if>
@@ -216,8 +262,8 @@
 						LIKE CONCAT('%',
 						#{keyword}, '%') OR nickname LIKE CONCAT('%',
 						#{keyword}, '%'))
-						AND category like #{category} 
-						
+						AND category like #{category}
+
 					</if>
 					<if test="type eq 'title'">
 						AND title LIKE CONCAT('%', #{keyword}, '%') AND
@@ -235,9 +281,11 @@
 						#{category} AND anonymous != 1
 					</if>
 					<if test="type eq 'TC'">
-						AND (title LIKE CONCAT('%', #{keyword}, '%') OR content
+						AND (title LIKE CONCAT('%', #{keyword}, '%') OR
+						content
 						LIKE
-						CONCAT('%', #{keyword}, '%')) AND category like #{category}
+						CONCAT('%', #{keyword}, '%')) AND category like
+						#{category}
 					</if>
 				</otherwise>
 			</choose>
@@ -263,7 +311,8 @@
 						>= 10
 					</if>
 					<if test="type eq 'content'">
-						AND content LIKE CONCAT('%', #{keyword}, '%') AND likes
+						AND content LIKE CONCAT('%', #{keyword}, '%') AND
+						likes
 						>= 10
 					</if>
 					<if test="type eq 'nickname'">
@@ -271,7 +320,8 @@
 						likes >= 10
 					</if>
 					<if test="type eq 'TC'">
-						AND (title LIKE CONCAT('%', #{keyword}, '%') OR content
+						AND (title LIKE CONCAT('%', #{keyword}, '%') OR
+						content
 						LIKE
 						CONCAT('%', #{keyword}, '%')) AND likes >= 10
 					</if>
@@ -300,9 +350,11 @@
 						#{category}
 					</if>
 					<if test="type eq 'TC'">
-						AND (title LIKE CONCAT('%', #{keyword}, '%') OR content
+						AND (title LIKE CONCAT('%', #{keyword}, '%') OR
+						content
 						LIKE
-						CONCAT('%', #{keyword}, '%')) AND category like #{category}
+						CONCAT('%', #{keyword}, '%')) AND category like
+						#{category}
 					</if>
 				</otherwise>
 			</choose>

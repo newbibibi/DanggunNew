@@ -57,9 +57,11 @@ public interface BoardMapper {
 	//좋아요
 	public int cntLike(@Param("bno")int bno);
 	
+	public int cntdisLike(@Param("bno")int bno);
+	
 	public int chkLiked(@Param("bno") int bno, @Param("nickname") String nickname);
 	
-	public void addlike(@Param("bno") int bno, @Param("nickname") String nickname,@Param("cno") int cno);
+	public void addlike(@Param("bno") int bno, @Param("nickname") String nickname,@Param("cno") int cno, @Param("likestatus") int likestatus);
 
 	public void dellike(@Param("bno") int bno, @Param("nickname") String nickname,@Param("cno") int cno);
 
@@ -69,15 +71,17 @@ public interface BoardMapper {
 
 	public LikestatusVO findByCnoAndNickname(@Param("cno") Integer cno, @Param("nickname") String nickname);
 
-	public void insertLikeStatus(@Param("cno") Integer cno, @Param("nickname") String nickname);
+	public void insertLikeStatus(@Param("cno") Integer cno, @Param("nickname") String nickname, @Param("likestatus") int likestatus);
 
-	public void increase (@Param("cno") Integer cno);
+	public void increase (@Param("cno") Integer cno, @Param("likestatus") int likestatus);
 
 	public void deleteLikeStatus(@Param("cno") Integer cno, @Param("nickname") String nickname);
 
-	public int decrease(@Param("cno") Integer cno);
+	public int decrease(@Param("cno") Integer cno, @Param("likestatus") int likestatus);
 
-	public int getLikes(@Param("cno") Integer cno);
+	public int getLikes(@Param("cno") Integer cno, @Param("likestatus") int likestatus);
+
+	public void updatedisLike(@Param("bno") int bno,@Param("cnt") int cnt);
 
 	
 	
