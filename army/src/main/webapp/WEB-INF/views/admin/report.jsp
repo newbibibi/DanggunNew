@@ -6,14 +6,21 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
 <style>
 .batch {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-evenly;
 	align-content: center;
-	
 }
+  .modal-dialog {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0 auto;
+  }
 </style>
 <div id="banner-area" class="banner-area"
 	style="background-color: rgb(50, 137, 76)">
@@ -24,10 +31,10 @@
 					<div class="banner-heading">
 						<nav class="batch" )>
 							<div>
-								<a href="javascript:report()">신고 확인</a>
+								<a href="../admin/report">신고 확인</a>
 							</div>
 							<div>
-								<a href="/?">유저 관리</a>
+								<a href="/">유저 관리</a>
 							</div>
 							<div>
 								<a href="/?">문의 확인</a>
@@ -52,7 +59,7 @@
 			<div class="container-fluid pt-4 px-4">
 				<div class="bg-light text-center rounded p-4">
 					<div class="table-responsive">
-						<table id="viewer" border="1" style="text-align: center;">
+						<table id="viewer" class="table table-striped table-bordered table-hover">
 
 						</table>
 					</div>
@@ -64,6 +71,23 @@
 	<!--/ Container end -->
 </section>
 <!-- Project area end -->
+
+<div id="view" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content" style="height: 70vh;">
+      <div class="modal-header">
+        <h5 class="modal-title">상세 보기</h5>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body" style="width:60vh; height:30vh;">
+     	 <iframe id="modalIframe" src="" style="width:100%; height: 100%;"></iframe>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script type="text/javascript">
 $("document").ready(()=>{
@@ -92,6 +116,13 @@ function baned(nick,no,gubun){ // 번호와 게시글 댓글 구분
 		});
 }
 
+function modalBoard(bno){
+	console.log(bno);
+	$("#modalIframe").attr("src", "../board/view/"+bno);
+	$("#view").modal("show");
+
+}
+
 function checkedExcute(){
 	$("[type=checkbox]:checked").each(function(){
 		let value=$(this).val().split("/");
@@ -107,8 +138,6 @@ $("body").on("change","[name='sel']", function() {
 	}
 	});
 
-
-
 function report(pageNum){
 	console.log(pageNum);
 	$.ajax({
@@ -123,7 +152,7 @@ function report(pageNum){
 		    	
 		    }else{
 		    for(let vo of data.reportList){
-		    	let title=vo.title==null?"제목없음":vo.title.length>9 ? vo.title.substring(0,10)+"...":vo.title;
+		    	let title=vo.title==null?"X":vo.title.length>9 ? vo.title.substring(0,10)+"...":vo.title;
 		    	let content=vo.content.length>19 ? vo.content.substring(0,20)+"...":vo.content;
 		    	let reporter= vo.reporter.split("/");
 		    	let reason= vo.reasons.split("/");
@@ -132,18 +161,17 @@ function report(pageNum){
 		    	
 		    	if(vo.bno==null){
 		    		$("#viewer").append("<tr><td><input type=checkbox value=c/"+vo.cno+"/"+vo.nickname+
-		    				"></td><td>댓글</td><td>"+title+"</td><td>"+content+"</td><td>"+vo.nickname+"</td><td data-toggle=tooltip data-placement=top title="+vo.reporter+">"+reporter[0]+" 외 "+(reporter.length-1)+"인"+"</td><td data-toggle=tooltip data-placement=top title="+vo.reasons+">"+reason[0]+"</td><td>"+
+		    				"></td><td><a href='javascript:modalBoard("+vo.cbno+")'>댓글</a></td><td>"+title+"</td><td"+ (content.includes("...") ? " data-toggle=tooltip data-placement=top title='" + vo.content + "'" : "") +">"+content+"</td><td>"+vo.nickname+"</td><td data-toggle=tooltip data-placement=top title="+vo.reporter+">"+reporter[0]+" 외 "+(reporter.length-1)+"인"+"</td><td data-toggle=tooltip data-placement=top title="+vo.reasons+">"+reason[0]+"</td><td>"+
 		    				"<select name="+vo.cno+"cpunishment><option value='0'>무죄</option><option value='3'>3일 정지</option><option value='7'>7일 정지</option><option value='15'>15일 정지</option><option value='30'>30일 정지</option><option value='9999'>9999일 정지</option></select></td><td><a href=javascript:baned('"+vo.nickname+"',"+vo.cno+",'c')>실행</a></td></tr>");
 			    }else if(vo.cno==null){
-			    	$("#viewer").append("<tr><td><input type=checkbox value=b/"+vo.bno+"/"+vo.nickname+
-			    			"></td><td>게시글</td><td>"+title+"</td><td>"+content+"</td><td>"+vo.nickname+"</td><td data-toggle=tooltip data-placement=top title="+vo.reporter+">"+reporter[0]+" 외 "+(reporter.length-1)+"인"+"</td><td data-toggle=tooltip data-placement=top title="+vo.reasons+">"+reason[0]+"</td><td>"+
-			    			"<select name="+vo.bno+"bpunishment><option value='0'>무죄</option><option value='3'>3일 정지</option><option value='7'>7일 정지</option><option value='15'>15일 정지</option><option value='30'>30일 정지</option><option value='9999'>9999일 정지</option></select></td><td><a href=javascript:baned('"+vo.nickname+"',"+vo.bno+",'b')>실행</a></td></tr>");
-			    }else{
+			    	$("#viewer").append("<tr><td><input type=checkbox value=b/" + vo.bno + "/" + vo.nickname + "></td><td><a href='javascript:modalBoard("+vo.bno+")'>게시글</a></td><td" + (title.includes("...") ? " data-toggle=tooltip data-placement=top title='" + vo.title + "'" : "") + ">" + title + "</td><td" + (content.includes("...") ? " data-toggle=tooltip data-placement=top title='" + vo.content + "'" : "") + ">" + content + "</td><td>" + vo.nickname + "</td><td data-toggle=tooltip data-placement=top title='" + vo.reporter + "'>" + reporter[0] + " 외 " + (reporter.length - 1) + "인" + "</td><td data-toggle=tooltip data-placement=top title='" + vo.reasons + "'>" + reason[0] + "</td><td>" +
+			    		    "<select name=" + vo.bno + "bpunishment><option value='0'>무죄</option><option value='3'>3일 정지</option><option value='7'>7일 정지</option><option value='15'>15일 정지</option><option value='30'>30일 정지</option><option value='9999'>9999일 정지</option></select></td><td><a href=javascript:baned('" + vo.nickname + "'," + vo.bno + ",'b')>실행</a></td></tr>");
+		    }else{
 					console.log("실패");
 			    }
 		    }
 		    let tr = $("<tr></tr>");
-			let td = $("<td></td>");
+			let td = $("<td colspan=9></td>");
 			tr.append(td);
 		    for(let i=1; i<data.pageMaker.endPage+1; i++){
 		    	let pm=data.pageMaker;
@@ -151,7 +179,7 @@ function report(pageNum){
 		    	p+=pm.prev ? "<a href='javascript:report(${"+pm.startPage+"})'>이전</a>" : "";
 		    	p+="<a href=javascript:report("+i+")>"+i+"</a>";
 		    	p+=pm.next ? "<a href='javascript:report(${"+pm.endPage+"})'>다음</a>" : "";
-		    	tr.append(p);
+		    	td.append(p);
 		    	$("#viewer").append(tr);
 	    	}
 		    
@@ -166,3 +194,4 @@ function report(pageNum){
 </script>
 
 <%@include file="../includes/footer.jsp"%>
+
