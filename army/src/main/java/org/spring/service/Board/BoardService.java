@@ -54,8 +54,7 @@ public interface BoardService {
 	public String saveFile(MultipartFile file);
 
 	
-
-
+	public List<BoardVO> mainList();
 
 
 

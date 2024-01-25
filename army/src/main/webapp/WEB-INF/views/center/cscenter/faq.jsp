@@ -110,7 +110,7 @@
                                     "aria-expanded": "false",
                                     "aria-controls": "collapse" + index
                                 })
-                                .text(faq.title);
+                                .text("Q "+faq.title);
 
                             // Append button to h2
                             h2.append(button);

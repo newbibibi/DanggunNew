@@ -363,5 +363,11 @@
 		LIMIT #{start}, #{amount}
 	</select>
 
+	<select id="mainBoard" resultType="org.spring.domain.BoardVO">
+		SELECT * FROM Board
+		WHERE likes >= 10
+		order by regDate DESC
+		LIMIT 5
+	</select>
 </mapper>
 	

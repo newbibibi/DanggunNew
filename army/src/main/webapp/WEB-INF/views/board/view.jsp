@@ -13,7 +13,7 @@ String nickname = null;
 if (userVO == null || userVO.getNickname() == null || userVO.getNickname().isEmpty()) {
 	// Log the details for debugging
 	response.sendRedirect("/login/login"); // Redirect to the login page if userVO or nickname is not present
-}else{
+} else {
 	nickname = userVO.getNickname();
 }
 %>
@@ -46,45 +46,45 @@ if (userVO == null || userVO.getNickname() == null || userVO.getNickname().isEmp
 
 .rotate180 {
 	transform: rotate(180deg); /* 180도 회전 설정 */
-}/* 모달 배경 오버레이에 대한 스타일 */
-    #reportModalB, #reportModalC {
-        display: none;
-        position: fixed;
-        z-index: 1;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        background-color: rgba(0, 0, 0, 0.4);
-    }
+} /* 모달 배경 오버레이에 대한 스타일 */
+#reportModalB, #reportModalC {
+	display: none;
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgba(0, 0, 0, 0.4);
+}
 
-    /* 모달 내용에 대한 스타일 */
-    .modal-content {
-        background-color: #fefefe;
-        margin: 15% auto;
-        padding: 20px;
-        border: 1px solid #888;
-        width: 80%;
-    }
+/* 모달 내용에 대한 스타일 */
+.modal-content {
+	background-color: #fefefe;
+	margin: 15% auto;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 80%;
+}
 
-    /* 닫기 버튼에 대한 스타일 */
-    .close-btn {
-        margin-top: 10px;
-        background-color: #4CAF50;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        cursor: pointer;
-    }
+/* 닫기 버튼에 대한 스타일 */
+.close-btn {
+	margin-top: 10px;
+	background-color: #4CAF50;
+	color: white;
+	border: none;
+	padding: 10px 20px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	cursor: pointer;
+}
 
-    .close-btn:hover {
-        background-color: #45a049;
-    }
+.close-btn:hover {
+	background-color: #45a049;
+}
 </style>
 </head>
 <body>
@@ -96,6 +96,14 @@ if (userVO == null || userVO.getNickname() == null || userVO.getNickname().isEmp
 					<h1 style="margin-right: 10px; text-align: left;">
 						<span>${board.title}</span>
 					</h1>
+					<p style="float: left">
+						<span style="margin-right:10px">분류 : ${board.category}</span>
+						작성자: <span> <c:choose>
+							<c:when test="${board.anonymous == 1}">익명 </c:when>
+							<c:otherwise>${board.nickname} </c:otherwise>
+						</c:choose></span>
+					</p>
+					
 
 					<p>
 						<span><fmt:formatDate value="${board.regDate}"
@@ -108,10 +116,7 @@ if (userVO == null || userVO.getNickname() == null || userVO.getNickname().isEmp
 
 
 			<!--  <p>
-				작성자: <span> <c:choose>
-						<c:when test="${board.anonymous == 1}">익명</c:when>
-						<c:otherwise>${board.nickname}</c:otherwise>
-					</c:choose></span>
+				
 			</p>-->
 			<!--<c:if test="${not empty imageList}">
 			<div class="image-gallery">
@@ -251,8 +256,9 @@ if (userVO == null || userVO.getNickname() == null || userVO.getNickname().isEmp
 					<form action="/board/report" method="post">
 						<input type="hidden" name="bno" value="${board.bno}"> <input
 							type="hidden" name="nickname" value="${board.nickname}">
-						<input type="hidden" name="reporter" value=<%=nickname %>><br> <label
-							for="reason">신고 이유:</label> <select name="reason" id="reason">
+						<input type="hidden" name="reporter" value=<%=nickname%>><br>
+						<label for="reason">신고 이유:</label> <select name="reason"
+							id="reason">
 							<option value="광고">광고</option>
 							<option value="도배">도배</option>
 							<option value="음란물">음란물</option>
@@ -313,7 +319,8 @@ if (userVO == null || userVO.getNickname() == null || userVO.getNickname().isEmp
 								<c:if test="${user != null}">
 									<c:set var="userRole" value="${user.admin}" />
 
-									<c:if test="${userRole == 1 || user.nickname eq board.nickname}">
+									<c:if
+										test="${userRole == 1 || user.nickname eq board.nickname}">
 										<form action="/board/cmtDelete" method="post" style=""
 											onsubmit="return confirm('정말 삭제하시겠습니까?');">
 											<input type="hidden" name="bno" value="${board.bno}">
@@ -344,7 +351,7 @@ if (userVO == null || userVO.getNickname() == null || userVO.getNickname().isEmp
 											<input type="hidden" name="cno" value="${comment.cno}">
 											<input type="hidden" name="nickname"
 												value="${board.nickname}"> <input type="hidden"
-												name="reporter" value=<%=nickname %>><br> <label
+												name="reporter" value=<%=nickname%>><br> <label
 												for="reason">신고 이유:</label> <select name="reason"
 												id="reason">
 												<option value="광고">광고</option>
@@ -433,7 +440,7 @@ if (userVO == null || userVO.getNickname() == null || userVO.getNickname().isEmp
 													<input type="hidden" name="cno" value="${reply.cno}">
 													<input type="hidden" name="nickname"
 														value="${board.nickname}"> <input type="hidden"
-														name="reporter" value=<%=nickname %>><br> <label
+														name="reporter" value=<%=nickname%>><br> <label
 														for="reason">신고 이유:</label> <select name="reason"
 														id="reason">
 														<option value="광고">광고</option>

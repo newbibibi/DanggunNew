@@ -11,7 +11,7 @@
         <div class="row">
           <div class="col-lg-12">
               <div class="banner-heading">
-                <h1 class="banner-title">정보계시판</h1>
+                <h1 class="banner-title">정보게시판</h1>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb justify-content-center">
                       <li class="breadcrumb-item"><a href="/center/information/mealSchedule">식단표</a></li>

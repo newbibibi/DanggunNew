@@ -85,4 +85,7 @@ public interface BoardMapper {
 
 	
 	
+	//메인
+	public List<BoardVO> mainBoard();
+	
 }

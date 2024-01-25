@@ -193,72 +193,96 @@ if (userVO == null || userVO.getNickname() == null || userVO.getNickname().isEmp
 						});
 
 						function loadTableData() {
-						    $
-						        .ajax({
-						            url: "/board/getList",
-						            type: "POST",
-						            dataType: "json",
-						            data: {
-						                pageNum: $("#actionFrom input[name='pageNum']").val(),
-						                amount: $("#actionFrom input[name='amount']").val(),
-						                type: $("#searchForm select[name='type']").val(),
-						                keyword: $("#searchForm input[name='keyword']").val(),
-						                category: $("#searchForm select[name='category']").val()
-						            },
-						            success: function (data) {
-						                let boardTbody = $("#boardTable tbody");
-						                boardTbody.empty(); // Clear the table body before adding new data
+						    $.ajax({
+						        url: "/board/getList",
+						        type: "POST",
+						        dataType: "json",
+						        data: {
+						            pageNum: $("#actionFrom input[name='pageNum']").val(),
+						            amount: $("#actionFrom input[name='amount']").val(),
+						            type: $("#searchForm select[name='type']").val(),
+						            keyword: $("#searchForm input[name='keyword']").val(),
+						            category: $("#searchForm select[name='category']").val()
+						        },
+						        success: function (data) {
+						        	 let boardTable = $("#boardTable");
+						             let boardTbody = boardTable.find("tbody");
+						             let boardThead = boardTable.find("thead");
 
-						                $.each(data, function (index, list) {
-						                    var displayName = list.anonymous == 1 ? '익명' : list.nickname;
-						                    let regDate = new Date(list.regDate);
-						                    console.log(regDate);
+						             boardTbody.empty(); // Clear the table body before adding new data
+						             boardThead.empty(); // Clear the table header before adding new data
 
-						                    let currentDate = new Date();
-						                    let options;
+						             // Check if the selected category is "베스트"
+						             let selectedCategory = $("#searchForm select[name='category']").val();
+						             let isBestCategory = (selectedCategory === "best");
 
-						                    if (
-						                        regDate.getDate() === currentDate.getDate() &&
-						                        regDate.getMonth() === currentDate.getMonth() &&
-						                        regDate.getFullYear() === currentDate.getFullYear()
-						                    ) {
-						                        // If the post was written today, show only hours and minutes
-						                        options = {
-						                            hour: "2-digit",
-						                            minute: "2-digit"
-						                        };
-						                    } else {
-						                        // If the post was not written today, show month and day
-						                        options = {
-						                            month: "2-digit",
-						                            day: "2-digit"
-						                        };
-						                    }
+						             // Create the table header based on the category
+						             let theadContent = '<tr><th>번호</th><th>제목</th><th>작성자</th><th>작성일</th><th>조회수</th><th>추천수</th>';
 
-						                    let formatDate = regDate.toLocaleString("ko-KR", options);
+						             if (isBestCategory) {
+						                 theadContent = '<tr><th>번호</th><th>카테고리</th><th>제목</th><th>작성자</th><th>작성일</th><th>조회수</th><th>추천수</th>';
+						             }
 
-						                    let row = $("<tr>");
-						                    row.append($("<td>").text(list.bno));
+						             theadContent += '</tr>';
+						             boardThead.append(theadContent);
+						           
 
-						                    let titleLink = $("<a>")
-						                        .attr("href", "/board/view/" + list.bno)
-						                        .text(list.title + '[' + list.commentCnt + ']');
-						                    let titleTd = $("<td>").append(titleLink);
+						            $.each(data, function (index, list) {
+						                var displayName = list.anonymous == 1 ? '익명' : list.nickname;
+						                let regDate = new Date(list.regDate);
+						                console.log(regDate);
 
-						                    row.append(titleTd);
-						                    row.append($("<td>").text(displayName));
-						                    row.append($("<td>").text(formatDate));
-						                    row.append($("<td>").text(list.views));
-						                    row.append($("<td>").text(list.likes));
+						                let currentDate = new Date();
+						                let options;
 
-						                    boardTbody.append(row);
-						                });
-						            },
-						            error: function (e) {
-						                console.log(e);
-						            }
-						        });
+						                if (
+						                    regDate.getDate() === currentDate.getDate() &&
+						                    regDate.getMonth() === currentDate.getMonth() &&
+						                    regDate.getFullYear() === currentDate.getFullYear()
+						                ) {
+						                    // 글이 오늘 쓰였으면 시간과 분만 표시
+						                    options = {
+						                        hour: "2-digit",
+						                        minute: "2-digit"
+						                    };
+						                } else {
+						                    // 글이 오늘 쓰이지 않았으면 월과 일 표시
+						                    options = {
+						                        month: "2-digit",
+						                        day: "2-digit"
+						                    };
+						                }
+
+						                let formatDate = regDate.toLocaleString("ko-KR", options);
+
+						                let row = $("<tr>");
+						                row.append($("<td>").text(list.bno));
+
+						                let titleLink = $("<a>")
+						                    .attr("href", "/board/view/" + list.bno)
+						                    .text(list.title + '[' + list.commentCnt + ']');
+						                let titleTd = $("<td>").append(titleLink);
+						             // 데이터에 카테고리가 포함되어 있는지 확인
+						                if (isBestCategory) {
+						                    row.append($("<td>").text(list.category));
+						                }
+						                row.append(titleTd);
+						                row.append($("<td>").text(displayName));
+						                row.append($("<td>").text(formatDate));
+						                row.append($("<td>").text(list.views));
+						                row.append($("<td>").text(list.likes));
+
+						                
+
+						                boardTbody.append(row);
+						            });
+						        },
+						        error: function (e) {
+						            console.log(e);
+						        }
+						    });
 						}
+
 
 
 						let actionForm = $("#actionFrom");
