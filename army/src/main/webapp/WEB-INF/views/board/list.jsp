@@ -19,14 +19,7 @@ if (userVO == null || userVO.getNickname() == null || userVO.getNickname().isEmp
 }
 %>
 <!-- 테이블 -->
-<style>
-    .tableset-table td {
-        max-width: 100px; /* 원하는 최대 너비로 설정 */
-        overflow: hidden;
-        text-overflow: ellipsis; /* 텍스트가 너무 길 때 "..."을 붙입니다 */
-        white-space: nowrap; /* 텍스트가 줄 바꿈되지 않도록 설정합니다 */
-    }
-</style>
+
 <div id="banner-area" class="banner-area"
 	style="background-color: rgb(50, 137, 76)">
 	<div class="banner-text">
