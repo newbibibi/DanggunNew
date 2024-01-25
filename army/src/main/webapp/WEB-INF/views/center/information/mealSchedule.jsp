@@ -220,9 +220,12 @@ th:nth-child(7) span, td:nth-child(7) span {
         firstDayOfWeek++;
     }
 
-    // 마지막 주의 나머지 공백 채우기
-    for (int i = 1; i <= 7 - firstDayOfNextMonth; i++) {
-        out.print("<td class='disabled'><span>" + i + "</span></td>");
+ // 마지막 주의 나머지 공백 채우기
+    int remainingDays = 7 - (firstDayOfWeek - 1); // 첫째 주의 남은 일수 계산
+    for (int i = 1; i <= remainingDays; i++) {
+        String textColor = (firstDayOfWeek % 7 == 0) ? "color: #a9a9a9;" : "";
+        out.print("<td class='disabled'><span style='" + textColor + "'>" + i + "</span></td>");
+        firstDayOfWeek++;
     }
 %>
 </table>
