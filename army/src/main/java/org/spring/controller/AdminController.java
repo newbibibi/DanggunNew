@@ -31,7 +31,6 @@ import lombok.extern.log4j.Log4j;
 public class AdminController {
 	private final AdminService adminService;
 	private final CenterService centerService;
-	private final BoardService boardService;
 	
 	@GetMapping("/adminFqna")
 	public void adminFqna(Criteria cri,Model model) {

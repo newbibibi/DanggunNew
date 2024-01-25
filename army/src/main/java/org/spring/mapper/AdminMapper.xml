@@ -8,7 +8,7 @@
 	</update>
 
 	<select id="listReport" parameterType="Criteria"
-		resultType="java.util.Map">SELECT r.bno, r.cno, GROUP_CONCAT(r.reason
+		resultType="java.util.Map">SELECT r.bno, r.cno,c.bno AS cbno, GROUP_CONCAT(r.reason
 		SEPARATOR '/') AS reasons,GROUP_CONCAT(r.reporter SEPARATOR
 		'/') AS reporter, COUNT(*) AS count,
 		COALESCE(b.nickname, c.nickname) AS nickname, COALESCE(b.content, c.content) AS content,
@@ -18,11 +18,6 @@
 		LEFT JOIN comment c ON r.cno = c.cno
 		GROUP BY r.bno, r.cno
 		HAVING count(*) > 2 ORDER BY cno DESC,bno DESC limit #{start}, #{amount};
-	</select>
-
-	<select id="ReportInfo" parameterType="java.util.Map"
-		resultType="java.util.Map"> select reporter,reason from report where ${type} like
-		#{no};
 	</select>
 
 	<select id="reportCount" resultType="int"> SELECT count(*) from (
