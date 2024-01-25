@@ -22,15 +22,15 @@ public class CenterServiceImp implements CenterService{
 	private final CenterMapper centerMapper;
 
 	@Override
-	public List<NoticeVO> noticeListAll() {
+	public List<NoticeVO> noticeListAll(Criteria cri) {
 		// TODO Auto-generated method stub
-		return null;
+		return centerMapper.noticeListAll(cri);
 	}
 
 	@Override
 	public NoticeVO selectNotice(int nno) {
 		// TODO Auto-generated method stub
-		return null;
+		return centerMapper.showNotice(nno);
 	}
 
 	@Override
@@ -42,19 +42,19 @@ public class CenterServiceImp implements CenterService{
 	@Override
 	public int addNotice(NoticeVO vo) {
 		// TODO Auto-generated method stub
-		return 0;
+		return centerMapper.createNotice(vo);
 	}
 
 	@Override
 	public int modifyNotice(NoticeVO vo) {
 		// TODO Auto-generated method stub
-		return 0;
+		return centerMapper.modifyNotice(vo);
 	}
 
 	@Override
 	public int delNotice(int nno) {
 		// TODO Auto-generated method stub
-		return 0;
+		return centerMapper.removeNotice(nno);
 	}
 
 	@Override
@@ -149,12 +149,6 @@ public class CenterServiceImp implements CenterService{
 	public int getTN(Criteria cri) {
 		// TODO Auto-generated method stub
 		return centerMapper.getTCN(cri);
-	}
-
-	@Override
-	public List<NoticeVO> noticeListAll(Criteria cri) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
