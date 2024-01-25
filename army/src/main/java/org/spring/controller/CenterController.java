@@ -12,6 +12,7 @@ import org.apache.commons.io.FileUtils;
 import org.spring.domain.Criteria;
 import org.spring.domain.FAQVO;
 import org.spring.domain.FileVO;
+import org.spring.domain.MenuVO;
 import org.spring.domain.NoticeVO;
 import org.spring.domain.PageDTO;
 import org.spring.domain.QuestionsVO;
@@ -220,6 +221,18 @@ public class CenterController {
 		log.info(nno);
 		centerService.delNotice(nno);
 		return "redirect:/center/notice/noticeList";
+	}
+	
+	@GetMapping("/information/mealSchedule")
+	public void mealSchedule() {
+		
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/information/menuList",method = RequestMethod.POST)
+	public List<MenuVO> getMenu(){
+
+		return centerService.getMenu();
 	}
 }
 

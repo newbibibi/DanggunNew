@@ -34,4 +34,5 @@ public interface CenterMapper {
 	public int uploadData(FileVO vo);
 	public List<FileVO> getFileList(int qno);
 	public int getTCN(int nno);
+	public List<MenuVO> getMenuList();
 }
