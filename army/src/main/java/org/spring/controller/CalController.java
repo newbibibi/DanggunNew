@@ -22,8 +22,9 @@ import lombok.extern.log4j.Log4j;
 public class CalController {
 	@Autowired
 	private UserService us;
-	@GetMapping("/myCalander/mySchedule")
+	@GetMapping("/myCalendar/mySchedule")
 	public void listAll() {
+		log.info("���ؽ�");
 	}
 	
 	@ResponseBody
@@ -64,7 +65,7 @@ public class CalController {
 	public void c() {
 	}
 	
-	@PostMapping("/myCalendar/scheduleRegiste")
+	@PostMapping("/myCalendar/scheduleRegister")
 	public String create(CalendarVO vo) {
 		log.info(vo);
 		us.addCal(vo);
