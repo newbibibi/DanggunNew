@@ -151,4 +151,16 @@ public class CenterServiceImp implements CenterService{
 		return centerMapper.getTCN(cri);
 	}
 
+	@Override
+	public List<NoticeVO> noticeListAll(Criteria cri) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<MenuVO> getMenu() {
+		
+		return centerMapper.getMenuList();
+	}
+
 }

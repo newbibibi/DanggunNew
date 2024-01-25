@@ -18,6 +18,7 @@ if (userVO == null || userVO.getNickname() == null || userVO.getNickname().isEmp
 	nickname = userVO.getNickname();
 }
 %>
+<!-- 테이블 -->
 
 <div id="banner-area" class="banner-area"
 	style="background-color: rgb(50, 137, 76)">

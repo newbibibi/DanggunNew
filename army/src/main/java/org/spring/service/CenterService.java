@@ -39,4 +39,6 @@ public interface CenterService {
 	
 	public List<FileVO> fileList(int qno);
 	public int getTN(Criteria cri);
+	
+	public List<MenuVO> getMenu();
 }
