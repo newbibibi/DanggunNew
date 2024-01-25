@@ -42,12 +42,6 @@ public class LoginServiceImp implements LoginService{
 	}
 
 	@Override
-	public List<UserVO> getAllUser() {
-		// TODO Auto-generated method stub
-		return mapper.getAllUser();
-	}
-
-	@Override
 	public UserVO getUser(String type, String value) {
 		// TODO Auto-generated method stub
 		return mapper.getUser(type,value);

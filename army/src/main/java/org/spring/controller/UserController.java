@@ -116,12 +116,6 @@ public class UserController {
 		return "login/find";
 	}
 
-	@RequestMapping("/manage") // 로그인 버튼을 누르면 ID 찾기 새창으로 이동 시키기 위히ㅏㅁ
-	public String test() {
-		log.info(ls.getAllUser());
-		return "";
-	}
-
 	// ajax로 리턴받는 메소드들 모음(맨 아래)
 	@ResponseBody
 	@RequestMapping(value = "/checker", method = RequestMethod.POST)

@@ -17,8 +17,8 @@ public interface AdminMapper {
 	public List<Map<String,Object>> listReport(Criteria cri);
 	public List<QuestionsVO> listQ();
 	public int answerQ(QuestionsVO vo);
-	public List<ReportVO> ReportInfo(String type,String no);
 	public int reportCount();
 	public int baned(Map<String, Object> map);
 	public int reportDelete(Map<String, Object> map);
+	public List<Map<String, Object>> listUser(Criteria cri);
 }

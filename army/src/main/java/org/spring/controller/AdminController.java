@@ -61,6 +61,41 @@ public class AdminController {
 	public String report() {
 		return "admin/report";
 	}
+	@GetMapping("/userManage")
+	public String userManage() {
+		return "admin/userManage";
+	}
+	
+    @ResponseBody
+    @PostMapping("/userList")
+    public Map<String, Object> userView(Criteria cri) {
+    	
+    	switch (cri.getType()) {
+		case "e":
+			cri.setType("email");
+			break;
+		case "i":
+			cri.setType("id");
+			break;
+		case "n":
+			cri.setType("nickname");
+			break;
+		case "b":
+			cri.setType("baned");
+			break;
+		}
+    	log.info(cri);
+    	List<Map<String, Object>> userList = adminService.userList(cri);
+    	log.info(userList);
+    	PageDTO paging = new PageDTO(cri,((Long)userList.get(0).get("count")).intValue());
+        log.info(userList);
+        Map<String, Object> responseData = new HashMap<>();
+        responseData.put("pageMaker", paging);
+        responseData.put("userList", userList);
+        
+        return responseData;
+    }
+    
     @ResponseBody
     @GetMapping("/reportList")
     public Map<String, Object> reportView(Criteria cri) {
@@ -78,9 +113,12 @@ public class AdminController {
     @PostMapping("/baned")
     public int baned(@RequestBody Map<String, Object> map) {
     	log.info(map);
-    	
     	if(adminService.baned(map)==1) {
-    		adminService.reportDelete(map);
+    		if(((String)map.get("gubun")).equals("없음")) {
+    			
+    		}else {
+    			adminService.reportDelete(map);
+    		}
     		return 1;
     	}else {
     		return 0;

@@ -12,9 +12,6 @@ public interface LoginService {
 	// 회원 가입하기
 	public int userRegister(UserVO vo);
 
-	// 모든 유저 정보 가져오기
-	public List<UserVO> getAllUser();
-	
 	// 일부 유저 정보 가져오기
 	public UserVO getUser(String type, String value);
 	

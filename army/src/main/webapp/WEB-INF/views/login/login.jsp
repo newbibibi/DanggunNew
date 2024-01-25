@@ -110,12 +110,12 @@ $(document).ready(() => {
 <!-- 모달 -->
 <div class="modal fade" id="view" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <div class="modal-content" style="height: 70vh;">
+    <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">ID/PW 찾기</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body" style="width: 60vh; height: 30vh;">
+      <div class="modal-body" style="height:30vh;">
         <iframe id="modalIframe" src="" style="width: 100%; height: 100%;"></iframe>
       </div>
       <div class="modal-footer">

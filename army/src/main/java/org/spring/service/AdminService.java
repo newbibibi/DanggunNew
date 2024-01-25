@@ -14,4 +14,5 @@ public interface AdminService {
 	public int reportCount();
 	public int baned(Map<String, Object> map);
 	public int reportDelete(Map<String, Object> map);
+	public List<Map<String, Object>> userList(Criteria cri);
 }

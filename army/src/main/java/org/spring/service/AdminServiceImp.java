@@ -44,5 +44,10 @@ public class AdminServiceImp implements AdminService{
 		return adminMapper.reportDelete(map);
 	}
 
+	@Override
+	public List<Map<String, Object>> userList(Criteria cri) {
+		return adminMapper.listUser(cri);
+	}
+
 	
 }
