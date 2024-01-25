@@ -12,8 +12,8 @@
     <div id="calendar_weekdays"></div>
     <div id="calendar_content"></div>
   </div>
-  <div id="myModal" class="modal">
-    <form class="modal-content">
+  <div id="myModal1" class="modal1">
+    <form class="modal1-content">
       <input type="text" class="title" id="title" name="title" placeholder="제목 입력" value="">
       <input type="date" class="s" value="" readonly="readonly"> ~
       <input type="date" class="e" value="" readonly="readonly">
@@ -837,22 +837,22 @@ setTimeout(function() {
     }
 
   function openModal() {
-    document.getElementById('myModal').style.display = 'flex';
-    document.getElementById('myModal').classList.add('opened')
+    document.getElementById('myModal1').style.display = 'flex';
+    document.getElementById('myModal1').classList.add('opened')
     document.querySelector('.s').value = z;
     document.querySelector('.e').value = w;
   }
   
   function closeModal() {
-    document.getElementById('myModal').style.display = 'none';
+    document.getElementById('myModal1').style.display = 'none';
     clearActiveDays();
     clearRange();
-    document.getElementById('myModal').classList.remove('opened')
+    document.getElementById('myModal1').classList.remove('opened')
   }
   document.getElementById('close').addEventListener("click",closeModal());
   
   window.onclick = function(event) {
-    var modal = document.getElementById('myModal');
+    var modal = document.getElementById('myModal1');
     if (event.target === modal) {
       closeModal();
     }
