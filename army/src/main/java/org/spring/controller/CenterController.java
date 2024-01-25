@@ -184,9 +184,9 @@ public class CenterController {
 		}
 		return strResult;
 	}
-	@GetMapping("/notice/notice")
+	@GetMapping("/notice/noticeList")
 	public void asdsa(Criteria cri,Model model) {
-		log.info("benefit시작");
+		
 		int total = centerService.getTN(cri);
 		PageDTO pageResult = new PageDTO(cri, total);
 		model.addAttribute("pageMaker", pageResult);
@@ -196,12 +196,15 @@ public class CenterController {
 	@ResponseBody
 	@RequestMapping(value="/notice/noticeList",method = RequestMethod.POST)
 	public List<NoticeVO> getn(Criteria cri){
-		log.info("getfaqlist Ajax실행");
-		return centerService.noticeListAll(cri);
+		log.info("cri: "+cri);
+		List<NoticeVO> a = centerService.noticeListAll(cri);
+		log.info(a);
+		return a;
 	}
 	
 	@GetMapping({"/notice/modify","/notice/get"})
 	public void getnl(@RequestParam("nno") int nno, Model model){
+		log.info(centerService.selectNotice(nno));
 		model.addAttribute("vo",centerService.selectNotice(nno));
 	}
 	
@@ -222,17 +225,15 @@ public class CenterController {
 		centerService.delNotice(nno);
 		return "redirect:/center/notice/noticeList";
 	}
-	
-	@GetMapping("/information/mealSchedule")
-	public void mealSchedule() {
+	@GetMapping("/notice/noticeRegister")
+	public void n() {
 		
 	}
-	
-	@ResponseBody
-	@RequestMapping(value="/information/menuList",method = RequestMethod.POST)
-	public List<MenuVO> getMenu(){
-
-		return centerService.getMenu();
+	@PostMapping("/notice/noticeRegister")
+	public String regn(NoticeVO vo) {
+		log.info(vo);
+		centerService.addNotice(vo);
+		return "redirect:/center/notice/noticeList";
 	}
 }
 
