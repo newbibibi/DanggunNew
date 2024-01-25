@@ -18,6 +18,7 @@ if (userVO == null || userVO.getNickname() == null || userVO.getNickname().isEmp
 	nickname = userVO.getNickname();
 }
 %>
+<!-- 테이블 -->
 <style>
     .tableset-table td {
         max-width: 100px; /* 원하는 최대 너비로 설정 */
