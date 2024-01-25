@@ -33,6 +33,6 @@ public interface CenterMapper {
 	public int maxQno();
 	public int uploadData(FileVO vo);
 	public List<FileVO> getFileList(int qno);
-	public int getTCN(int nno);
+	public int getTCN(Criteria cri);
 	public List<MenuVO> getMenuList();
 }
