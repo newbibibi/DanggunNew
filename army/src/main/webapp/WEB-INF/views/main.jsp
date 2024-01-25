@@ -250,7 +250,7 @@
                         <table id="mainboardtable" class="table text-start align-middle table-bordered table-hover mb-0">
                             <thead>
                                 <tr class="text-dark">
-                                   
+                                    <th scope="col" class="short">카테고리</th>
                                     <th scope="col">제목</th>
                                     <th scope="col" class="short">추천</th>
                                     <th scope="col" class="short">작성일</th>
@@ -307,7 +307,7 @@
 
 				                    let formatDate = regDate.toLocaleString("ko-KR", options);
 								let row = $("<tr>");
-
+								row.append($("<td>").text(board.category));
 								let titleLink = $("<a>").attr(
 										"href",
 										"/board/view/"
