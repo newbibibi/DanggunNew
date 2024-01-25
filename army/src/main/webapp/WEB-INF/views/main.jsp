@@ -247,51 +247,17 @@
                         <a href="/board/list">더 보기</a>
                     </div>
                     <div class="table-responsive">
-                        <table class="table text-start align-middle table-bordered table-hover mb-0">
+                        <table id="mainboardtable" class="table text-start align-middle table-bordered table-hover mb-0">
                             <thead>
                                 <tr class="text-dark">
                                    
                                     <th scope="col">제목</th>
-                                    <th scope="col">작성자</th>
-                                    <th scope="col">추천</th>
+                                    <th scope="col" class="short">추천</th>
+                                    <th scope="col" class="short">작성일</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                   
-                                    <td><a href="#">서머너즈 워 “1,600여 종 몬스터 관리 더 쉽고 편리하게”</a></td>
-                                    <td>운영자</td>
-                                    <td>50</td>
-                                    
-                                </tr>
-                                <tr>
-                                    
-                                    <td><a href="#">2024 LCK 스프링, 다양한 프로그램으로 팬 시선 잡는다</a></td>
-                                    <td>익명</td>
-                                    <td>40</td>
-                                    
-                                </tr>
-                                <tr>
-                                   
-                                    <td><a href="#">하스스톤 미니 세트, ‘심원의 영지 심층 탐험’ 1월 19일 출시</a></td>
-                                    <td>홍길동</td>
-                                    <td>46</td>
-                                    
-                                </tr>
-                                <tr>
-                                    
-                                    <td><a href="#">부활도 진행도 더 빨라진다! 오버워치2, '더 빠른 대전' 공개</a></td>
-                                    <td>임꺽정</td>
-                                    <td>76</td>
-                                    
-                                </tr>
-                                <tr>
-                                    
-                                    <td><a href="#">CES 2024, 게이머들이 주목할 포인트는?</a></td>
-                                    <td>익명</td>
-                                    <td>23</td>
-                                    
-                                </tr>
+                                
                             </tbody>
                         </table>
                         
@@ -305,7 +271,65 @@
   </div>
   <!--/ Container end -->
 </section><!-- Project area end -->
+<script type="text/javascript">
+	$(document).ready(
+			function() {
+				loadTableData();
 
+				function loadTableData() {
+					$.ajax({
+						url : "/main/boardlist",
+						type : "POST",
+						dataType : "json",
+						data : {
+						},
+						success : function(data) {
+							let boardTbody = $("#mainboardtable tbody");
+							$.each(data, function(index, board) {
+								let regDate = new Date(board.regDate);
+								if (
+				                        regDate.getDate() === currentDate.getDate() &&
+				                        regDate.getMonth() === currentDate.getMonth() &&
+				                        regDate.getFullYear() === currentDate.getFullYear()
+				                    ) {
+				                        // If the post was written today, show only hours and minutes
+				                        options = {
+				                            hour: "2-digit",
+				                            minute: "2-digit"
+				                        };
+				                    } else {
+				                        // If the post was not written today, show month and day
+				                        options = {
+				                            month: "2-digit",
+				                            day: "2-digit"
+				                        };
+				                    }
+
+				                    let formatDate = regDate.toLocaleString("ko-KR", options);
+								let row = $("<tr>");
+
+								let titleLink = $("<a>").attr(
+										"href",
+										"/board/view/"
+												+ board.bno).text(board.title);
+								let titleTd = $("<td>").append(titleLink);
+								row.append(titleTd);
+								row.append($("<td>").text(board.likes));
+								
+								row.append($("<td>").text(formatDate));
+								boardTbody.append(row);
+							});
+						},
+						error : function(e) {
+							console.log(e);
+						}
+					});
+
+
+				}// loadTableData 함수 선언 종료
+
+			}); // $(document).ready 함수 선언 종료
+</script>
 
 <%@include file="includes/footer.jsp"%>
 

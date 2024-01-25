@@ -203,4 +203,9 @@ public class BoardServiceImp implements BoardService {
 		}
 	}
 
+	@Override
+	public List<BoardVO> mainList() {
+		return boardmapper.mainBoard();
+	}
+
 }
