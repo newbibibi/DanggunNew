@@ -22,6 +22,265 @@ Description: Constra - Construction Html5 Template
 @font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 700;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.otf) format('opentype');}
 
 @font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 900;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.otf) format('opentype');}
+.cut{
+	cursor:pointer;
+}
+input[type="radio"] {
+      display: none;
+    }
+.sg label {
+    display: inline-block;
+    color: #212121;
+    font-size: 14px;
+    padding: 6px 25px;
+    padding-top: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: all 0.3s;
+    cursor: pointer;
+    margin: 0;
+}
+.sg label.active {
+    color: #FFF;
+    background: rgb(50 137 76);
+}
+.sg{
+	
+	margin: 20px 0 0px;
+    width: 100%;
+    border-bottom: 3px solid rgb(50 137 76);
+}
+.scatn{
+	display:inline-flex;
+	line-height:25px;
+	height:25px;
+	padding-right: 20px;
+	margin-right: 10px;
+	border-right: 1px solid gray;
+}
+.nogheader{
+	padding: 27px 46px 20px 0;
+	border-bottom: 1px solid #ddd;
+}
+.ncon{
+	padding:50px 0;
+}
+.article_date{
+	 margin-top: 3px;
+    font-size: 15px;
+    color: #888;
+}
+.catn{
+	
+	border: 1px solid black;
+	width: 80px;
+	height: 40px;
+	border-radius: 20px;
+	padding-top:5px;
+	color: black;
+	text-align: center;
+	font-size: 15px;
+}
+.notheader >input{
+	width: 80%;
+	height: 43px;
+}
+
+.notheader{
+	
+	padding-bottom: 10px;
+	width:100%;
+}  
+.abcontainer{
+    position: relative;
+  }
+  .overNum{
+    display: none;
+  }
+  .num3{
+    top: 52px;
+  }
+  .num2{
+    top: 26px;
+  }
+  
+  [class^='sch']:hover{
+    cursor: pointer;
+    background-color: rgba(135, 206, 235,1) !important;
+  }
+  .sch-ab{
+    position:absolute;
+    z-index: 9999;
+    height: 20px;;
+    background-color: rgba(135, 206, 235,0.8) !important;
+    border-radius: 10px;
+    padding-bottom: 5px;
+    color:black !important;
+  }
+  .sch-r{
+    position:absolute;
+    z-index: 9999;
+    height: 20px;
+    background-color: rgba(135, 206, 235,0.8) !important;
+    text-align: left !important;
+    padding-left: 15px;
+    padding-bottom: 5px;
+    color:black !important;
+
+  }
+  .sch-b{
+    position:absolute;
+    z-index: 9999;
+    height: 20px;
+    border-radius: 0px 10px 10px 0px;
+    background-color: rgba(135, 206, 235,0.8) !important;
+    text-align: left !important;
+    padding-left: 15px;
+    padding-bottom: 5px;
+    color:black !important;
+
+  }
+  .sch-a{
+    position:absolute;
+    z-index: 9999;
+    height: 20px;
+    border-radius: 10px 0px 0px 10px;
+    background-color: rgba(135, 206, 235,0.8) !important;
+    text-align: left !important;
+    padding-left: 15px;
+    padding-bottom: 5px;
+    color:black !important;
+
+  }
+  .modal1-content input[type='date']{
+    cursor: pointer;
+    width: 165px;
+  }
+  .modal1-content input{ 
+    width: 352px;
+    height: 40px;
+    line-height: 20px;
+    margin-bottom: 10px;
+    padding: 7px 11px
+  }
+  .modal1 {
+    z-index: 9999;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0); /* 반투명한 배경 */
+    justify-content: center;
+    align-items: center;
+  }
+
+  .modal1-content {
+    background-color: #fff;
+    width: 354px;
+    height: 200px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+body {
+  height: 4000px;
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none
+}
+
+
+    .day-number {
+  position: relative;
+  z-index: 1;
+  display: flex;
+      justify-content: flex-end;
+
+  
+}
+
+
+.day.range {
+  color: #fff;
+  background-color: rgba(50, 130, 76, 0.4) !important;
+}
+.day.active-a,
+.day.active-b{
+  color: #fff;
+  background-color: rgba(50, 130, 76, 1) !important;
+}
+
+#calendar{
+  margin-left: auto;
+  margin-right: auto;
+  width: 640px;
+  font-family: 'Lato', sans-serif;
+}
+#calendar_weekdays div{
+  display:inline-block;
+  vertical-align:top;
+}
+#calendar_content, #calendar_weekdays, #calendar_header{
+  z-index:1;
+  overflow: hidden;
+  position: relative;
+  width: 640px;
+  float: left;
+  z-index: 10;
+}
+#calendar_weekdays div, #calendar_content div{
+  
+  text-align: center;
+  background-color: #FFFFFF;
+}
+#calendar_content{
+  -webkit-border-radius: 0px 0px 12px 12px;
+  -moz-border-radius: 0px 0px 12px 12px; 
+  border-radius: 0px 0px 12px 12px;
+}
+#calendar_content div{
+  float: left;
+}
+#calendar_content .day:hover [class^='sch']{
+  background-color: rgba(50, 130, 76, 0.4);
+}
+#calendar_content div.blank{
+  background-color: #E8E8E8;
+}
+#calendar_header, #calendar_content div.today{
+  zoom: 1;
+  filter: alpha(opacity=70);
+  opacity: 0.7;
+}
+#calendar_content div.today{
+  color: #FFFFFF;
+}
+#calendar_header{
+  width: 100%;
+  height: 37px;
+  text-align: center;
+  background-color: #FF6860;
+  padding: 18px 0;
+  -webkit-border-radius: 12px 12px 0px 0px;
+  -moz-border-radius: 12px 12px 0px 0px; 
+  border-radius: 12px 12px 0px 0px;
+}
+#calendar_header h1{
+  font-size: 2.3em;
+  color: #FFFFFF;
+  float:left;
+  width:70%;
+}
+i[class^=icon-chevron]{
+  color: #FFFFFF;
+  float: left;
+  width:15%;
+  border-radius: 50%;
+}
 .viewHeader span{
 	padding-right: 15px;
 	text-align:right;
