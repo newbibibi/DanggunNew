@@ -19,7 +19,7 @@
 							<ol class="breadcrumb justify-content-center">
 								<li class="breadcrumb-item"><a href="myModify">내 정보 수정</a></li>
 								<li class="breadcrumb-item"><a href="?">내 일 정</a></li>
-								<li class="breadcrumb-item"><a href="#">내 문 의</a></li>
+								<li class="breadcrumb-item"><a href="../center/cscenter/faq">내 문 의</a></li>
 							</ol>
 						</nav>
 					</div>

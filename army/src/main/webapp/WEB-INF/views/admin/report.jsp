@@ -34,7 +34,7 @@
 								<a href="../admin/report">신고 확인</a>
 							</div>
 							<div>
-								<a href="/">유저 관리</a>
+								<a href="../admin/userManage">유저 관리</a>
 							</div>
 							<div>
 								<a href="/?">문의 확인</a>
@@ -74,13 +74,13 @@
 
 <div id="view" class="modal fade" role="dialog">
   <div class="modal-dialog">
-    <div class="modal-content" style="height: 70vh;">
+    <div class="modal-content" style="height: 90vh; width:50vw">
       <div class="modal-header">
         <h5 class="modal-title">상세 보기</h5>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
-      <div class="modal-body" style="width:60vh; height:30vh;">
-     	 <iframe id="modalIframe" src="" style="width:100%; height: 100%;"></iframe>
+      <div class="modal-body" style="width:100%; height:65vh;">
+     	 <iframe id="modalIframe" src="" style="width:100%; height: 100%; zoom:0.7;"></iframe>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
@@ -162,10 +162,10 @@ function report(pageNum){
 		    	if(vo.bno==null){
 		    		$("#viewer").append("<tr><td><input type=checkbox value=c/"+vo.cno+"/"+vo.nickname+
 		    				"></td><td><a href='javascript:modalBoard("+vo.cbno+")'>댓글</a></td><td>"+title+"</td><td"+ (content.includes("...") ? " data-toggle=tooltip data-placement=top title='" + vo.content + "'" : "") +">"+content+"</td><td>"+vo.nickname+"</td><td data-toggle=tooltip data-placement=top title="+vo.reporter+">"+reporter[0]+" 외 "+(reporter.length-1)+"인"+"</td><td data-toggle=tooltip data-placement=top title="+vo.reasons+">"+reason[0]+"</td><td>"+
-		    				"<select name="+vo.cno+"cpunishment><option value='0'>무죄</option><option value='3'>3일 정지</option><option value='7'>7일 정지</option><option value='15'>15일 정지</option><option value='30'>30일 정지</option><option value='9999'>9999일 정지</option></select></td><td><a href=javascript:baned('"+vo.nickname+"',"+vo.cno+",'c')>실행</a></td></tr>");
+		    				"<select name="+vo.cno+"cpunishment><option value='0'>무죄</option><option value='3'>3일 정지</option><option value='7'>7일 정지</option><option value='15'>15일 정지</option><option value='30'>30일 정지</option><option value='5000'>5000일 정지</option></select></td><td><a href=javascript:baned('"+vo.nickname+"',"+vo.cno+",'c')>실행</a></td></tr>");
 			    }else if(vo.cno==null){
 			    	$("#viewer").append("<tr><td><input type=checkbox value=b/" + vo.bno + "/" + vo.nickname + "></td><td><a href='javascript:modalBoard("+vo.bno+")'>게시글</a></td><td" + (title.includes("...") ? " data-toggle=tooltip data-placement=top title='" + vo.title + "'" : "") + ">" + title + "</td><td" + (content.includes("...") ? " data-toggle=tooltip data-placement=top title='" + vo.content + "'" : "") + ">" + content + "</td><td>" + vo.nickname + "</td><td data-toggle=tooltip data-placement=top title='" + vo.reporter + "'>" + reporter[0] + " 외 " + (reporter.length - 1) + "인" + "</td><td data-toggle=tooltip data-placement=top title='" + vo.reasons + "'>" + reason[0] + "</td><td>" +
-			    		    "<select name=" + vo.bno + "bpunishment><option value='0'>무죄</option><option value='3'>3일 정지</option><option value='7'>7일 정지</option><option value='15'>15일 정지</option><option value='30'>30일 정지</option><option value='9999'>9999일 정지</option></select></td><td><a href=javascript:baned('" + vo.nickname + "'," + vo.bno + ",'b')>실행</a></td></tr>");
+			    		    "<select name=" + vo.bno + "bpunishment><option value='0'>무죄</option><option value='3'>3일 정지</option><option value='7'>7일 정지</option><option value='15'>15일 정지</option><option value='30'>30일 정지</option><option value='5000'>5000일 정지</option></select></td><td><a href=javascript:baned('" + vo.nickname + "'," + vo.bno + ",'b')>실행</a></td></tr>");
 		    }else{
 					console.log("실패");
 			    }
