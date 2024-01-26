@@ -17,9 +17,9 @@
 						<h1 class="banner-title">내 정 보</h1>
 						<nav aria-label="breadcrumb">
 							<ol class="breadcrumb justify-content-center">
-								<li class="breadcrumb-item"><a href="../user/myModify">내 정보 수정</a></li>
-								<li class="breadcrumb-item"><a href="../user/myCalendar/mySchedule">내 일 정</a></li>
-								<li class="breadcrumb-item"><a href="../center/cscenter/fqna">내 문 의</a></li>
+								<li class="breadcrumb-item"><a href="/user/myModify">내 정보 수정</a></li>
+								<li class="breadcrumb-item"><a href="/user/myCalendar/mySchedule">내 일 정</a></li>
+								<li class="breadcrumb-item"><a href="/center/cscenter/fqna">내 문 의</a></li>
 							</ol>
 						</nav>
 					</div>

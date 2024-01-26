@@ -22,9 +22,9 @@
 				<div class="col-lg-12">
 					<div class="banner-heading">
 						<nav class="batch")>
-							<div><a href="myModify">내 정 보</a></div>
-							<div><a href="?">내 일 정</a></div>
-							<div><a href="../center/cscenter/faq">내 문 의</a></div>
+							<div><a href="/user/myModify">내 정 보</a></div>
+							<div><a href="/user/myCalendar/mySchedule">내 일 정</a></div>
+							<div><a href="/center/cscenter/faq">내 문 의</a></div>
 						</nav>
 					</div>
 				</div>
