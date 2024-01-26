@@ -50,7 +50,7 @@
       <input type="text" class="title" id="content" name="content" placeholder="일정입력" value="">
       <input type="date" name="startDate" class="s" value="" readonly="readonly"> ~
       <input type="date" name="endDate"class="e" value="" readonly="readonly">
-      <button type="submit" id="subbtn">등록</button>
+      <button type="button" id="subbtn">등록</button>
     </form>
   </div>
  </div>

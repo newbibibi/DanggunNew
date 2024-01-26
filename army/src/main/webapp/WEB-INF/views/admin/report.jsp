@@ -31,13 +31,13 @@
 					<div class="banner-heading">
 						<nav class="batch" )>
 							<div>
-								<a href="../admin/report">신고 확인</a>
+								<a href="/admin/report">신고 확인</a>
 							</div>
 							<div>
-								<a href="../admin/userManage">유저 관리</a>
+								<a href="/admin/userManage">유저 관리</a>
 							</div>
 							<div>
-								<a href="/?">문의 확인</a>
+								<a href="admin/adminFqna">문의 확인</a>
 							</div>
 						</nav>
 					</div>

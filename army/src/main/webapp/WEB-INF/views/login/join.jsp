@@ -176,7 +176,7 @@ body {
 				url : '../../login/checker',
 				method : 'POST',
 				data : {
-					checkValue : email.val(), checkColumn : "email"
+					checkValue : email.val()+"@narasarang.or.kr", checkColumn : "email"
 				},
 				success : function(data) {
 					if (email.val() != "") {
@@ -209,7 +209,7 @@ body {
 				url : '../../login/emailauth',
 				method : 'POST',
 				data : {
-					email : email.val()
+					email : email.val()+"@narasarang.or.kr"
 				},
 				success : function(data) {
 					if (data.includes("나라사랑")) {
@@ -328,11 +328,11 @@ body {
 						name="pw"> <br> <input required="required"
 						type="password" placeholder="비밀번호 확인" name="pwc">
 					<div class="pwCheck box"></div>
-					<input required="required" type="email" placeholder="이메일"
-						name="email"> <br>
+					<input required="required" type="text" placeholder="이메일"
+						name="email">@narasarang.or.kr<br>
 					<div class="emailCheck box"></div>
 					<input required="required" type="date" placeholder="입대일"
-						name="enlisting"> <select name="armygroup">
+						name="enlisting"> <select name="armygroup" required="required">
 						<optgroup label="군종"></optgroup>
 						<option value="earth">육군</option>
 						<option value="sea">해군</option>

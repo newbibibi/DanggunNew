@@ -22,7 +22,7 @@
 			<div class="content">
 				<div>
 					<h1>나라사랑 email을 입력하세요.</h1>
-					<input type="email" name="email" required="required"> <input
+					<input type="email" name="email" required="required">@narasarang.or.kr<input
 						id="idfinder" type="button" value="확인">
 					<div id="result"></div>
 				</div>
@@ -37,11 +37,11 @@ window.onload = function() {
     let checker=false;
 	
     $("body").on("click", "#idf", () => {
-        content.html("<div><h1>나라사랑 email을 입력하세요.</h1><input type='email' name='email' required='required' placeholder='Email을 입력'> <input id='idfinder' type='button' value='확인'><div id='result'></div></div>");
+        content.html("<div><h1>나라사랑 email을 입력하세요.</h1><input type='email' name='email' required='required' placeholder='Email 입력'>@narasarang.or.kr<input id='idfinder' type='button' value='확인'><div id='result'></div></div>");
     });
 
     $("body").on("click", "#pwf", () => {
-        content.html("<div><h1>비밀번호를 찾을 ID를 입력하세요.</h1><input type='text' name='id' required='required' placeholder='ID를 입력'><input type='button' id='pwfinder' value='확인'><div id='result'></div></div>");
+        content.html("<div><h1>비밀번호를 찾을 ID를 입력하세요.</h1><input type='text' name='id' required='required' placeholder='ID 입력'><input type='button' id='pwfinder' value='확인'><div id='result'></div></div>");
     });
 
     $("body").on("click", "#idfinder", () => {
@@ -50,7 +50,7 @@ window.onload = function() {
             url: '../../login/checker',
             method: 'POST',
             data: {
-                checkValue: $("[name=email]").val(),
+                checkValue: $("[name=email]").val()+"@narasarang.or.kr",
                 checkColumn: "email"
             },
             success: function(data) {
@@ -97,7 +97,7 @@ window.onload = function() {
         						id=data.id;
         						ec=email;
         						$("#result").html("");
-        						$("#pwfinder").after("<input type='text' id='code' placeholder='인증 코드를 입력해주세요.'><input type='button' id='codecheck' value='인증'><div id='timeout'></div>");
+        						$("#pwfinder").after("<br><input type='text' id='code' placeholder='인증 코드를 입력해주세요.'><input type='button' id='codecheck' value='인증'><div id='timeout'></div>");
         	                    let timer = 180;
         	                    clearInterval(limiter);
         	                    limiter = setInterval(() => {

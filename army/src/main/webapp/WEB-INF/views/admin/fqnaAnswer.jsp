@@ -19,8 +19,8 @@
 						<h1 class="banner-title">관리자페이지</h1>
 						<nav aria-label="breadcrumb">
 							<ol class="breadcrumb justify-content-center">
-								<li class="breadcrumb-item"><a href="#">유저관리</a></li>
-								<li class="breadcrumb-item"><a href="#">신고확인</a></li>
+								<li class="breadcrumb-item"><a href="/admin/userManage">유저관리</a></li>
+								<li class="breadcrumb-item"><a href="/admin/report">신고확인</a></li>
 								<li class="breadcrumb-item"><a href="/admin/adminFqna">고객문의</a></li>
 							</ol>
 						</nav>

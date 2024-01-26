@@ -94,7 +94,7 @@
 								</tr>
 								<tr>
 									<td>SNS 연동</td>
-									<td><img alt=""
+									<td><img style="width:30px; height:30px;" alt=""
 										src="/resources/images/<c:if test='${user.sns.startsWith("n")}'>NaverBtn.png</c:if><c:if test='${user.sns.startsWith("k")}'>KakaoBtn.png</c:if><c:if test='${user.sns.startsWith("g")}'>GoogleBtn.png</c:if><c:if test='${empty user.sns}'>x.png</c:if>
 									">
 									</td>

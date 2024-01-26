@@ -62,11 +62,16 @@
 <!-- Template custom -->
 <script src="../../../resources/js/script.js"></script>
 
+<c:if test="${empty user}">
+<script type="text/javascript">
+window.location.href="/login/login";
+</script>
+</c:if>
+
+
 </head>
 <body>
-<c:if test="${empty user}">
-	window.location.href="/login/login";
-</c:if>
+
 	<div class="body-inner">
 
 		<!-- Header start -->

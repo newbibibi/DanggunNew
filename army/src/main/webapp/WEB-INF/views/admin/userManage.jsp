@@ -38,7 +38,7 @@
 								<a href="../admin/userManage">유저 관리</a>
 							</div>
 							<div>
-								<a href="/?">문의 확인</a>
+								<a href="/admin/adminFqna">문의 확인</a>
 							</div>
 						</nav>
 					</div>

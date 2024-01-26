@@ -101,6 +101,7 @@ public class UserController {
 																		// 이동시킴
 	public String userSignup(UserVO vo, Model model, HttpServletRequest request) {
 		log.info(vo);
+		vo.setEmail(vo.getEmail()+"@narasarang.or.kr");
 		int result = ls.userRegister(vo);
 		log.info(result);
 		if (result == 1) {
