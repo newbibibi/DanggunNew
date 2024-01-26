@@ -93,35 +93,54 @@ window.location.href="/login/login";
 									<li>
 										<div class="info-box">
 											<div class="info-box-content">
-												<p class="info-box-title">닉네임</p>
-												<p id="" class="info-box-subtitle">${user.nickname }</p>
+												<c:if test="${user.admin==0}">
+													<p class="info-box-title">닉네임</p>
+													<p id="" class="info-box-subtitle">${user.nickname }</p>
+												</c:if>
+												<c:if test="${user.admin==1}">
+													<p class="info-box-title">접속중</p>
+													<p id="" class="info-box-subtitle">${user.nickname }</p>
+												</c:if>
 											</div>
 										</div>
 									</li>
+									<c:if test="${user.admin==0}">
 									<li>
 										<div class="info-box">
 											<div class="info-box-content">
-												<p class="info-box-title">계급</p>
-												<p id="currentRank" class="info-box-subtitle"></p>
+												
+													<p class="info-box-title">계급</p>
+													<p id="currentRank" class="info-box-subtitle"></p>
+												
+												
 											</div>
 										</div>
 									</li>
+									</c:if>
+									<c:if test="${user.admin==0}">
 									<li>
 										<div class="info-box">
 											<div class="info-box-content">
-												<p class="info-box-title">다음 진급일</p>
-												<p id="promotionDates" class="info-box-subtitle"></p>
+												
+													<p class="info-box-title">다음 진급일</p>
+													<p id="promotionDates" class="info-box-subtitle"></p>
+												
 											</div>
 										</div>
 									</li>
+									</c:if>
+									<c:if test="${user.admin==0}">
 									<li class="last">
 										<div class="info-box last">
 											<div class="info-box-content">
-												<p class="info-box-title">전역일</p>
-												<p id="remainDates" class="info-box-subtitle"></p>
+												
+													<p class="info-box-title">전역일</p>
+													<p id="remainDates" class="info-box-subtitle"></p>
+												
 											</div>
 										</div>
 									</li>
+									</c:if>
 									<li class="header-get-a-quote"><a class="btn btn-primary"
 										href="${pageContext.request.contextPath}/login/logout">로그아웃</a></li>
 								</ul>
