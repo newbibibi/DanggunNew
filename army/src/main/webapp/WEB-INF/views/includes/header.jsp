@@ -212,12 +212,13 @@ window.location.href="/login/login";
 											</ul></li>
 
 										<li class="nav-item dropdown"><a href="#"
-											class="nav-link dropdown-toggle" data-toggle="dropdown">User
+											class="nav-link dropdown-toggle" data-toggle="dropdown">MyPage
 												<i class="fa fa-angle-down"></i>
 										</a>
 											<ul class="dropdown-menu" role="menu">
-												<li><a href="/user/myPage">MyPage</a></li>
 												<li><a href="/user/myCalendar/mySchedule">Calendar</a></li>
+												<li><a href="/user/myModify">MyModify</a></li>
+												<li><a href="/center/cscenter/fqna">MyQuestions</a></li>
 											</ul></li>
 										<c:if test="${user.admin == 1}">
 										<li class="nav-item dropdown"><a href="#"
