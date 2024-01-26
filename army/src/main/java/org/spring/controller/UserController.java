@@ -12,6 +12,7 @@ import org.json.JSONObject;
 import org.spring.domain.CalendarVO;
 import org.spring.domain.SnsAuthResponse;
 import org.spring.domain.UserVO;
+import org.spring.service.AdminService;
 import org.spring.service.LoginService;
 import org.spring.service.UserService;
 import org.spring.service.UserServiceImp;
@@ -35,7 +36,10 @@ public class UserController {
 	private LoginService ls;
 	@Autowired
 	private UserService us;
+	@Autowired
+	private AdminService as;
 
+	
 	@RequestMapping("/login") // / 시 로그인 화면으로
 	public String start() {
 		return "login/login";
@@ -189,14 +193,23 @@ public class UserController {
 	public String loginCheck(UserVO vo, HttpServletRequest request) {
 		String result = "";
 		UserVO login = ls.getUser("id", vo.getId());
-		log.info(login.getBaned().before(new Timestamp(System.currentTimeMillis()))); 
-		
 		if (login != null) {
 			if (login.getPw().equals(vo.getPw())) {
-				result = "로그인 성공";
+				
 				if(login.getBaned()!=null) {
-					result="불량 활동으로 정지된 유저입니다. 정지기간 : "+String.valueOf(login.getBaned()).substring(0,toString().valueOf(login.getBaned()).length()-2)+"까지.." ;
+					if(login.getBaned().before(new Timestamp(System.currentTimeMillis()))) {
+						result = "로그인 성공";
+						Map<String,Object> map=new HashMap<String,Object>();
+						map.put("nickname",login.getNickname());
+						map.put("gubun", "없음");
+						map.put("baned", null);
+						as.baned(map);
+						request.getSession().setAttribute("user", login);
+					}else {
+						result="불량 활동으로 정지된 유저입니다. 정지기간 : "+String.valueOf(login.getBaned()).substring(0,toString().valueOf(login.getBaned()).length()-2)+"까지.." ;
+					}
 				}else {
+					result = "로그인 성공";
 					request.getSession().setAttribute("user", login);
 				}
 			} else {
