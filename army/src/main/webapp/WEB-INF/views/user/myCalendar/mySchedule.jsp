@@ -37,7 +37,7 @@
     <div id="calendar_header">
       <i class="icon-chevron-left">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="h-[24px] w-[24px] self-center cursor-pointer text-main2">
-        <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></i>          <h1 class="calh1"></h1>
+        <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></i>          <h1></h1>
       <i class="icon-chevron-right">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="h-[24px] w-[24px] self-center cursor-pointer text-main2 cursor-pointer">
           <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg></i>         </div>
@@ -45,16 +45,17 @@
     <div id="calendar_content"></div>
   </div>
   <div id="myModal1" class="modal1">
-    <form class="modal1-content">
-      <input type="text" class="title" id="title" name="title" placeholder="일정입력" value="">
-      <input type="date" class="s" value="" readonly="readonly"> ~
-      <input type="date" class="e" value="" readonly="readonly">
-      <button type="button" id="subbtn">등록</button>
+    <form class="modal1-content" action="/user/myCalendar/scheduleRegister" method="post">
+      <input type="hidden" name="nickname" id="nickname" value="${user.nickname }"> 
+      <input type="text" class="title" id="content" name="content" placeholder="일정입력" value="">
+      <input type="date" name="startDate" class="s" value="" readonly="readonly"> ~
+      <input type="date" name="endDate"class="e" value="" readonly="readonly">
+      <button type="submit" id="subbtn">등록</button>
     </form>
   </div>
  </div>
-		<a href="/user/myCalendar/scheduleRegister">ìì±</a>
-		<script type="text/javascript">
+		<a href="/user/myCalendar/scheduleRegister">일정 등록하러가기</a>
+<script type="text/javascript">
 		
 	$(document).ready(function() {
 		
@@ -93,19 +94,7 @@
 	                    };
 	                    let sformatDate = startDate.toLocaleString("ko-KR", options);
 	                    let eformatDate = endDate.toLocaleString("ko-KR", options);
-	                    // Ã«ÂÂ°Ã¬ÂÂ´Ã­ÂÂ°Ã«Â¥Â¼ Ã¬ÂÂÃ­ÂÂÃ­ÂÂÃ¬ÂÂ¬ Ã­ÂÂÃ¬ÂÂ´Ã«Â¸Â Ã«ÂªÂ©Ã«Â¡ÂÃ¬ÂÂ Ã«Â¶ÂÃ«ÂÂ¬Ã¬ÂÂ Ã­ÂÂÃ¬ÂÂ´Ã«Â¸Â Ã«Â°ÂÃ«ÂÂÃ¬ÂÂ Ã¬Â¶ÂÃªÂ°Â
-	                    // Ã«ÂÂÃ¬Â ÂÃ¬ÂÂ¼Ã«Â¡Â Ã«ÂÂ°Ã¬ÂÂ´Ã­ÂÂ° Ã¬Â²ÂÃ«Â¦Â¬
-	                    let row = $("<tr>");
-	                    row.append($("<td>").text(board.calNo));
-	                    let titleLink = $("<a>").attr("href","/user/myCalendar/modifySchedule?calNo="+board.calNo).text(board.content);
-                        let titleTd = $("<td>").append(titleLink);
-                        row.append(titleTd);
-	                    row.append($("<td>").text(board.nickname));
-	                    row.append($("<td>").text(sformatDate));
-	                    row.append($("<td>").text(eformatDate));
-
-	                    boardTbody.append(row);
-
+	                    
 	                });
 	            },
 	            error: function(e) {
@@ -154,7 +143,7 @@ $(function(){
         ax++;
       }
       var y=o[n-1];
-      a.css("background-color",y).find(".calh1").text(i[n-1]+" "+t);
+      a.css("background-color",y).find("h1").text(i[n-1]+" "+t);
       f.find("div").css("color",y);
       l.find(".today").css("background-color",y);
       l.find(".today").find('.abcontainer').css("background-color",y)
@@ -802,7 +791,7 @@ setTimeout(function() {
                 icnt++
               })
                 newSpan.classList.add("sch-r");
-                newSpan.style.width = 685 + "px";
+                newSpan.style.width = 700 + "px";
                 ov = ov - 700;
                 newSpan.innerHTML = document.querySelector('.title').value;
                 item.children[2].append(newSpan);
@@ -883,7 +872,7 @@ setTimeout(function() {
     clearRange();
     document.getElementById('myModal1').classList.remove('opened')
   }
-  document.getElementById('close').addEventListener("click",closeModal());
+ 
   
   window.onclick = function(event) {
     var modal = document.getElementById('myModal1');

@@ -39,7 +39,9 @@
 	<div class="ncon">
 		${vo.content }
 	</div>
+	<c:if test="${user.admin == 1 }">
 	<button type="button" ><a href="/center/notice/modify?nno=${vo.nno }">수정</a></button>
+	</c:if>
 </div>
 	
 <script type="text/javascript">

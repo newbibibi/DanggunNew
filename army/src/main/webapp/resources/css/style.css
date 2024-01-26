@@ -117,7 +117,7 @@ input[type="radio"] {
     padding-bottom: 5px;
     color:black !important;
         overflow: hidden;
-    
+    line-height:20px;
   }
   .sch-r{
     position:absolute;
@@ -129,7 +129,7 @@ input[type="radio"] {
     padding-bottom: 5px;
     color:black !important;
     overflow: hidden;
-
+line-height:20px;
   }
   .sch-b{
     position:absolute;
@@ -142,7 +142,7 @@ input[type="radio"] {
     padding-bottom: 5px;
     color:black !important;
     overflow: hidden;
-
+line-height:20px;
   }
   .sch-a{
     position:absolute;
@@ -155,14 +155,17 @@ input[type="radio"] {
     padding-bottom: 5px;
     color:black !important;
     overflow: hidden;
-
+line-height:20px;
+  }
+  .modal1-content > .title{
+  font-size: 15px
   }
   .modal1-content input[type='date']{
     cursor: pointer;
-    width: 165px;
+    width: 149px;
   }
   .modal1-content input{ 
-    width: 352px;
+    width: 313px;
     height: 40px;
     line-height: 20px;
     margin-bottom: 10px;
@@ -219,7 +222,7 @@ body {
 }
 
 #calendar{
-  margin-left: auto;
+  
   margin-right: auto;
   width: 640px;
   font-family: 'Lato', sans-serif;
@@ -274,7 +277,9 @@ body {
   border-radius: 12px 12px 0px 0px;
 }
 #calendar_header h1{
-  font-size: 2.3em;
+      position: relative;
+    top: 30px;
+    font-size: 40px !important;
   color: #FFFFFF;
   float:left;
   width:70%;

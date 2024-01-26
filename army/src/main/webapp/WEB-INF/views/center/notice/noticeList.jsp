@@ -18,8 +18,9 @@
   </div><!-- Banner text end -->
 </div><!-- Banner area end --> 
 <section id="main-container" class="col-x">
-   	
+   	<c:if test="${user.admin == 1 }">
    			<button onclick="locate()">글작성</button>
+   	</c:if>
    		
 		<form id="searchForm notice-nav" action="/center/notice/noticeList" class="sg" name="type" method="get">
 		    <label>
