@@ -1,11 +1,33 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ include file="../../includes/header.jsp" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
-		<script src="../../../resources/js/calendar/js"></script>
+    <div id="banner-area" class="banner-area" style="background-color: rgb(50 137 76)">
+  <div class="banner-text">
+    <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+              <div class="banner-heading">
+                <h1 class="banner-title">유저</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center">
+                      <li class="breadcrumb-item"><a href="/user/myPage">마이페이지</a></li>
+                      <li class="breadcrumb-item"><a href="/user/myCalendar/mySchedule">나의 일정</a></li>
+                    </ol>
+                </nav>
+              </div>
+          </div><!-- Col end -->
+        </div><!-- Row end -->
+    </div><!-- Container end -->
+  </div><!-- Banner text end -->
+</div><!-- Banner area end --> 
+
+	<div class="calCon col-x" style="height:750px;">
 		<div id="calendar">
     <div id="calendar_header">
       <i class="icon-chevron-left">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="h-[24px] w-[24px] self-center cursor-pointer text-main2">
-        <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></i>          <h1></h1>
+        <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></i>          <h1 class="calh1"></h1>
       <i class="icon-chevron-right">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="h-[24px] w-[24px] self-center cursor-pointer text-main2 cursor-pointer">
           <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg></i>         </div>
@@ -14,29 +36,30 @@
   </div>
   <div id="myModal1" class="modal1">
     <form class="modal1-content">
-      <input type="text" class="title" id="title" name="title" placeholder="제목 입력" value="">
+      <input type="text" class="title" id="title" name="title" placeholder="일정입력" value="">
       <input type="date" class="s" value="" readonly="readonly"> ~
       <input type="date" class="e" value="" readonly="readonly">
-      <button type="button" id="subbtn">보내기</button>
+      <button type="button" id="subbtn">등록</button>
     </form>
   </div>
-		<a href="/user/myCalendar/scheduleRegister">이동하기</a>
+ </div>
+		<a href="/user/myCalendar/scheduleRegister">ìì±</a>
 		<script type="text/javascript">
 		
 	$(document).ready(function() {
 		
-		loadTableData(); // Ajax 실행 함수 호출
+		loadTableData(); // Ajax Ã¬ÂÂ¤Ã­ÂÂ Ã­ÂÂ¨Ã¬ÂÂ Ã­ÂÂ¸Ã¬Â¶Â
 	
 		
 		function loadTableData() {
-	        // Ajax : 비동기 통신 
-	        // - 프로세스의 완료를 기다리지 않고 동시에 여러 작업을 처리 
-	        // - 전체 페이지를 새로고침 하지 않고 필요한 부분만을 업데이트 할 수 있다
-	        // - 자원과 시간을 절약, 깜박거리거나 멈추지 않고 부드럽게 작동
+	        // Ajax : Ã«Â¹ÂÃ«ÂÂÃªÂ¸Â° Ã­ÂÂµÃ¬ÂÂ  
+	        // - Ã­ÂÂÃ«Â¡ÂÃ¬ÂÂ¸Ã¬ÂÂ¤Ã¬ÂÂ Ã¬ÂÂÃ«Â£ÂÃ«Â¥Â¼ ÃªÂ¸Â°Ã«ÂÂ¤Ã«Â¦Â¬Ã¬Â§Â Ã¬ÂÂÃªÂ³Â  Ã«ÂÂÃ¬ÂÂÃ¬ÂÂ Ã¬ÂÂ¬Ã«ÂÂ¬ Ã¬ÂÂÃ¬ÂÂÃ¬ÂÂ Ã¬Â²ÂÃ«Â¦Â¬ 
+	        // - Ã¬Â ÂÃ¬Â²Â´ Ã­ÂÂÃ¬ÂÂ´Ã¬Â§ÂÃ«Â¥Â¼ Ã¬ÂÂÃ«Â¡ÂÃªÂ³Â Ã¬Â¹Â¨ Ã­ÂÂÃ¬Â§Â Ã¬ÂÂÃªÂ³Â  Ã­ÂÂÃ¬ÂÂÃ­ÂÂ Ã«Â¶ÂÃ«Â¶ÂÃ«Â§ÂÃ¬ÂÂ Ã¬ÂÂÃ«ÂÂ°Ã¬ÂÂ´Ã­ÂÂ¸ Ã­ÂÂ  Ã¬ÂÂ Ã¬ÂÂÃ«ÂÂ¤
+	        // - Ã¬ÂÂÃ¬ÂÂÃªÂ³Â¼ Ã¬ÂÂÃªÂ°ÂÃ¬ÂÂ Ã¬Â ÂÃ¬ÂÂ½, ÃªÂ¹ÂÃ«Â°ÂÃªÂ±Â°Ã«Â¦Â¬ÃªÂ±Â°Ã«ÂÂ Ã«Â©ÂÃ¬Â¶ÂÃ¬Â§Â Ã¬ÂÂÃªÂ³Â  Ã«Â¶ÂÃ«ÂÂÃ«ÂÂ½ÃªÂ²Â Ã¬ÂÂÃ«ÂÂ
 	        $.ajax({
-	            url: "/user/myCalendar/mySchedule", // 요청할 서버 uri 지정
-	            type: "POST", //요청 방식 지정
-	            dataType: "json", // 서버 응답의 데이터 타입(대표적:json,xml)
+	            url: "/user/myCalendar/mySchedule", // Ã¬ÂÂÃ¬Â²Â­Ã­ÂÂ  Ã¬ÂÂÃ«Â²Â uri Ã¬Â§ÂÃ¬Â Â
+	            type: "POST", //Ã¬ÂÂÃ¬Â²Â­ Ã«Â°Â©Ã¬ÂÂ Ã¬Â§ÂÃ¬Â Â
+	            dataType: "json", // Ã¬ÂÂÃ«Â²Â Ã¬ÂÂÃ«ÂÂµÃ¬ÂÂ Ã«ÂÂ°Ã¬ÂÂ´Ã­ÂÂ° Ã­ÂÂÃ¬ÂÂ(Ã«ÂÂÃ­ÂÂÃ¬Â Â:json,xml)
 	            data: {
 	                nickname: $("#nickname").find("input[name='nickname']").val()
 	            },
@@ -45,13 +68,13 @@
 			
 	                let boardTbody = $("#boardTable tbody");
 
-	                // Ajax가 반환한 데이터를 '순회'(=='반복자')하여 처리
-	                // for( let item of items) -> items == data, item == board 역할
+	                // AjaxÃªÂ°Â Ã«Â°ÂÃ­ÂÂÃ­ÂÂ Ã«ÂÂ°Ã¬ÂÂ´Ã­ÂÂ°Ã«Â¥Â¼ 'Ã¬ÂÂÃ­ÂÂ'(=='Ã«Â°ÂÃ«Â³ÂµÃ¬ÂÂ')Ã­ÂÂÃ¬ÂÂ¬ Ã¬Â²ÂÃ«Â¦Â¬
+	                // for( let item of items) -> items == data, item == board Ã¬ÂÂ­Ã­ÂÂ 
 	                $.each(data, function(index, board) {
-	                    // 날짜 형태로 전환
+	                    // Ã«ÂÂ Ã¬Â§Â Ã­ÂÂÃ­ÂÂÃ«Â¡Â Ã¬Â ÂÃ­ÂÂ
 	                    let startDate = new Date(board.startDate);
 	                    let endDate = new Date(board.endDate);
-	                    // numeric: 숫자 형식, 2-digit: 두자리 숫자 형식
+	                    // numeric: Ã¬ÂÂ«Ã¬ÂÂ Ã­ÂÂÃ¬ÂÂ, 2-digit: Ã«ÂÂÃ¬ÂÂÃ«Â¦Â¬ Ã¬ÂÂ«Ã¬ÂÂ Ã­ÂÂÃ¬ÂÂ
 	                    let options = {
 	                        year: "numeric",
 	                        month: "2-digit",
@@ -60,8 +83,8 @@
 	                    };
 	                    let sformatDate = startDate.toLocaleString("ko-KR", options);
 	                    let eformatDate = endDate.toLocaleString("ko-KR", options);
-	                    // 데이터를 순회하여 테이블 목록을 불러와 테이블 바디에 추가
-	                    // 동적으로 데이터 처리
+	                    // Ã«ÂÂ°Ã¬ÂÂ´Ã­ÂÂ°Ã«Â¥Â¼ Ã¬ÂÂÃ­ÂÂÃ­ÂÂÃ¬ÂÂ¬ Ã­ÂÂÃ¬ÂÂ´Ã«Â¸Â Ã«ÂªÂ©Ã«Â¡ÂÃ¬ÂÂ Ã«Â¶ÂÃ«ÂÂ¬Ã¬ÂÂ Ã­ÂÂÃ¬ÂÂ´Ã«Â¸Â Ã«Â°ÂÃ«ÂÂÃ¬ÂÂ Ã¬Â¶ÂÃªÂ°Â
+	                    // Ã«ÂÂÃ¬Â ÂÃ¬ÂÂ¼Ã«Â¡Â Ã«ÂÂ°Ã¬ÂÂ´Ã­ÂÂ° Ã¬Â²ÂÃ«Â¦Â¬
 	                    let row = $("<tr>");
 	                    row.append($("<td>").text(board.calNo));
 	                    let titleLink = $("<a>").attr("href","/user/myCalendar/modifySchedule?calNo="+board.calNo).text(board.content);
@@ -81,9 +104,9 @@
 	            }
 	        });
 
-	    } // -- loadTableData 함수 선언 종료
+	    } // -- loadTableData Ã­ÂÂ¨Ã¬ÂÂ Ã¬ÂÂ Ã¬ÂÂ¸ Ã¬Â¢ÂÃ«Â£Â
 
-	}); // // -- $(document).ready 함수 선언 종료
+	}); // // -- $(document).ready Ã­ÂÂ¨Ã¬ÂÂ Ã¬ÂÂ Ã¬ÂÂ¸ Ã¬Â¢ÂÃ«Â£Â
 </script>
 <script>
 $(function(){
@@ -121,7 +144,7 @@ $(function(){
         ax++;
       }
       var y=o[n-1];
-      a.css("background-color",y).find("h1").text(i[n-1]+" "+t);
+      a.css("background-color",y).find(".calh1").text(i[n-1]+" "+t);
       f.find("div").css("color",y);
       l.find(".today").css("background-color",y);
       l.find(".today").find('.abcontainer').css("background-color",y)
@@ -146,7 +169,7 @@ $(function(){
       var n=$("#calendar").css("width",e+"px");
       n.find(t="#calendar_weekdays").css("width",e+"px").find("div").css({width:e/7+"px",height:e/21+"px","line-height":e/21+"px"});
       n.find(" #calendar_content").css("width",e+"px").find("div").css({width:e/7+"px",height:e/7+"px"});
-      n.find("#calendar_header").css({height:e*(1/7)+"px"}).find('i[class^="icon-chevron"]').css("line-height",e*(1/7)+"px")
+      n.find("#calendar_header").css({height:(e*(1/7)+36)+"px"}).find('i[class^="icon-chevron"]').css("line-height",e*(1/7)+"px")
     }
     function v(e,t){
       return(new Date(e,t,0)).getDate()
@@ -192,7 +215,7 @@ $(function(){
         }
         c()
       };
-      if(e.attr("class").includes("left")!=-1){
+      if(e.attr("class").includes("left")){
         r("previous")
       }else{
         r("next")
@@ -278,6 +301,7 @@ setTimeout(function() {
   function dp(s,e){
     z = s;
     w = e;
+    	
   }
  var mo;
   function startMove(item) {
@@ -477,7 +501,7 @@ setTimeout(function() {
           if(cnt == 1){
             nov = (700-(((numA-1)%7)*100));
             ov = dateP.length*100 - nov;
-            newSpan.style.width = (nov-15) + "px";
+            newSpan.style.width = nov + "px";
             newSpan.innerHTML = document.querySelector('.title').value;
 
             slicedDate[0].forEach((iitem)=>{
@@ -649,7 +673,7 @@ setTimeout(function() {
             newSpan.innerHTML = document.querySelector('.title').value;
             document.querySelector(".active-a").children[2].append(newSpan);
           } else {
-            //두 줄 이상
+            //Ã«ÂÂ Ã¬Â¤Â Ã¬ÂÂ´Ã¬ÂÂ
             slicedDate[0].forEach((iitem)=>{
               if(iitem.includes('overNum')){
                 overNum = true;
