@@ -5,8 +5,22 @@
 <html>
 <head>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+<link rel="stylesheet" type="text/css" href="/resources/css/login.css">
 <meta charset="UTF-8">
+<style>
+	.idpw{
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+	}
+	.container{
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+	}
+	
+</style>
 <title>계정 찾기</title>
 </head>
 <body>
@@ -15,21 +29,22 @@
 		<div class="wrap">
 			<!-- 가운데 정렬해서 위치시킬 박스 -->
 			<div class="idpw">
-				<div id="idf">ID 찾기</div>
-				<div id="pwf">PW 찾기</div>
+				<a class="btn" id="idf" style="width:30%;">ID 찾기</a>
+				<a class="btn" id="pwf" style="width:30%;">PW 찾기</a>
 			</div>
 			<!-- 아이디 찾기를 눌렀을 때 표시할 것 -->
 			<div class="content">
 				<div>
-					<h1>나라사랑 email을 입력하세요.</h1>
-					<input type="email" name="email" required="required">@narasarang.or.kr<input
-						id="idfinder" type="button" value="확인">
-					<div id="result"></div>
+					<h2>나라사랑 email을 입력하세요.</h2>
+					<input type="email" name="email" required="required">@narasarang.or.kr<br><br><input
+						id="idfinder" class='btn' type="button" value="확인">
+					<div id="result" style="color:red;"></div>
 				</div>
 			</div>
 			<!-- 종료 -->
 		</div>
 	</div>
+
 	<script type="text/javascript">
 window.onload = function() {
     let content = $(".content");
@@ -37,11 +52,19 @@ window.onload = function() {
     let checker=false;
 	
     $("body").on("click", "#idf", () => {
-        content.html("<div><h1>나라사랑 email을 입력하세요.</h1><input type='email' name='email' required='required' placeholder='Email 입력'>@narasarang.or.kr<input id='idfinder' type='button' value='확인'><div id='result'></div></div>");
+    	$("#idf").css("background-color","#102770");
+    	$("#idf").css("color","#ffeba7");
+    	$("#pwf").css("background-color","#ffeba7");
+    	$("#pwf").css("color","#102770");
+        content.html("<div><h2>나라사랑 email을 입력하세요.</h2><input type='email' name='email' required='required' placeholder='Email 입력'>@narasarang.or.kr<br><br><input id='idfinder' class='btn' type='button' value='확인' style=width:50%><div id='result' style=color:red;></div></div>");
     });
 
     $("body").on("click", "#pwf", () => {
-        content.html("<div><h1>비밀번호를 찾을 ID를 입력하세요.</h1><input type='text' name='id' required='required' placeholder='ID 입력'><input type='button' id='pwfinder' value='확인'><div id='result'></div></div>");
+    	$("#idf").css("background-color","#ffeba7");
+    	$("#idf").css("color","#102770");
+    	$("#pwf").css("background-color","#102770");
+    	$("#pwf").css("color","#ffeba7");
+        content.html("<div><h2>비밀번호를 찾을 ID를 입력하세요.</h2><input type='text' name='id' required='required' placeholder='ID 입력'><input type='button' id='pwfinder' class='btn' value='확인'><div id='result' style=color:red></div></div>");
     });
 
     $("body").on("click", "#idfinder", () => {
@@ -56,9 +79,11 @@ window.onload = function() {
             success: function(data) {
                 console.log(data);
  				if(data==""){
- 					$("#result").html("해당 Email로 등록된 아이디가 존재하지 않습니다.");
+ 					$("#result").css("color","red");
+ 					$("#result").html("<p>해당 Email로 등록된 아이디가 존재하지 않습니다.</p>");
                 }else{
-                	$("#result").html("ID는 "+'"'+data.id+'"'+"입니다.");
+                	$("#result").css("color","green");
+                	$("#result").html("<p>ID는 "+'"'+data.id+'"'+"입니다.</p>");
                 }
             },
             error: function(xhr, status, error) {
@@ -115,7 +140,7 @@ window.onload = function() {
         				}
         			}); //ajax 종료
             	}else{
-            		 $("#result").html("ID가 존재하지 않습니다.");
+            		 $("#result").html("<p>ID가 존재하지 않습니다.</p>");
             	}
             },
             error: function(xhr, status, error) {
@@ -150,14 +175,13 @@ window.onload = function() {
         	                console.log(data);
         	                if(data==1){
         	                	alert("비밀번호 변경이 정상적으로 완료되었습니다.");
-        	                	window.close();
-        	                	
+        	                	window.parent.document.getElementById('view').modal("hide");
         	                }else if(data==0){
         	                	alert("아이디가 없거나 변경 불가능한 비밀번호입니다.");
-        	                	window.close();
+        	                	window.parent.document.getElementById('view').modal("hide");
         	               	}else{
         	               		alert("치명적인 에러 관리자에게 문의해주세요.");
-        	                	window.close();
+        	               		window.parent.document.getElementById('view').modal("hide");
         	               	}
         	                
         	                
@@ -198,5 +222,6 @@ window.onload = function() {
 		});
 }
 </script>
+
 </body>
 </html>
