@@ -102,6 +102,12 @@ th:nth-child(7) span, td:nth-child(7) span {
 
 
 </style>
+  <c:if test="${empty user}">
+		<script>
+                    // 사용자가 비어 있으면 로그인 페이지로 자동 이동
+                    window.location.href = "/login/login";
+                </script>
+             </c:if>
 <div id="banner-area" class="banner-area" style="background-color: rgb(50 137 76)">
   <div class="banner-text">
     <div class="container">

@@ -181,7 +181,7 @@
 										</a>
 											<ul class="dropdown-menu" role="menu">
 												<li><a href="/user/myPage">MyPage</a></li>
-												<li><a href="/user/myCalendar">Calendar</a></li>
+												<li><a href="/user/myCalendar/mySchedule">Calendar</a></li>
 											</ul></li>
 										<c:if test="${user.admin == 1}">
 										<li class="nav-item dropdown"><a href="#"

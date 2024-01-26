@@ -235,5 +235,16 @@ public class CenterController {
 		centerService.addNotice(vo);
 		return "redirect:/center/notice/noticeList";
 	}
+	@GetMapping("/information/mealSchedule")
+	public void mealSchedule() {
+		
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/information/menuList",method = RequestMethod.POST)
+	public List<MenuVO> getMenu(){
+
+		return centerService.getMenu();
+	}
 }
 
