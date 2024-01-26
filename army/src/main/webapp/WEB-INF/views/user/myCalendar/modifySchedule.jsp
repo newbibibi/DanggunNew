@@ -1,4 +1,4 @@
-<%@ include file="../includes/header.jsp" %>
+<%@ include file="../../includes/header.jsp" %>
 		<div id="showing">
 
 			<div id="mainpage">
@@ -74,4 +74,4 @@
 		});
 </script>
 	<!-- Footer -->
-<%@ include file="../includes/footer.jsp" %>	
+<%@ include file="../../includes/footer.jsp" %>	
