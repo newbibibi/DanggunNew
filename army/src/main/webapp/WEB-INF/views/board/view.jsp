@@ -96,7 +96,7 @@ if (userVO == null || userVO.getNickname() == null || userVO.getNickname().isEmp
 					<h1 style="margin-right: 10px; text-align: left;">
 						<span>${board.title}</span>
 					</h1>
-					<p style="float: left">
+					<p style="float: left"><input type="hidden" id=postId value="${board.bno}"/>  
 						<span style="margin-right:10px">분류 : ${board.category}</span>
 						작성자: <span> <c:choose>
 							<c:when test="${board.anonymous == 1}">익명 </c:when>
@@ -510,17 +510,76 @@ if (userVO == null || userVO.getNickname() == null || userVO.getNickname().isEmp
 //신고 버튼 클릭 이벤트
 	
 document.getElementById('reportBtnB').onclick = function() {
-    document.getElementById('reportModalB').style.display = 'block';
+    // 게시물 번호 가져오기
+    var postId = getPostId(); // 이 함수는 해당 페이지에서 어떻게 게시물 번호를 가져올지에 대한 로직을 담고 있어야 합니다.
+
+    // AJAX를 이용한 서버 요청
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '/board/checkReport', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+
+    // 서버로 보낼 데이터 (게시물 번호)
+    var data = JSON.stringify({ bno: postId });
+
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            // 서버에서의 응답을 확인
+            var response = JSON.parse(xhr.responseText);
+
+            // 서버에서의 응답에 따라 처리
+            if (response.reported  === 0) {
+                // 한 번도 신고한 적이 없으면 모달창을 보여줌
+                document.getElementById('reportModalB').style.display = 'block';
+            } else {
+                // 이미 신고한 경우에는 다른 처리를 수행할 수 있음
+                alert('이미 신고한 게시물입니다.');
+            }
+        }
+    };
+
+    // 서버로 데이터 전송
+    xhr.send(data);
+}
+
+
+// 게시물 번호를 가져오는 함수 (이 함수는 실제로 구현되어야 함)
+function getPostId() {
+    // 구현되어야 함
+    // 예시: 현재 페이지의 DOM에서 게시물 번호를 추출하여 반환
+    return document.getElementById('postId').value;
 }
 
 function showReportForm(cno) {
-    var reportModal = document.getElementById('reportModalC' + cno);
+    // 댓글 번호 가져오기
+    
 
-    if (reportModal.style.display === 'none' || reportModal.style.display === '') {
-        reportModal.style.display = 'block';
-    } else {
-        reportModal.style.display = 'none';
-    }
+    // AJAX를 이용한 서버 요청
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '/board/checkCmtReport', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+
+    // 서버로 보낼 데이터 (댓글 번호)
+    var data = JSON.stringify({ cno: cno });
+
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            // 서버에서의 응답을 확인
+            var response = JSON.parse(xhr.responseText);
+
+            // 서버에서의 응답에 따라 처리
+            if (response.reported === 0) {
+                // 한 번도 신고한 적이 없으면 모달창을 보여줌
+                var reportModal = document.getElementById('reportModalC' + cno);
+                reportModal.style.display = 'block';
+            } else {
+                // 이미 신고한 경우에는 다른 처리를 수행할 수 있음
+                alert('이미 신고한 댓글입니다.');
+            }
+        }
+    };
+
+    // 서버로 데이터 전송
+    xhr.send(data);
 }
 
 

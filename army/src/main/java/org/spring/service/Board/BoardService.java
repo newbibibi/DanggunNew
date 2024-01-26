@@ -56,6 +56,10 @@ public interface BoardService {
 	
 	public List<BoardVO> mainList();
 
+	public int getOrDefault(long postId, String nickname);
+
+	public int getReportStatus(long cno, String nickname);
+
 
 
 

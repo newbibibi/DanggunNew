@@ -208,4 +208,18 @@ public class BoardServiceImp implements BoardService {
 		return boardmapper.mainBoard();
 	}
 
+	@Override
+	public int getOrDefault(long bno, String nickname) {
+		
+		return boardmapper.findByPostIdAndReporter(bno , nickname);
+	}
+
+	@Override
+	public int getReportStatus(long cno, String nickname) {
+		// TODO Auto-generated method stub
+		return boardmapper.findByCnoAndReporter(cno , nickname);
+	}
+
+
+
 }

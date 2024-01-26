@@ -87,5 +87,9 @@ public interface BoardMapper {
 	
 	//메인
 	public List<BoardVO> mainBoard();
+
+	public int findByPostIdAndReporter(@Param("bno") long bno,@Param("nickname") String nickname);
+
+	public int findByCnoAndReporter(@Param("cno")long cno,@Param("nickname") String nickname);
 	
 }

@@ -373,6 +373,30 @@ public class BoardController {
         return "redirect:/board/list";
     }
     
+    @ResponseBody
+    @PostMapping("/checkReport")
+    public Map<String, Integer> checkReport(@RequestBody Map<String, Long> request, HttpServletRequest httpServletRequest) {
+        HttpSession session = httpServletRequest.getSession();
+        String nickname = ((UserVO)session.getAttribute("user")).getNickname();
+        long postId = request.get("bno");
+        int reported = boardService.getOrDefault(postId, nickname);
+        Map<String, Integer> response = new HashMap<>();
+        response.put("reported", reported);
+        return response;
+    }
+    
+    @PostMapping("/checkCmtReport")
+    @ResponseBody
+    public Map<String, Integer> checkCmtReport(@RequestBody Map<String, Long> request, HttpServletRequest httpServletRequest) {
+        HttpSession session = httpServletRequest.getSession();
+        String nickname = ((UserVO) session.getAttribute("user")).getNickname();
+        long cno = request.get("cno");
+        int reported = boardService.getReportStatus(cno, nickname);
+
+        Map<String, Integer> response = new HashMap<>();
+        response.put("reported", reported);
+        return response;
+    }
 
 
 }	

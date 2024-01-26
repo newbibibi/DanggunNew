@@ -33,7 +33,17 @@
 		#{nickname}), -1
 		) AS likestatus
 	</select>
-
+	
+	<select id="findByPostIdAndReporter" resultType="int">
+        SELECT COUNT(*) FROM report
+        WHERE bno = #{bno} AND reporter = #{nickname}
+    </select>
+    
+    <select id="findByCnoAndReporter" resultType="int">
+        SELECT COUNT(*) FROM report
+        WHERE cno = #{cno} AND reporter = #{nickname}
+    </select>
+	
 	<select id="showCmt" resultType="org.spring.domain.CommentVO">
 		SELECT
 		*
