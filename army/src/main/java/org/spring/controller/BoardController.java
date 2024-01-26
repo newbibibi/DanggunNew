@@ -152,6 +152,12 @@ public class BoardController {
 	public String viewBoard(@PathVariable("id") int bno, Model model, HttpServletRequest request) {
 	    // 게시물 정보 조회
 		HttpSession session = request.getSession();
+		UserVO uservo = new UserVO();
+		uservo = (UserVO)session.getAttribute("user");
+		if (uservo == null) {
+	        // If user is not logged in, redirect to the login page
+	        return "redirect:/login/login";
+	    }
 	    BoardVO board = boardService.getPost(bno);
 	    // 게시물의 댓글 목록 조회
 	    List<CommentVO> comments = boardService.getCommentList(bno);
@@ -161,7 +167,7 @@ public class BoardController {
 	        boardService.plusView(bno);
 	        session.setAttribute("view" + bno, true); // 세션에 'view' + 게시물 ID값을 키로 하는 속성 추가
 	    }
-	  UserVO uservo = (UserVO)session.getAttribute("user");
+	  
 	    String nickname = uservo.getNickname();
 	    int liked = boardService.isLiked(bno, nickname); // 사용자가 게시물에 좋아요를 눌렀는지 여부 확인
 	    log.info("likedCnt:"+boardService.isLiked(bno, nickname));
