@@ -186,7 +186,6 @@ input[type="radio"] {
   }
 
 body {
-  height: 4000px;
   -webkit-user-select:none;
   -moz-user-select:none;
   -ms-user-select:none;
