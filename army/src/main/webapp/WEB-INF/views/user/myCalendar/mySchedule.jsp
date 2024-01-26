@@ -2,25 +2,35 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../../includes/header.jsp" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
-    <div id="banner-area" class="banner-area" style="background-color: rgb(50 137 76)">
-  <div class="banner-text">
-    <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-              <div class="banner-heading">
-                <h1 class="banner-title">유저</h1>
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb justify-content-center">
-                      <li class="breadcrumb-item"><a href="/user/myPage">마이페이지</a></li>
-                      <li class="breadcrumb-item"><a href="/user/myCalendar/mySchedule">나의 일정</a></li>
-                    </ol>
-                </nav>
-              </div>
-          </div><!-- Col end -->
-        </div><!-- Row end -->
-    </div><!-- Container end -->
-  </div><!-- Banner text end -->
-</div><!-- Banner area end --> 
+ <div id="banner-area" class="banner-area"
+	style="background-color: rgb(50, 137, 76)">
+	<div class="banner-text">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="banner-heading">
+						<h1 class="banner-title">내 일 정</h1>
+						<nav aria-label="breadcrumb">
+							<ol class="breadcrumb justify-content-center">
+								<li class="breadcrumb-item"><a href="../user/myModify">내 정보 수정</a></li>
+								<li class="breadcrumb-item"><a href="../user/myCalendar/mySchedule">내 일 정</a></li>
+								<li class="breadcrumb-item"><a href="../center/cscenter/fqna">내 문 의</a></li>
+							</ol>
+						</nav>
+					</div>
+				</div>
+				<!-- Col end -->
+			</div>
+			<!-- Row end -->
+		</div>
+		<!-- Container end -->
+	</div>
+	<!-- Banner text end -->
+</div>
+<!-- Banner area end -->
+<!-- Action end -->
+<!-- Feature are end -->
+
 
 	<div class="calCon col-x" style="height:750px;">
 		<div id="calendar">
