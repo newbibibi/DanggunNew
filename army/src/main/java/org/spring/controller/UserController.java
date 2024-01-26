@@ -1,5 +1,6 @@
 package org.spring.controller;
 
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -187,12 +188,17 @@ public class UserController {
 	@ResponseBody
 	public String loginCheck(UserVO vo, HttpServletRequest request) {
 		String result = "";
-
 		UserVO login = ls.getUser("id", vo.getId());
+		log.info(login.getBaned().before(new Timestamp(System.currentTimeMillis()))); 
+		
 		if (login != null) {
 			if (login.getPw().equals(vo.getPw())) {
 				result = "로그인 성공";
-				request.getSession().setAttribute("user", login);
+				if(login.getBaned()!=null) {
+					result="불량 활동으로 정지된 유저입니다. 정지기간 : "+String.valueOf(login.getBaned()).substring(0,toString().valueOf(login.getBaned()).length()-2)+"까지.." ;
+				}else {
+					request.getSession().setAttribute("user", login);
+				}
 			} else {
 				result = "비밀번호가 틀립니다. 다시 확인해주세요";
 			}

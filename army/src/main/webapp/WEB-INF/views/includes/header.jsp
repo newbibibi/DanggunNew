@@ -3,9 +3,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="UTF-8">
 <head>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 
 <!-- Basic Page Needs
 ================================================== -->
@@ -63,6 +64,9 @@
 
 </head>
 <body>
+<c:if test="${empty user}">
+	window.location.href="/login/login";
+</c:if>
 	<div class="body-inner">
 
 		<!-- Header start -->

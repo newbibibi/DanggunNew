@@ -150,7 +150,7 @@ $("document").ready(()=>{
 		            let pm = response.pageMaker;
 		            let p = "";
 		            p += pm.prev ? "<a href='javascript:paging(" + pm.startPage + ")'>이전</a>" : "";
-		            p += "<a href=javascript:report(" + i + ")>" + i + "</a>";
+		            p += "<a href=javascript:paging(" + i + ")>" + i + "</a>";
 		            p += pm.next ? "<a href='javascript:paging(" + pm.endPage + ")'>다음</a>" : "";
 		            td.append(p);
 		            $("#viewer").append(tr);
