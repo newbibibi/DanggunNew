@@ -84,6 +84,14 @@
 									<li>
 										<div class="info-box">
 											<div class="info-box-content">
+												<p class="info-box-title">닉네임</p>
+												<p id="" class="info-box-subtitle">${user.nickname }</p>
+											</div>
+										</div>
+									</li>
+									<li>
+										<div class="info-box">
+											<div class="info-box-content">
 												<p class="info-box-title">계급</p>
 												<p id="currentRank" class="info-box-subtitle"></p>
 											</div>
