@@ -1,6 +1,6 @@
 package org.spring.domain;
 
-import java.sql.Timestamp;
+
 
 import lombok.Data;
 
@@ -11,9 +11,20 @@ public class CommentVO {
 	private String nickname;
 	private int bno;
 	private int dislikes;
-	private Timestamp cTime;
+	private String cTime;
 	private int isCFC;
 	private int parentCno;
 	private int likes;
 	private int isAnonymous;
+	
+	
+	public String getcTime() {
+		return cTime;
+	}
+	public void setcTime(String cTime) {
+		this.cTime = cTime;
+	}
+	
+	
 }
+

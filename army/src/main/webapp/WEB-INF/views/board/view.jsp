@@ -4,6 +4,7 @@
 	pageEncoding="UTF-8"%><%@ page import="java.util.List"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <%
 // Check if the userVO is present in the session and contains a non-empty nickname
@@ -61,11 +62,13 @@ if (userVO == null || userVO.getNickname() == null || userVO.getNickname().isEmp
 
 /* 모달 내용에 대한 스타일 */
 .modal-content {
-	background-color: #fefefe;
-	margin: 15% auto;
+	
+	 background-color : #fefefe;
+	margin: 0 auto;
 	padding: 20px;
 	border: 1px solid #888;
-	width: 80%;
+	width: 50%;
+	background-color: #fefefe;
 }
 
 /* 닫기 버튼에 대한 스타일 */
@@ -80,6 +83,7 @@ if (userVO == null || userVO.getNickname() == null || userVO.getNickname().isEmp
 	display: inline-block;
 	font-size: 16px;
 	cursor: pointer;
+	width: 50%;
 }
 
 .close-btn:hover {
@@ -96,14 +100,16 @@ if (userVO == null || userVO.getNickname() == null || userVO.getNickname().isEmp
 					<h1 style="margin-right: 10px; text-align: left;">
 						<span>${board.title}</span>
 					</h1>
-					<p style="float: left"><input type="hidden" id=postId value="${board.bno}"/>  
-						<span style="margin-right:10px">분류 : ${board.category}</span>
-						작성자: <span> <c:choose>
-							<c:when test="${board.anonymous == 1}">익명 </c:when>
-							<c:otherwise>${board.nickname} </c:otherwise>
-						</c:choose></span>
+					<p style="float: left">
+						<input type="hidden" id=postId value="${board.bno}" /> <span
+							style="margin-right: 10px">분류 : ${board.category}</span> 작성자: <span>
+							<c:choose>
+								<c:when test="${board.anonymous == 1}">익명 </c:when>
+								<c:otherwise>${board.nickname} </c:otherwise>
+							</c:choose>
+						</span>
 					</p>
-					
+
 
 					<p>
 						<span><fmt:formatDate value="${board.regDate}"
@@ -214,7 +220,7 @@ if (userVO == null || userVO.getNickname() == null || userVO.getNickname().isEmp
 								<form action="/board/update" method="post">
 									<input type="hidden" name="bno" value="${board.bno}" /> <span>
 										/ </span>
-									<button class="btn-post" type="submit">&nbsp;수정</button>
+									<button class="btn-post" type="submit">수정</button>
 								</form>
 							</c:if>
 							<c:if test="${userRole == 1 || user.nickname eq board.nickname}">
@@ -224,7 +230,7 @@ if (userVO == null || userVO.getNickname() == null || userVO.getNickname().isEmp
 									style="margin: auto 0 0 auto;"
 									onsubmit="return confirm('정말 삭제하시겠습니까?');">
 									<input type="hidden" name="bno" value="${board.bno}">
-									<button class="btn-post" type="submit">삭제</button>
+									<button class="btn-post" type="submit">삭제&nbsp;</button>
 								</form>
 							</c:if>
 						</c:if>
@@ -234,11 +240,12 @@ if (userVO == null || userVO.getNickname() == null || userVO.getNickname().isEmp
 
 			<div id="commentForm">
 				<h3>
-					댓글 달기<span style="font-size: 17px;">[${board.commentCnt}]</span>
+					댓글<span style="font-size: 17px;">[${board.commentCnt}]</span>
 				</h3>
 				<form action="/board/commentAdd" method="post">
 					<input type="hidden" name="bno" value="${board.bno}" /> <input
 						type="hidden" name="nickname" value=<%=nickname%> />
+
 					<textarea name="content"
 						style="width: 100%; height: 10vh; resize: none;" required></textarea>
 					<div style="display: flex; justify-content: flex-end;">
@@ -269,7 +276,7 @@ if (userVO == null || userVO.getNickname() == null || userVO.getNickname().isEmp
 						</select><br> <br> <label>세부 사항:</label>
 						<textarea name="details"></textarea>
 						<br>
-						<button class="btn-post" type="submit">신고 제출</button>
+						<button class="close-btn" type="submit">신고 제출</button>
 					</form>
 					<button class="close-btn" type="button"
 						onclick="document.getElementById('reportModalB').style.display='none'">닫기</button>
@@ -279,14 +286,19 @@ if (userVO == null || userVO.getNickname() == null || userVO.getNickname().isEmp
 
 			<!-- 댓글 목록 -->
 			<div id="commentList">
-				<h3>댓글</h3>
+
 				<c:forEach items="${comments}" var="comment">
 					<c:if test="${comment.parentCno == 0}">
-						<div class="commentItem">
+						<div style="margin-top: 20px; border-bottom: 1px solid green;"
+							class="commentItem">
 
 							<div class="commentInfo">
-								<span class="authorName"> <c:out
-										value="${comment.isAnonymous == 1 ? '익명' : comment.nickname}" /></span>
+								<span class="authorName"> <strong><c:out
+											value="${comment.isAnonymous == 1 ? '익명' : comment.nickname}" /></strong></span>
+								<span style="font-size: smaller" class="commentTime"> <%-- 댓글이 오늘 작성된 경우에만 시간을 표시하고, 그렇지 않은 경우에는 날짜를 표시함 --%>
+									${comment.cTime}
+								</span>
+
 
 								<div style="padding: 10px;" class="commentContent${comment.cno}"
 									id="commentContent${comment.cno}">${comment.content}</div>
@@ -344,8 +356,7 @@ if (userVO == null || userVO.getNickname() == null || userVO.getNickname().isEmp
 
 								<div id="reportModalC${comment.cno}" class="modal"
 									style="display: none; position: fixed; z-index: 1; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgb(0, 0, 0); background-color: rgba(0, 0, 0, 0.4);">
-									<div class="modal-content"
-										style="background-color: #fefefe; margin: 15% auto; padding: 20px; border: 1px solid #888; width: 80%;">
+									<div class="modal-content">
 										<h2>신고하기</h2>
 										<form action="/board/report" method="post">
 											<input type="hidden" name="cno" value="${comment.cno}">
@@ -364,7 +375,7 @@ if (userVO == null || userVO.getNickname() == null || userVO.getNickname().isEmp
 											</select><br> <br> <label>세부 사항:</label>
 											<textarea name="details"></textarea>
 											<br>
-											<button class="btn-post" type="submit">신고 제출</button>
+											<button class="close-btn" type="submit">신고 제출</button>
 										</form>
 										<button class="close-btn" type="button"
 											onclick="document.getElementById('reportModalC${comment.cno}').style.display='none'">닫기</button>
@@ -399,8 +410,11 @@ if (userVO == null || userVO.getNickname() == null || userVO.getNickname().isEmp
 									<!-- 대댓글을 댓글보다 안쪽으로 들여쓰기 -->
 
 									<div class="commentInfo${reply.cno}">
-										⤷<span class="authorName"> <c:out
-												value="${reply.isAnonymous == 1 ? '익명' : reply.nickname}" /></span>
+										<span class="authorName"><strong><c:out
+													value="⤷${reply.isAnonymous == 1 ? '익명' : reply.nickname}" /></strong></span>
+										<span style="font-size: smaller" class="commentTime"> <%-- 댓글이 오늘 작성된 경우에만 시간을 표시하고, 그렇지 않은 경우에는 날짜를 표시함 --%>
+											${reply.cTime}
+										</span>
 										<div style="padding: 10px;" class="commentContent${reply.cno}"
 											id="commentContent${reply.cno}">${reply.content}</div>
 										<div id="editForm${reply.cno}" style="display: none;">
@@ -433,8 +447,7 @@ if (userVO == null || userVO.getNickname() == null || userVO.getNickname().isEmp
 
 										<div id="reportModalC${reply.cno}" class="modal"
 											style="display: none; position: fixed; z-index: 1; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgb(0, 0, 0); background-color: rgba(0, 0, 0, 0.4);">
-											<div class="modal-content"
-												style="background-color: #fefefe; margin: 15% auto; padding: 20px; border: 1px solid #888; width: 80%;">
+											<div class="modal-content">
 												<h2>신고하기</h2>
 												<form action="/board/report" method="post">
 													<input type="hidden" name="cno" value="${reply.cno}">
@@ -453,7 +466,7 @@ if (userVO == null || userVO.getNickname() == null || userVO.getNickname().isEmp
 													</select><br> <br> <label>세부 사항:</label>
 													<textarea name="details"></textarea>
 													<br>
-													<button class="btn-post" type="submit">신고 제출</button>
+													<button class="close-btn" type="submit">신고 제출</button>
 												</form>
 												<button class="close-btn" type="button"
 													onclick="document.getElementById('reportModalC${reply.cno}').style.display='none'">닫기</button>

@@ -53,7 +53,7 @@
 		bno =
 		#{bno}
 		ORDER BY
-		cTime ASC
+		cTime asc
 	</select>
 
 	<update id="updateCmt">

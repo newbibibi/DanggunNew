@@ -173,19 +173,36 @@
 	<select id="getFileList" resultType="FileVO" parameterType="Integer">
 		SELECT * FROM fileupload WHERE qno=#{qno}
 	</select>
-	<select id="noticeListAll" resultType="NoticeVO" parameterType="Criteria">
-		select * from notice order by nno desc limit #{start},#{amount};
+<select id="noticeListAll" resultType="NoticeVO" parameterType="Criteria">
+select * from notice
+<where>
+<if test="type !=null and type !=''">
+<choose>
+<when test="type.equals('NN')"> category like 'NN' </when>
+<when test="type.equals('FF')"> category like 'FF' </when>
+</choose>
+</if>
+</where>
+order by nno desc limit #{start},#{amount}
+</select>
+<select id="getTCN" resultType="int" parameterType="Criteria">
+select count(nno) from notice
+<where>
+<if test="type !=null and type !=''">
+<choose>
+<when test="type.equals('NN')"> category like 'NN' </when>
+<when test="type.equals('FF')"> category like 'FF' </when>
+</choose>
+</if>
+</where>
+</select>
+<select id="showNotice" resultType="NoticeVO"> select * from notice where nno = #{nno}; </select>
+<update id="modifyNotice" parameterType="NoticeVO"> update notice set content = #{content}, title = #{title}, category = #{category} where nno = #{nno}; </update>
+<delete id="removeNotice" parameterType="NoticeVO"> delete from notice where nno = #{nno}; </delete>
+<insert id="createNotice" parameterType="NoticeVO" keyColumn="nno" keyProperty="nno" useGeneratedKeys="true"> insert into notice (title, content, regDate, category) values (#{title}, #{content}, #{regDate}, #{category}) </insert>
+	
+	<select id="getMenuList" resultType="MenuVO">
+		SELECT * FROM menu
+		
 	</select>
-	<select id="getTCN" resultType="int" parameterType="Criteria">
-    	select count(nno) from notice;
-	</select>
-	<select id="showNotice" resultType="NoticeVO">
-		select * from notice where nno = #{nno};
-	</select>
-	<update id ="modifyNotice" parameterType="NoticeVO">
-		update notice set content = #{content}, title = #{title} where nno = #{nno};
-	</update>
-	<delete id="removeNotice" parameterType="NoticeVO">
-		delete from notice where nno = #{nno};
-	</delete>
 </mapper>

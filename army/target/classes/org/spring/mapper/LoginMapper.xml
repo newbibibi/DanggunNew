@@ -22,10 +22,6 @@
 		COUNT(ID) FROM USER WHERE email LIKE #{email}
 	</select>
 
-	<select id="getAllUser" resultType="UserVO">
-		SELECT * FROM USER
-	</select>
-
 <select id="getUser" parameterType="java.util.Map" resultType="UserVO">
     SELECT * FROM USER
     <where>
