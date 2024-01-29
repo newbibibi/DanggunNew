@@ -93,7 +93,9 @@ $(document).ready(() => {
 		    login();
 		  }
 		});
-
+	function modalClose(){
+		$("#view").modal("hide");
+	}
 </script>
 </head>
 <body>

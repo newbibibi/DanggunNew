@@ -78,7 +78,7 @@
 								<tr>
 									<td>군종</td>
 									<%UserVO u=(UserVO)request.getSession().getAttribute("user");
-										String result=u.getArmygroup().equals("earth") ? "(휴먼굴림체)육군" : u.getArmygroup().equals("sea") ? "해군" : "공군";%>
+										String result=u.getArmygroup().equals("earth") ? "육군" : u.getArmygroup().equals("sea") ? "해군" : "공군";%>
 									<td><input type="text" disabled="disabled"
 										value="<%=result%>"></td>
 								</tr>
@@ -92,7 +92,7 @@
 									<td><input type="text" disabled="disabled"
 										value="${user.email}"></td>
 								</tr>
-								<tr>
+								<tr id="resulter">
 									<td>SNS 연동</td>
 									<td><img style="width:30px; height:30px;" alt=""
 										src="/resources/images/<c:if test='${user.sns.startsWith("n")}'>NaverBtn.png</c:if><c:if test='${user.sns.startsWith("k")}'>KakaoBtn.png</c:if><c:if test='${user.sns.startsWith("g")}'>GoogleBtn.png</c:if><c:if test='${empty user.sns}'>x.png</c:if>
@@ -120,7 +120,18 @@
 <!-- Project area end -->
 
 <script type="text/javascript">
+	let pw=$("[name=pw]");
+	let pwc=$("[name=pwc]");
+	let pwRegex=/^(?=.*[a-zA-Z])(?=.*\d)[A-Za-z\d\S]{8,20}$/;
+	let checker4=false;
+	let checker5=false;
+	let nickRegex = /^[가-힣a-zA-Z0-9_-\S]{2,16}$/;
+	let nick=$("[name=nickname]");
 	let modify = function() {
+		
+		if(checker4&&checker5){
+		console.log("체커 성공");
+			
 		let id = $("[name=id]");
 		let pw = $("[name=pw]");
 		let nickname = $("[name=nickname]");
@@ -145,7 +156,53 @@
 			}
 		};
 		xhr.send(JSON.stringify(data));
+		}else{
+			console.log("체커 실패");
+			
+		}
 	}
+	
+	nick.bind("blur", function() {
+		if(nick.val()=="${user.nickname}"){
+			$("#result").remove();
+			checker5=true;
+		}else{
+		$.ajax({
+			url : '../../login/checker',
+			method : 'POST',
+			data : {
+				checkValue : nick.val(), checkColumn : "nickname"
+			},
+			success : function(data) {
+				if(nickRegex.test(nick.val())){
+					$("#result").remove();
+					if (nick.val() != "") {
+						if (data != "") {
+							nick.css("border", "2px solid red");
+							$("#result").remove();
+							$("#resulter").after("<tr id=result style='color:red;'><td colspan=2>이미 사용중인 닉네임입니다.</td></tr>");
+							checker5 = false;
+							setTimeout(function() {
+								nick.focus();
+								}, 1000);
+						} else {
+							nick.css("border", "2px solid green");
+							checker5 = true;
+						}
+					}
+				}else{
+					nick.css("border", "2px solid red");
+					$("#result").remove();
+					$("#resulter").after("<tr id=result style='color:red;'><td colspan=2>닉네임은 2글자 이상, 16글자 이하만 사용 가능합니다.(특문 불가)</td></tr>");
+					checker5 = false;
+				}
+			},
+			error : function(xhr, status, error) {
+				console.error(error);
+			}
+		});
+		}
+	});
 	let delUser=function(){
 		let id=${user.id}
 		console.log(id);
@@ -165,6 +222,38 @@
 		};
 		xhr.send("id="+id);
 	}
+	
+	$(pwc).bind("blur", function() {
+		if (pw.val() == null || pw.val() == "") {
+			pw.focus();
+			$("#result").remove();
+			$("#resulter").after("<tr id=result style='color:red;'><td colspan=2></td></tr>");
+			$("#result>td").text("비밀번호를 먼저 입력하세요.");
+		} else {
+			if(pwRegex.test(pw.val())){
+			if (pwc.val() != pw.val()) {
+				pw.css("border", "2px solid red");
+				pwc.css("border", "2px solid red");
+				$("#result").remove();
+				$("#resulter").after("<tr id=result style='color:red;'><td colspan=2></td></tr>");
+				$("#result>td").text("비밀번호가 일치하지 않습니다.");
+				pw.focus();
+				checker4 = false;
+			} else {
+				pw.css("border", "2px solid green");
+				pwc.css("border", "2px solid green");
+				$("#result").remove();
+				checker4 = true;
+			}
+			}else{
+				pw.css("border", "2px solid red");
+				pwc.css("border", "2px solid red");
+				$("#result").remove();
+				$("#resulter").after("<tr id=result style='color:red;'><td colspan=2>비밀번호는 8자 이상, 20자 이하 (대/소문자)/숫자가 최소 1개 이상 포함되어야 합니다.</td></tr>");
+				checker4 = false;
+			}
+		}
+	});
 </script>
 
 <%@include file="../includes/footer.jsp"%>
