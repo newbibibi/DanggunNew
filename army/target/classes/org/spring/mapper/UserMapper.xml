@@ -8,5 +8,24 @@
 	</update>
 
 	<!-- 추가적인 SQL 매핑 구문들을 작성할 수 있습니다. -->
-
+	<insert id="createCal" parameterType="CalendarVO" keyColumn = "calNo" keyProperty = "calNo" useGeneratedKeys = "true">
+		insert into calendar (startDate, endDate, content, nickname) values (#{startDate}, #{endDate}, #{content}, #{nickname})
+	</insert>
+	<update id="modifyCal" parameterType="CalendarVO" >
+		update calendar set startDate = #{startDate}, endDate=#{endDate}, content = #{content}
+		where calNo = #{calNo}
+	</update>
+	<delete id="removeCal" parameterType="CalendarVO">
+		delete from calendar where calNo = #{calNo}
+	</delete>
+	<select id="showAllCal" resultType="CalendarVO">
+		select * from calendar where nickname = #{nickname};
+	</select>
+	<select id="showCal" resultType="CalendarVO">
+		select * from calendar where calNo = #{calNo};
+	</select>
+	<delete id="deleteUser" parameterType="String">
+		DELETE FROM USER WHERE id=#{id}
+	</delete>
+	
 </mapper>

@@ -161,6 +161,7 @@ public class BoardController {
 	    BoardVO board = boardService.getPost(bno);
 	    // 게시물의 댓글 목록 조회
 	    List<CommentVO> comments = boardService.getCommentList(bno);
+	    log.info(comments);
 	    
 	    //조회수 증가
 	    if(session.getAttribute("view" + bno) == null){
