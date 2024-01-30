@@ -38,7 +38,7 @@
 <section id="main-container" class="main-container">
 	<div class="container">
 	<div class="panel-body">
-<form role="form">
+<form id="answerForm" role="form">
 <div class="form-group">
 				<input type="hidden" name="qno" value="${board.qno }">
 			</div>
@@ -243,5 +243,19 @@
 			document.getElementById('myModal').style.display = 'none';
 		}
 	});
+</script>
+<script>
+window.onload = function() {
+    document.getElementById("answerForm").onsubmit = function() {
+        var textareaContent = document.getElementById("summernote").value;
+        var maxLength = 500; // 원하는 최대 글자 수로 변경 가능
+        
+        if (textareaContent.length > maxLength) {
+            alert("답변의 글자 수가 너무 많습니다. " + maxLength + "자 이하로 작성해주세요.");
+            return false; // 제출 방지
+        }
+
+    };
+};
 </script>
 <%@include file="../includes/footer.jsp"%>

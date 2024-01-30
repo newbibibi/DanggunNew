@@ -44,6 +44,11 @@
 			<a class="btn-primary" href="/login/login">로그인</a>
 		</div>
 		</c:if>
+		<c:if test="${user.admin == 1}">
+		<script>
+                    window.location.href = "/admin/adminFqna";
+                </script>
+		</c:if>
 		<c:if test="${!empty user}">
 			<div class="shuffle-btn-group">
 				<form id="searchForm" action="/center/cscenter/fqna" method="get">

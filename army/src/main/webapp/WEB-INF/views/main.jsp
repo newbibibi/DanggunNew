@@ -272,7 +272,15 @@
 
 				                    let formatDate = regDate.toLocaleString("ko-KR", options);
 								let row = $("<tr>");
-								row.append($("<td>").text(board.category));
+								if(board.category == "ssul"){
+									row.append($("<td>").text("썰"));
+								}else if(board.category == "tip"){
+									row.append($("<td>").text("팁"));
+								}else if(board.category == "free"){
+									row.append($("<td>").text("자유"));
+								}else {
+									row.append($("<td>").text("없음"));
+								}
 								let titleLink = $("<a>").attr(
 										"href",
 										"/board/view/"
