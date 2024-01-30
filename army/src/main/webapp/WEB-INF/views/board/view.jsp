@@ -401,9 +401,8 @@ if (userVO == null || userVO.getNickname() == null || userVO.getNickname().isEmp
 											type="hidden" name="parentCno" value="${comment.cno}">
 										<textarea name="content" required></textarea>
 										<input type="checkbox" name="isAnonymous" value="1"
-											id="isAnonymous"> <label for="anonymous">익명으로
-											댓글 작성</label>
-										<button class="btn-primary" type="submit">등록</button>
+											id="isAnonymous"> <label for="anonymous">익명</label>
+										<button class="btn-post" type="submit">등록</button>
 									</form>
 								</div>
 							</div>
@@ -417,8 +416,8 @@ if (userVO == null || userVO.getNickname() == null || userVO.getNickname().isEmp
 									<!-- 대댓글을 댓글보다 안쪽으로 들여쓰기 -->
 
 									<div class="commentInfo${reply.cno}">
-										<span class="authorName"><strong><c:out
-													value="⤷${reply.isAnonymous == 1 ? '익명' : reply.nickname}" /></strong></span>
+										<span><strong>⤷</strong></span><span class="authorName"><strong><c:out
+													value="${reply.isAnonymous == 1 ? '익명' : reply.nickname}" /></strong></span>
 										<span style="font-size: smaller" class="commentTime">
 											${reply.cTime} </span>
 										<div style="padding: 10px;" class="commentContent${reply.cno}"
@@ -514,8 +513,7 @@ if (userVO == null || userVO.getNickname() == null || userVO.getNickname().isEmp
 													type="hidden" name="parentCno" value="${comment.cno}">
 												<textarea name="content" required></textarea>
 												<input type="checkbox" name="isAnonymous" value="1"
-													id="isAnonymous"> <label for="anonymous">익명으로
-													댓글 작성</label>
+													id="isAnonymous"> <label for="anonymous">익명</label>
 												<button class="btn-post" type="submit">등록</button>
 											</form>
 										</div>
