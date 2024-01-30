@@ -30,16 +30,13 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="banner-heading">
-						<nav class="batch" )>
-							<div>
-								<a href="../admin/report">신고 확인</a>
-							</div>
-							<div>
-								<a href="../admin/userManage">유저 관리</a>
-							</div>
-							<div>
-								<a href="/admin/adminFqna">문의 확인</a>
-							</div>
+						<h1 class="banner-title">관리자페이지</h1>
+						<nav aria-label="breadcrumb">
+							<ol class="breadcrumb justify-content-center">
+								<li class="breadcrumb-item"><a href="/admin/userManage">유저관리</a></li>
+								<li class="breadcrumb-item"><a href="/admin/report">신고확인</a></li>
+								<li class="breadcrumb-item"><a href="/admin/adminFqna">고객문의</a></li>
+							</ol>
 						</nav>
 					</div>
 				</div>
@@ -63,13 +60,13 @@
 						<table id="viewer" class="table table-striped table-bordered table-hover">
 
 						</table>
-						<div><select name="type">
+						<div><select name="type" style="height:31px;">
 						<option value="all" selected="selected">전체</option>
 						<option value="i">아이디</option>
 						<option value="n">닉네임</option>
 						<option value="e">이메일</option>
 						<option value="b">정지 여부(Y/N)</option>
-						</select> <input type="text" name="keyword"><input type="button" onclick="search()" value="검색"></div>
+						</select> <input type="text" name="keyword" class="form-control-sm"><input type="button" onclick="search()" value="검색"></div>
 					</div>
 				</div>
 			</div>

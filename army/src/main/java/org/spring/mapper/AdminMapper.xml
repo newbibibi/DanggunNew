@@ -51,6 +51,18 @@
 	<select id="listUser" parameterType="Criteria"
 		resultType="java.util.Map">
 		<choose>
+			<when test='type eq "baned" and (keyword eq "Y" || keyword eq "y")'>
+				SELECT
+				id,pw,armygroup,enlisting,nickname,baned,email,sns,(select count(*)
+				from user) AS count FROM USER WHERE baned IS NOT NULL limit #{start},#{amount};
+			</when>
+		
+			<when test='type eq "baned" and (keyword eq "N" || keyword eq "n")'>
+				SELECT
+				id,pw,armygroup,enlisting,nickname,baned,email,sns,(select count(*)
+				from user) AS count FROM USER WHERE baned IS NULL limit #{start},#{amount};
+			</when>
+			
 			<when test="type eq 'all'">
 				SELECT
 				id,pw,armygroup,enlisting,nickname,baned,email,sns,(select count(*)
