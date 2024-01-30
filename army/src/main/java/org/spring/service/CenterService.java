@@ -41,4 +41,6 @@ public interface CenterService {
 	public int getTN(Criteria cri);
 	
 	public List<MenuVO> getMenu();
+	
+	public List<NoticeVO> mainNList();
 }

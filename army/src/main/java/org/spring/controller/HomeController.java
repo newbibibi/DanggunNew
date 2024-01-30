@@ -3,6 +3,8 @@ package org.spring.controller;
 import java.util.List;
 
 import org.spring.domain.BoardVO;
+import org.spring.domain.NoticeVO;
+import org.spring.service.CenterService;
 import org.spring.service.Board.BoardService;
 import org.springframework.stereotype.Controller;
 
@@ -20,6 +22,7 @@ import lombok.extern.log4j.Log4j;
 public class HomeController {
 	
 	private final BoardService boardService;
+	private final CenterService centerService;
 	
 	@GetMapping("/")
 	public String mainpage() {
@@ -37,5 +40,12 @@ public class HomeController {
 	public List<BoardVO> getboardlist(){
 		
 		return boardService.mainList();
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/main/noticelist",method = RequestMethod.POST)
+	public List<NoticeVO> getnoticelist(){
+		
+		return centerService.mainNList();
 	}
 }

@@ -205,4 +205,11 @@ select count(nno) from notice
 		SELECT * FROM menu
 		
 	</select>
+	
+	<select id="mainNotice" resultType="NoticeVO">
+		SELECT * FROM notice
+		order by regDate DESC
+		limit 5
+	</select>
+	
 </mapper>

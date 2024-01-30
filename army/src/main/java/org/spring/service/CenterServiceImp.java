@@ -157,4 +157,9 @@ public class CenterServiceImp implements CenterService{
 		return centerMapper.getMenuList();
 	}
 
+	@Override
+	public List<NoticeVO> mainNList() {
+		return centerMapper.mainNotice();
+	}
+
 }
