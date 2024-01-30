@@ -115,7 +115,7 @@ if (userVO == null || userVO.getNickname() == null || userVO.getNickname().isEmp
 
 
 			</tbody>
-			<!--  -->
+			
 		</table>
 		<button class="btn-primary" id="regBtn" type="button" style="float: right;">글 작성</button>
 		<nav class="pagiset pagiset-circ">
