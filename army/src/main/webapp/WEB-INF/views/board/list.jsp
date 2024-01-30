@@ -72,7 +72,7 @@ if (userVO == null || userVO.getNickname() == null || userVO.getNickname().isEmp
 					<button class="btn btn-default">검색</button>
 				</span>
 			</div>
-		</div>
+		</div><!--  -->
 				<select id="type" class="form-control formcol" name="type" style="float: right;">
 					<option value="All"
 						<c:out value="${pageMaker.cri.type == 'All'?'selected':''}"/>>전체</option>
