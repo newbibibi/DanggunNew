@@ -26,6 +26,7 @@
 </div><!-- Banner area end --> 
 <section id="main-container" class="main-container">
    <div class="container">
+   <h2>군인 혜택</h2>
    <c:if test="${empty user}">
 		<script>
                     // 사용자가 비어 있으면 로그인 페이지로 자동 이동

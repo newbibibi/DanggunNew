@@ -33,7 +33,7 @@
 </div><!-- Banner area end --> 
 <section id="main-container" class="main-container">
    <div class="container">
-<h2>고객문의</h2>
+<h2>고객문의사항</h2>
 		<div class="shuffle-btn-group">
 		<form id="searchForm" action="/admin/adminFqna" method="get">
 			<select id="type" class="" name="type">

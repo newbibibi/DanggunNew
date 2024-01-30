@@ -111,6 +111,7 @@ th:nth-child(7) span, td:nth-child(7) span {
 <div id="banner-area" class="banner-area" style="background-color: rgb(50 137 76)">
   <div class="banner-text">
     <div class="container">
+    
         <div class="row">
           <div class="col-lg-12">
               <div class="banner-heading">
@@ -129,8 +130,9 @@ th:nth-child(7) span, td:nth-child(7) span {
 </div><!-- Banner area end -->
 <section id="main-container" class="main-container">
    <div class="container">
+   <h2>월간 식단표</h2>
   <div>
-  <p>#메뉴를 확인하고 싶은 날짜를 클릭하세요</p>
+  <p>*메뉴를 확인하고 싶은 날짜를 클릭하세요</p>
   </div>
 <%
     // 요청 파라미터에서 연도와 월 가져오기

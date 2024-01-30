@@ -37,6 +37,7 @@
 <!-- Banner area end -->
 <section id="main-container" class="main-container">
 	<div class="container">
+	<h2>고객문의사항 답변</h2>
 	<div class="panel-body">
 <form id="answerForm" role="form">
 <div class="form-group">
