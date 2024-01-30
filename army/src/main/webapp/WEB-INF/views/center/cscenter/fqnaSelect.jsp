@@ -44,7 +44,9 @@
 				<div class="recon-tit">
 					<span class="badgeset">${board.answer == null ? '미답변' : '답변'}</span>
 					<h3>${board.title }</h3>
+					
 				</div>
+				<p><span>${board.regDate }</span></p>
 
 			</div>
 			<div class="recon-body">

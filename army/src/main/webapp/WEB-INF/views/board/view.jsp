@@ -62,8 +62,7 @@ if (userVO == null || userVO.getNickname() == null || userVO.getNickname().isEmp
 
 /* 모달 내용에 대한 스타일 */
 .modal-content {
-	
-	 background-color : #fefefe;
+	background-color: #fefefe;
 	margin: 0 auto;
 	padding: 20px;
 	border: 1px solid #888;
@@ -133,9 +132,11 @@ if (userVO == null || userVO.getNickname() == null || userVO.getNickname().isEmp
 		</c:if>-->
 
 			<div class="recon-body" style="padding-top: 0 !important;">
+				<c:if test="${user.nickname != board.nickname}">
+					<button class="btn-post" id="reportBtnB" type="button"
+						style="float: right;">신고</button>
+				</c:if>
 
-				<button class="btn-post" id="reportBtnB" type="button"
-					style="float: right;">신고</button>
 				<br> <br>
 
 				<div style="margin-bottom: 20px">${board.content}</div>
@@ -239,7 +240,8 @@ if (userVO == null || userVO.getNickname() == null || userVO.getNickname().isEmp
 			</div>
 
 			<div id="commentForm">
-				<h3>
+
+				<h3 style="padding-top: 20px;">
 					댓글<span style="font-size: 17px;">[${board.commentCnt}]</span>
 				</h3>
 				<form action="/board/commentAdd" method="post">
@@ -313,12 +315,15 @@ if (userVO == null || userVO.getNickname() == null || userVO.getNickname().isEmp
 
 								<!-- 대댓글 -->
 								<button class="btn-post" type="button"
-									onclick="toggleReplyForm(${comment.cno})">답글</button>
-								<span> / </span>
+									onclick="toggleReplyForm(${comment.cno})">&nbsp;답글</button>
 
 
-								<button class="btn-post" id="reportBtnC${comment.cno}"
-									type="button" onclick="showReportForm(${comment.cno})">신고</button>
+								<c:if test="${user.nickname != board.nickname}">
+									<span> / </span>
+									<button class="btn-post" id="reportBtnC${comment.cno}"
+										type="button" onclick="showReportForm(${comment.cno})">신고</button>
+								</c:if>
+
 								<!-- 싫어요 버튼 -->
 								<button class="btn-post" type="button" style="float: right;"
 									onclick="likeComment(${comment.cno}, 0)">👎
@@ -333,17 +338,19 @@ if (userVO == null || userVO.getNickname() == null || userVO.getNickname().isEmp
 
 									<c:if
 										test="${userRole == 1 || user.nickname eq board.nickname}">
-										<form action="/board/cmtDelete" method="post" style=""
+										<form action="/board/cmtDelete" method="post"
+											style="float: left;"
 											onsubmit="return confirm('정말 삭제하시겠습니까?');">
 											<input type="hidden" name="bno" value="${board.bno}">
 											<input type="hidden" name="cno" value="${comment.cno}">
 											<button class="btn-post" type="submit">삭제</button>
-
+											<span> / </span>
 											<!-- 수정 -->
 											<c:if test="${user.nickname eq board.nickname}">
-												<span> / </span>
+
 												<button class="btn-post" type="button"
 													onclick="editComment(${comment.cno})">수정</button>
+												<span> /&nbsp;</span>
 											</c:if>
 										</form>
 									</c:if>
@@ -394,9 +401,8 @@ if (userVO == null || userVO.getNickname() == null || userVO.getNickname().isEmp
 											type="hidden" name="parentCno" value="${comment.cno}">
 										<textarea name="content" required></textarea>
 										<input type="checkbox" name="isAnonymous" value="1"
-											id="isAnonymous"> <label for="anonymous">익명으로
-											댓글 작성</label>
-										<button class="btn-primary" type="submit">등록</button>
+											id="isAnonymous"> <label for="anonymous">익명</label>
+										<button class="btn-post" type="submit">등록</button>
 									</form>
 								</div>
 							</div>
@@ -410,11 +416,10 @@ if (userVO == null || userVO.getNickname() == null || userVO.getNickname().isEmp
 									<!-- 대댓글을 댓글보다 안쪽으로 들여쓰기 -->
 
 									<div class="commentInfo${reply.cno}">
-										<span class="authorName"><strong><c:out
-													value="⤷${reply.isAnonymous == 1 ? '익명' : reply.nickname}" /></strong></span>
-										<span style="font-size: smaller" class="commentTime"> <%-- 댓글이 오늘 작성된 경우에만 시간을 표시하고, 그렇지 않은 경우에는 날짜를 표시함 --%>
-											${reply.cTime}
-										</span>
+										<span><strong>⤷</strong></span><span class="authorName"><strong><c:out
+													value="${reply.isAnonymous == 1 ? '익명' : reply.nickname}" /></strong></span>
+										<span style="font-size: smaller" class="commentTime">
+											${reply.cTime} </span>
 										<div style="padding: 10px;" class="commentContent${reply.cno}"
 											id="commentContent${reply.cno}">${reply.content}</div>
 										<div id="editForm${reply.cno}" style="display: none;">
@@ -427,10 +432,14 @@ if (userVO == null || userVO.getNickname() == null || userVO.getNickname().isEmp
 										</div>
 										<!-- 대댓글 -->
 										<button class="btn-post" type="button"
-											onclick="toggleReplyForm(${reply.cno})">답글</button>
+											onclick="toggleReplyForm(${reply.cno})">&nbsp;답글</button>
+										
+										<c:if test="${user.nickname != board.nickname}">
 										<span> / </span>
-										<button class="btn-post" id="reportBtnR${reply.cno}"
-											type="button" onclick="showReportForm(${reply.cno})">신고</button>
+											<button class="btn-post" id="reportBtnR${reply.cno}"
+												type="button" onclick="showReportForm(${reply.cno})">신고</button>
+										</c:if>
+
 										<!-- 싫어요 버튼 -->
 
 										<button class="btn-post" type="button"
@@ -478,15 +487,16 @@ if (userVO == null || userVO.getNickname() == null || userVO.getNickname().isEmp
 											<c:if
 												test="${userRole == 1 || user.nickname eq board.nickname}">
 												<form action="/board/cmtDelete" method="post"
+													style="float: left;"
 													onsubmit="return confirm('정말 삭제하시겠습니까?');">
 													<input type="hidden" name="bno" value="${board.bno}" /> <input
 														type="hidden" name="cno" value="${reply.cno}" />
 													<button class="btn-post" type="submit">삭제</button>
-
+													<span> / </span>
 													<c:if test="${user.nickname eq board.nickname}">
-														<span> / </span>
+
 														<button class="btn-post" type="button"
-															onclick="editComment(${reply.cno})">수정</button>
+															onclick="editComment(${reply.cno})">수정</button><span> / </span>
 													</c:if>
 												</form>
 											</c:if>
@@ -503,8 +513,7 @@ if (userVO == null || userVO.getNickname() == null || userVO.getNickname().isEmp
 													type="hidden" name="parentCno" value="${comment.cno}">
 												<textarea name="content" required></textarea>
 												<input type="checkbox" name="isAnonymous" value="1"
-													id="isAnonymous"> <label for="anonymous">익명으로
-													댓글 작성</label>
+													id="isAnonymous"> <label for="anonymous">익명</label>
 												<button class="btn-post" type="submit">등록</button>
 											</form>
 										</div>
