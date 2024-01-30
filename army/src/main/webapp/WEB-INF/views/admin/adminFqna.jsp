@@ -62,6 +62,7 @@
       					<th class="#"><span>제목</span></th>
       					<th class="short"><span>작성자</span></th>
       					<th class="short"><span>답변유무</span></th>
+      					<th class="short"><span>작성일</span></th>
       				</tr>
       			</thead>
       			<tbody>
@@ -123,6 +124,26 @@
 							success : function(data) {
 								let boardTbody = $("tbody");
 								$.each(data, function(index, fqna) {
+									let regDate = new Date(fqna.regDate);
+									if (
+					                        regDate.getDate() === currentDate.getDate() &&
+					                        regDate.getMonth() === currentDate.getMonth() &&
+					                        regDate.getFullYear() === currentDate.getFullYear()
+					                    ) {
+					                        // If the post was written today, show only hours and minutes
+					                        options = {
+					                            hour: "2-digit",
+					                            minute: "2-digit"
+					                        };
+					                    } else {
+					                        // If the post was not written today, show month and day
+					                        options = {
+					                            month: "2-digit",
+					                            day: "2-digit"
+					                        };
+					                    }
+
+					                    let formatDate = regDate.toLocaleString("ko-KR", options);
 									let row = $("<tr>");
 									let titleLink = $("<a>").attr("href","/admin/fqnaAnswer?qno="+fqna.qno).text(fqna.title);
 									let titleTd = $("<td>").append(titleLink);
@@ -133,7 +154,7 @@
 									} else {
 										row.append($("<td>").text("답변"));
 									}
-
+									row.append($("<td>").text(formatDate));
 									boardTbody.append(row);
 								});
 							},
