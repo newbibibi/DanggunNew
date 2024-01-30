@@ -139,6 +139,7 @@ thead {
 			<div class="container-fluid pt-4 px-4">
 				<div class="bg-light text-center rounded p-4">
 					<div class="table-responsive">
+					<h2 style="text-align: left;">회원 목록</h2>
 						<table id="viewer" class="table table-striped table-bordered table-hover">
 
 						</table>

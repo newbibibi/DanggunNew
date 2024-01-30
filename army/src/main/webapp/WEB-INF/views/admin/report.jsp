@@ -22,19 +22,9 @@
     margin: 0 auto;
   }
   
-  body {
-  padding:1.5em;
-  background: #f5f5f5
-}
-
   .activePage{
   	font-weight: bolder;
   }
-
-body {
-  padding:1.5em;
-  background: #f5f5f5
-}
 
 table {
   border: 1px #a39485 solid;
@@ -75,80 +65,36 @@ option{
  	width:95%;
  }
  th:first-child {
-	min-width : 1vw;
+	width : 1vw;
 }
  th:nth-child(2) {
-	min-width : 3vw;
+	width : 3vw;
 }
  th:nth-child(3) {
-	min-width : 12vw;
+	width : 12vw;
 }
  th:nth-child(4) {
-	min-width : 17vw;
+	width : 17vw;
 }
  th:nth-child(5) {
-	min-width: 6vw;
+	width: 6vw;
 }
  th:nth-child(6) {
-	min-width : 4vw;
+	width : 4vw;
 }
  th:nth-child(7) {
-	min-width : 4vw;
+	width : 5vw;
 }
  th:nth-child(8) {
-	min-width : 8vw;
+	width : 8vw;
 }
  th:nth-child(9) {
-	min-width : 8vw;
+	width : 8vw;
 }
  th:nth-child(10) {
-	min-width: 5vw;
+	width: 5vw;
 }
- @media all and (max-width: 768px) {
-    
-  table, thead, tbody, th, td, tr {
-    display: block;
-  }
   
-  th {
-    text-align: center;
-  }
-  
-  table {
-    position: relative; 
-    padding-bottom: 0;
-    border: none;
-    box-shadow: 0 0 10px rgba(0,0,0,.2);
-  }
-  
-  thead {
-    float: left;
-     white-space: normal;
-  }
-  
-  tbody {
-    overflow-x: auto;
-    overflow-y: hidden;
-    position: relative;
-    white-space: normal;
-  }
-  
-  tr {
-    display: inline-block;
-    vertical-align: middle;
-  }
-  
-  th {
-    border-bottom: 1px solid #a39485;
-  }
-  
-  td {
-    border-bottom: 1px solid #e5e5e5;
-  }
-  
-  
-  }
-
 </style>
 <div id="banner-area" class="banner-area"
 	style="background-color: rgb(50, 137, 76)">
@@ -178,12 +124,11 @@ option{
 
 <section id="project-area" class="project-area solid-bg">
 	<div class="container">
-		<!--/ Title row end -->
-
 		<div class="row">
 			<div class="container-fluid pt-4 px-4">
 				<div class="bg-light text-center rounded p-4">
 					<div class="table-responsive">
+					<h2 style="text-align: left;">신고 목록</h2>
 						<table id="viewer" class="table table-striped table-bordered table-hover">
 
 						</table>
