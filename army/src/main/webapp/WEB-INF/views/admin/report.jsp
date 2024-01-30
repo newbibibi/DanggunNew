@@ -21,11 +21,139 @@
     height: 100vh;
     margin: 0 auto;
   }
+  
+  body {
+  padding:1.5em;
+  background: #f5f5f5
+}
+
+  .activePage{
+  	font-weight: bolder;
+  }
+
+body {
+  padding:1.5em;
+  background: #f5f5f5
+}
+
+table {
+  border: 1px #a39485 solid;
+  font-size: .9em;
+  box-shadow: 0 2px 5px rgba(0,0,0,.25);
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+th {
+  vertical-align: middle !important;
+  text-align: center !important;
+  }
+  
+thead {
+  font-weight: bold;
+  color: #fff;
+  background: #73685d;
+}
+  
+ td, th {
+  padding: 1em .5em;
+    vertical-align: middle !important;
+  text-align: center !important;
+}
+  
+ td {
+  border-bottom: 1px solid rgba(0,0,0,.1);
+  background: #fff;
+}
+option{
+	text-align: center;
+}
+
+ td>select{
+ 	width:95%;
+ }
+ th:first-child {
+	min-width : 1vw;
+}
+ th:nth-child(2) {
+	min-width : 3vw;
+}
+ th:nth-child(3) {
+	min-width : 12vw;
+}
+ th:nth-child(4) {
+	min-width : 17vw;
+}
+ th:nth-child(5) {
+	min-width: 6vw;
+}
+ th:nth-child(6) {
+	min-width : 4vw;
+}
+ th:nth-child(7) {
+	min-width : 4vw;
+}
+ th:nth-child(8) {
+	min-width : 8vw;
+}
+ th:nth-child(9) {
+	min-width : 8vw;
+}
+ th:nth-child(10) {
+	min-width: 5vw;
+}
+ @media all and (max-width: 768px) {
+    
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+  
+  th {
+    text-align: center;
+  }
+  
+  table {
+    position: relative; 
+    padding-bottom: 0;
+    border: none;
+    box-shadow: 0 0 10px rgba(0,0,0,.2);
+  }
+  
+  thead {
+    float: left;
+     white-space: normal;
+  }
+  
+  tbody {
+    overflow-x: auto;
+    overflow-y: hidden;
+    position: relative;
+    white-space: normal;
+  }
+  
+  tr {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  
+  th {
+    border-bottom: 1px solid #a39485;
+  }
+  
+  td {
+    border-bottom: 1px solid #e5e5e5;
+  }
+  
+  
+  }
+
 </style>
 <div id="banner-area" class="banner-area"
 	style="background-color: rgb(50, 137, 76)">
 	<div class="banner-text">
-		<div class="container">
+		<div class="container" >
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="banner-heading">
@@ -144,37 +272,37 @@ function report(pageNum){
 		  success: function(data) {
 		    console.log(data); // 응답 데이터를 출력하거나 원하는 작업을 수행하세요.
 		    $("#viewer").html("");
-		    $("#viewer").append("<tr style='color:red; background-color:black;'><td><input type=checkbox name=sel></td><td>종류</td><td>제목</td><td>내용</td><td>게시자</td><td>"+"고발자"+"</td><td>신고 사유</td><td>처벌 수위</td><td><a href='javascript:checkedExcute()'>선택 실행</a></td></tr>");
+		    $("#viewer").append("<thead><tr><th><input type=checkbox name=sel></th><th>종류</th><th>제목</th><th>내용</th><th>게시자</th><th>"+"고발자"+"</th><th>신고 분류</th><th>신고 사유</th><th>처벌 수위</th><th><a href='javascript:checkedExcute()'>선택 실행</a></th></tr></thead>");
 		    if(data.reportList==null || data.reportList.length==0){
-		    	$("#viewer").append("<tr><td colspan=9>신고된 게시글이 없습니다.</td></tr>");
+		    	$("#viewer").append("<tr><td colspan=10>신고된 게시글이 없습니다.</td></tr>");
 		    }else{
 		    for(let vo of data.reportList){
-		    	let title=vo.title==null?"X":vo.title.length>9 ? vo.title.substring(0,10)+"...":vo.title;
-		    	let content=vo.content.length>19 ? vo.content.substring(0,20)+"...":vo.content;
+		    	let title=vo.title==null?"X":vo.title.length>9 ? vo.title.substring(0,15)+"...":vo.title;
+		    	let content=vo.content.length>49 ? vo.content.substring(0,50)+"...":vo.content;
 		    	let reporter= vo.reporter.split("/");
 		    	let reason= vo.reasons.split("/");
+		    	let detail= vo.details.split("/");
+		    	
 		    	let tip1="";
 		    	let tip2="";
 		    	
 		    	if(vo.bno==null){
 		    		$("#viewer").append("<tr><td><input type=checkbox value=c/"+vo.cno+"/"+vo.nickname+
-		    				"></td><td><a href='javascript:modalBoard("+vo.cbno+")'>댓글</a></td><td>"+title+"</td><td"+ (content.includes("...") ? " data-toggle=tooltip data-placement=top title='" + vo.content + "'" : "") +">"+content+"</td><td>"+vo.nickname+"</td><td data-toggle=tooltip data-placement=top title="+vo.reporter+">"+reporter[0]+" 외 "+(reporter.length-1)+"인"+"</td><td data-toggle=tooltip data-placement=top title="+vo.reasons+">"+reason[0]+"</td><td>"+
-		    				"<select name="+vo.cno+"cpunishment><option value='0'>무죄</option><option value='3'>3일 정지</option><option value='7'>7일 정지</option><option value='15'>15일 정지</option><option value='30'>30일 정지</option><option value='5000'>5000일 정지</option></select></td><td><a href=javascript:baned('"+vo.nickname+"',"+vo.cno+",'c')>실행</a></td></tr>");
+		    				"></td><td><a href='javascript:modalBoard("+vo.cbno+")'>댓글</a></td><td>"+title+"</td><td"+ (content.includes("...") ? " data-toggle=tooltip data-placement=top title='" + vo.content + "'" : "") +">"+content+"</td><td>"+vo.nickname+"</td><td data-toggle=tooltip data-placement=top title="+vo.reporter+">"+reporter[0]+" 외 "+(reporter.length-1)+"인"+"<td data-toggle=tooltip data-placement=top title="+vo.reasons+">"+reason[0]+"</td>"+"<td data-toggle=tooltip data-placement=top title="+vo.details+">"+detail[0]+"</td><td><select name="+vo.cno+"cpunishment><option value='0'>무죄</option><option value='3'>3일 정지</option><option value='7'>7일 정지</option><option value='15'>15일 정지</option><option value='30'>30일 정지</option><option value='5000'>5000일 정지</option></select></td><td><a href=javascript:baned('"+vo.nickname+"',"+vo.cno+",'c')>실행</a></td></tr>");
 			    }else if(vo.cno==null){
-			    	$("#viewer").append("<tr><td><input type=checkbox value=b/" + vo.bno + "/" + vo.nickname + "></td><td><a href='javascript:modalBoard("+vo.bno+")'>글</a></td><td" + (title.includes("...") ? " data-toggle=tooltip data-placement=top title='" + vo.title + "'" : "") + ">" + title + "</td><td" + (content.includes("...") ? " data-toggle=tooltip data-placement=top title='" + vo.content + "'" : "") + ">" + content + "</td><td>" + vo.nickname + "</td><td data-toggle=tooltip data-placement=top title='" + vo.reporter + "'>" + reporter[0] + " 외 " + (reporter.length - 1) + "인" + "</td><td data-toggle=tooltip data-placement=top title='" + vo.reasons + "'>" + reason[0] + "</td><td>" +
-			    		    "<select name=" + vo.bno + "bpunishment><option value='0'>무죄</option><option value='3'>3일 정지</option><option value='7'>7일 정지</option><option value='15'>15일 정지</option><option value='30'>30일 정지</option><option value='5000'>5000일 정지</option></select></td><td><a href=javascript:baned('" + vo.nickname + "'," + vo.bno + ",'b')>실행</a></td></tr>");
+			    	$("#viewer").append("<tr><td><input type=checkbox value=b/" + vo.bno + "/" + vo.nickname + "></td><td><a href='javascript:modalBoard("+vo.bno+")'>글</a></td><td" + (title.includes("...") ? " data-toggle=tooltip data-placement=top title='" + vo.title + "'" : "") + ">" + title + "</td><td" + (content.includes("...") ? " data-toggle=tooltip data-placement=top title='" + vo.content + "'" : "") + ">" + content + "</td><td>" + vo.nickname + "</td><td data-toggle=tooltip data-placement=top title='" + vo.reporter + "'>" + reporter[0] + " 외 " + (reporter.length - 1) + "인"+"</td><td data-toggle=tooltip data-placement=top title='" + vo.reasons + "'>" + reason[0] + "</td><td data-toggle=tooltip data-placement=top title="+vo.details+">"+detail[0]+"</td><td><select name=" + vo.bno + "bpunishment><option value='0'>무죄</option><option value='3'>3일 정지</option><option value='7'>7일 정지</option><option value='15'>15일 정지</option><option value='30'>30일 정지</option><option value='5000'>5000일 정지</option></select></td><td><a href=javascript:baned('" + vo.nickname + "'," + vo.bno + ",'b')>실행</a></td></tr>");
 		    }else{
 					console.log("실패");
 			    }
 		    }
 		    let tr = $("<tr></tr>");
-			let td = $("<td colspan=9></td>");
+			let td = $("<td colspan=10></td>");
 			tr.append(td);
 		    for(let i=1; i<data.pageMaker.endPage+1; i++){
 		    	let pm=data.pageMaker;
 		    	let p="";
 		    	p+=pm.prev ? "<a href='javascript:report(${"+pm.startPage+"})'>이전</a>" : "";
-		    	p+="<a href=javascript:report("+i+")>"+i+"</a>";
+		    	p+=pageNum==i?"<a class='activePage' href=javascript:report("+i+")>"+i+" </a>":"<a href=javascript:report("+i+")>"+i+"</a>";
 		    	p+=pm.next ? "<a href='javascript:report(${"+pm.endPage+"})'>다음</a>" : "";
 		    	td.append(p);
 		    	$("#viewer").append(tr);
@@ -187,7 +315,7 @@ function report(pageNum){
 		  }
 		});
 }
-
+ 
 </script>
 
 <%@include file="../includes/footer.jsp"%>

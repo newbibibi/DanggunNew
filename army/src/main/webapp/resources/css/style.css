@@ -298,7 +298,7 @@ i[class^=icon-chevron]{
         max-width: 100px; /* �썝�븯�뒗 理쒕� �꼫鍮꾨줈 �꽕�젙 */
         overflow: hidden;
         text-overflow: ellipsis; /* �뀓�뒪�듃媛� �꼫臾� 湲� �븣 "..."�쓣 遺숈엯�땲�떎 */
-        white-space: nowrap; /* �뀓�뒪�듃媛� 以� 諛붽퓞�릺吏� �븡�룄濡� �꽕�젙�빀�땲�떎 */
+        
     }.tableset-table td:hover {
         overflow: visible !important; /* �샇踰� �떆 �뀓�뒪�듃瑜� 蹂댁씠�룄濡� �꽕�젙 */
         white-space: normal; /* �샇踰� �떆 �뀓�뒪�듃 以� 諛붽퓞 �솢�꽦�솕 */

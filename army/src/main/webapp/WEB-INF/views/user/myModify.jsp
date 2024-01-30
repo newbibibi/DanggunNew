@@ -58,42 +58,42 @@
 							</c:if>
 							<c:if test="${!empty user}">
 								<tr>
-									<td>닉네임</td>
+									<td class="bg-primary">닉네임</td>
 									<td><input type="text" name="nickname"
 										value="${user.nickname}"></td>
 								</tr>
 								<tr>
-									<td>아이디</td>
+									<td class="bg-secondary">아이디</td>
 									<td><input type="text" name="id" disabled="disabled"
 										value="${user.id}"></td>
 								</tr>
 								<tr>
-									<td>비밀번호</td>
+									<td class="bg-success">비밀번호</td>
 									<td><input type="password" name="pw"></td>
 								</tr>
 								<tr>
-									<td>비밀번호확인</td>
+									<td class="bg-danger">비밀번호확인</td>
 									<td><input type="password" name="pwc"></td>
 								</tr>
 								<tr>
-									<td>군종</td>
+									<td class="bg-warning">군종</td>
 									<%UserVO u=(UserVO)request.getSession().getAttribute("user");
 										String result=u.getArmygroup().equals("earth") ? "육군" : u.getArmygroup().equals("sea") ? "해군" : "공군";%>
 									<td><input type="text" disabled="disabled"
 										value="<%=result%>"></td>
 								</tr>
 								<tr>
-									<td>입대일</td>
+									<td class="bg-info">입대일</td>
 									<td><input type="text" disabled="disabled"
 										value="${user.enlisting}"></td>
 								</tr>
 								<tr>
-									<td>이메일</td>
+									<td class="bg-light">이메일</td>
 									<td><input type="text" disabled="disabled"
 										value="${user.email}"></td>
 								</tr>
 								<tr id="resulter">
-									<td>SNS 연동</td>
+									<td class="bg-dark">SNS 연동</td>
 									<td><img style="width:30px; height:30px;" alt=""
 										src="/resources/images/<c:if test='${user.sns.startsWith("n")}'>NaverBtn.png</c:if><c:if test='${user.sns.startsWith("k")}'>KakaoBtn.png</c:if><c:if test='${user.sns.startsWith("g")}'>GoogleBtn.png</c:if><c:if test='${empty user.sns}'>x.png</c:if>
 									">
@@ -255,7 +255,11 @@
 		}
 	});
 </script>
-
+<style>
+	table tr td{
+	vertical-align: middle !important;
+	}
+</style>
 <%@include file="../includes/footer.jsp"%>
 
 
