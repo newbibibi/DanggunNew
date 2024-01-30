@@ -53,7 +53,7 @@
 									type="hidden" name="qno" value="${board.qno }">
 							</div>
 							<div class="form-group">
-								<label>제목</label> <input class="form-control" name="title"
+								<label>제목</label> <input id="titleinput" class="form-control" name="title"
 									value="${board.title }">
 							</div>
 							<div class="form-group">
@@ -239,6 +239,19 @@
 		 * 폼 submit 로직
 		 */
 		function registerAction() {
+	        var textareaContent = document.getElementById("summernote").value;
+	        var inputContent = document.getElementById("titleinput").value;
+	        var maxLength = 500; // 원하는 최대 글자 수로 변경 가능
+	        var maxLengthInput = 45; // input 최대 글자 수
+	        
+	        if (textareaContent.length > maxLength) {
+	            alert("내용의 글자 수가 너무 많습니다. " + maxLength + "자 이하로 작성해주세요.");
+	            return false; // 제출 방지
+	        }
+	        if (inputContent.length > maxLengthInput) {
+	            alert("제목의 글자 수가 너무 많습니다. " + maxLengthInput + "자 이하로 작성해주세요.");
+	            return false; // 제출 방지
+	        }
 			var form = $("form")[0];
 			var formData = new FormData(form);
 			for (var x = 0; x < content_files.length; x++) {
