@@ -46,7 +46,7 @@
 			<div class="container-fluid pt-4 px-4">
 				<div class="bg-light text-center rounded p-4">
 					<div class="d-flex align-items-center justify-content-between mb-4">
-						<h6 class="mb-0">유저 정보</h6>
+						<h2 class="mb-0">유저 정보</h2>
 					</div>
 					<div class="table-responsive">
 						<table
@@ -100,11 +100,9 @@
 									</td>
 								</tr>
 								<tr>
-									<td colspan="2"><a href="javascript:modify();">수정하기</a></td>
+									<td colspan="2"><a class="btn btn-outline-primary" href="javascript:modify();">수정하기</a>&nbsp;&nbsp;&nbsp;<a class="btn btn-outline-danger" href="javascript:delUser();">회원탈퇴</a></td>
 								</tr>
-								<tr>
-									<td colspan="2"><a href="javascript:delUser();">회원탈퇴</a></td>
-								</tr>
+									
 
 
 							</c:if>
@@ -204,6 +202,9 @@
 		}
 	});
 	let delUser=function(){
+		if(confirm("정말 탈퇴하시겠습니까?")){
+		
+		
 		let id=${user.id}
 		console.log(id);
 		console.log("진입");
@@ -221,7 +222,7 @@
 			}
 		};
 		xhr.send("id="+id);
-	}
+	}}
 	
 	$(pwc).bind("blur", function() {
 		if (pw.val() == null || pw.val() == "") {
