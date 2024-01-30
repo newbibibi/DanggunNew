@@ -22,6 +22,46 @@
     height: 100vh;
     margin: 0 auto;
   }
+  .activePage{
+  	font-weight: bolder;
+  }
+  table {
+  border: 1px #a39485 solid;
+  font-size: .9em;
+  box-shadow: 0 2px 5px rgba(0,0,0,.25);
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+th {
+  text-align: left;
+}
+  
+thead {
+  font-weight: bold !important;
+  color: #fff !important;
+  background: #73685d !important;
+}
+  
+ td, th {
+  padding: 1em .5em !important;
+  vertical-align: middle !important;
+  text-align:center !important;
+}
+  
+ td {
+  border-bottom: 1px solid rgba(0,0,0,.1) !important;
+  background: #fff !important; 
+}
+  
+ @media all and (max-width: 768px) {
+    
+  table, thead, tbody, th, td, tr {
+    display: block !important;
+  }
+  
 </style>
 <div id="banner-area" class="banner-area"
 	style="background-color: rgb(50, 137, 76)">
@@ -114,10 +154,11 @@ $("document").ready(()=>{
 		let th=["아이디","닉네임","이메일","정지 여부", "정지 기간", "정지/해제", "실행"];
 		let tr=$("<tr>");
 		for (let i = 0; i < th.length; i++) {
-			  let td = $("<td>").text(th[i]);
+			  let td = $("<th>").text(th[i]);
 			  tr.append(td);
 		}
-		viewer.append(tr);
+		
+		viewer.append($("<thead>").append(tr));
 		
 		$.ajax({
 		    url: '../admin/userList',
@@ -142,12 +183,11 @@ $("document").ready(()=>{
 		        let tr = $("<tr></tr>");
 		        let td = $("<td colspan=9></td>");
 		        tr.append(td);
-		        
 		        for (let i = 1; i < response.pageMaker.endPage + 1; i++) {
-		            let pm = response.pageMaker;
+		        	let pm = response.pageMaker;
 		            let p = "";
 		            p += pm.prev ? "<a href='javascript:paging(" + pm.startPage + ")'>이전</a>" : "";
-		            p += "<a href=javascript:paging(" + i + ")>" + i + "</a>";
+		            p += i==num ? "<a class='activePage' href=javascript:paging(" + i + ")>" + i + "</a> " :"<a href=javascript:paging(" + i + ")>" + i + "</a> ";
 		            p += pm.next ? "<a href='javascript:paging(" + pm.endPage + ")'>다음</a>" : "";
 		            td.append(p);
 		            $("#viewer").append(tr);
