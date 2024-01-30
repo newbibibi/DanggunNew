@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="/resources/css/login.css">
+<link rel="icon" href="/resources/images/favicon.png" type="image/x-icon">
 <title>회원가입</title>
 <style type="text/css">
 .form-style {

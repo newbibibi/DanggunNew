@@ -6,6 +6,7 @@
 <head>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/resources/css/login.css">
+<link rel="icon" href="/resources/images/favicon.png" type="image/x-icon">
 <meta charset="UTF-8">
 <style>
 	.idpw{
