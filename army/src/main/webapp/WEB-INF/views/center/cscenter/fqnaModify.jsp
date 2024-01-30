@@ -89,7 +89,7 @@
                 ['table', ['table']], // 테이블 삽입 옵션
                 ['para', ['ul', 'ol', 'paragraph']], // 문단 스타일, 순서 없는 목록, 순서 있는 목록 옵션
                 ['height', ['height']], // 에디터 높이 조절 옵션
-                ['insert', ['picture', 'link', 'video']], // 이미지 삽입, 링크 삽입, 동영상 삽입 옵션
+                ['insert', ['link', 'video']], // 이미지 삽입, 링크 삽입, 동영상 삽입 옵션
                 ['view', ['codeview', 'help']], // 코드 보기, 전체 화면, 도움말 옵션
             ],
 
@@ -214,6 +214,7 @@
 													+ '<font style="font-size:12px">'
 													+ f.name
 													+ '</font>'
+													+ '<img src="' + e.target.result + '" class="file-preview" style="width:100px; height:auto; cursor: pointer;"/>'
 													+ '<img src="../../../resources/images/Xicon.PNG" style="width:20px; height:auto; vertical-align: middle; cursor: pointer;"/>'
 													+ '<div/>');
 							fileNum++;
