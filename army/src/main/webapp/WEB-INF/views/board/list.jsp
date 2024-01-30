@@ -56,22 +56,23 @@ if (userVO == null || userVO.getNickname() == null || userVO.getNickname().isEmp
 <section id="main-container" class="main-container">
 	<div class="container">
 		<h2>${pageMaker.cri.category} 게시판</h2>
+
+
 		
-	
-	<div class="col-xs-6" style="float: right; padding-top: 13px;">
-					<div class="form-group input-group" style="margin-top:8px;margin-left:8px">
-						<input type='text' name='keyword'
-							value='<c:out value="${pageMaker.cri.keyword}"/>' /> <input
-							type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
-						<input type="hidden" name="amount"
-							value="${pageMaker.cri.amount }"> <span
-							class="input-group-btn">
-							<button class="btn btn-default">검색</button>
-						</span>
-					</div>
-				</div>
 		<form id="searchForm" action="/board/list" method="get">
 			<div class="form-group col-xs-4">
+			<div class="col-xs-6" style="float: right; padding-top: 13px;">
+			<div class="form-group input-group"
+				style="margin-top: 8px; margin-left: 8px">
+				<input type='text' name='keyword'
+					value='<c:out value="${pageMaker.cri.keyword}"/>' /> <input
+					type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
+				<input type="hidden" name="amount" value="${pageMaker.cri.amount }">
+				<span class="input-group-btn">
+					<button class="btn btn-default">검색</button>
+				</span>
+			</div>
+		</div>
 				<select id="type" class="form-control formcol" name="type" style="float: right;">
 					<option value="All"
 						<c:out value="${pageMaker.cri.type == 'All'?'selected':''}"/>>전체</option>
