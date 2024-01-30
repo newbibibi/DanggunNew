@@ -36,6 +36,7 @@
                     window.location.href = "/login/login";
                 </script>
     </c:if>
+    <h2>문의사항 수정</h2>
    <form name="dataForm" id="dataForm">
 							<button id="btn-upload" type="button"
 								style="border: 1px solid #ddd; outline: none;">파일 추가</button>

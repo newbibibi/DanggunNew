@@ -33,6 +33,7 @@
                     window.location.href = "/login/login";
                 </script>
              </c:if>
+             <h2>자주묻는 질문</h2>
    <div class="shuffle-btn-group">
    <label class="active" for="all">
         <input type="radio" name="shuffle-filter" class="category-radio" id="all" value="all" checked="checked">전체
