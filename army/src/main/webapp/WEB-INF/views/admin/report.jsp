@@ -29,16 +29,13 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="banner-heading">
-						<nav class="batch" )>
-							<div>
-								<a href="/admin/report">신고 확인</a>
-							</div>
-							<div>
-								<a href="/admin/userManage">유저 관리</a>
-							</div>
-							<div>
-								<a href="admin/adminFqna">문의 확인</a>
-							</div>
+						<h1 class="banner-title">관리자페이지</h1>
+						<nav aria-label="breadcrumb">
+							<ol class="breadcrumb justify-content-center">
+								<li class="breadcrumb-item"><a href="/admin/userManage">유저관리</a></li>
+								<li class="breadcrumb-item"><a href="/admin/report">신고확인</a></li>
+								<li class="breadcrumb-item"><a href="/admin/adminFqna">고객문의</a></li>
+							</ol>
 						</nav>
 					</div>
 				</div>
@@ -148,8 +145,8 @@ function report(pageNum){
 		    console.log(data); // 응답 데이터를 출력하거나 원하는 작업을 수행하세요.
 		    $("#viewer").html("");
 		    $("#viewer").append("<tr style='color:red; background-color:black;'><td><input type=checkbox name=sel></td><td>종류</td><td>제목</td><td>내용</td><td>게시자</td><td>"+"고발자"+"</td><td>신고 사유</td><td>처벌 수위</td><td><a href='javascript:checkedExcute()'>선택 실행</a></td></tr>");
-		    if(data.reportList==null){
-		    	
+		    if(data.reportList==null || data.reportList.length==0){
+		    	$("#viewer").append("<tr><td colspan=9>신고된 게시글이 없습니다.</td></tr>");
 		    }else{
 		    for(let vo of data.reportList){
 		    	let title=vo.title==null?"X":vo.title.length>9 ? vo.title.substring(0,10)+"...":vo.title;
@@ -164,7 +161,7 @@ function report(pageNum){
 		    				"></td><td><a href='javascript:modalBoard("+vo.cbno+")'>댓글</a></td><td>"+title+"</td><td"+ (content.includes("...") ? " data-toggle=tooltip data-placement=top title='" + vo.content + "'" : "") +">"+content+"</td><td>"+vo.nickname+"</td><td data-toggle=tooltip data-placement=top title="+vo.reporter+">"+reporter[0]+" 외 "+(reporter.length-1)+"인"+"</td><td data-toggle=tooltip data-placement=top title="+vo.reasons+">"+reason[0]+"</td><td>"+
 		    				"<select name="+vo.cno+"cpunishment><option value='0'>무죄</option><option value='3'>3일 정지</option><option value='7'>7일 정지</option><option value='15'>15일 정지</option><option value='30'>30일 정지</option><option value='5000'>5000일 정지</option></select></td><td><a href=javascript:baned('"+vo.nickname+"',"+vo.cno+",'c')>실행</a></td></tr>");
 			    }else if(vo.cno==null){
-			    	$("#viewer").append("<tr><td><input type=checkbox value=b/" + vo.bno + "/" + vo.nickname + "></td><td><a href='javascript:modalBoard("+vo.bno+")'>게시글</a></td><td" + (title.includes("...") ? " data-toggle=tooltip data-placement=top title='" + vo.title + "'" : "") + ">" + title + "</td><td" + (content.includes("...") ? " data-toggle=tooltip data-placement=top title='" + vo.content + "'" : "") + ">" + content + "</td><td>" + vo.nickname + "</td><td data-toggle=tooltip data-placement=top title='" + vo.reporter + "'>" + reporter[0] + " 외 " + (reporter.length - 1) + "인" + "</td><td data-toggle=tooltip data-placement=top title='" + vo.reasons + "'>" + reason[0] + "</td><td>" +
+			    	$("#viewer").append("<tr><td><input type=checkbox value=b/" + vo.bno + "/" + vo.nickname + "></td><td><a href='javascript:modalBoard("+vo.bno+")'>글</a></td><td" + (title.includes("...") ? " data-toggle=tooltip data-placement=top title='" + vo.title + "'" : "") + ">" + title + "</td><td" + (content.includes("...") ? " data-toggle=tooltip data-placement=top title='" + vo.content + "'" : "") + ">" + content + "</td><td>" + vo.nickname + "</td><td data-toggle=tooltip data-placement=top title='" + vo.reporter + "'>" + reporter[0] + " 외 " + (reporter.length - 1) + "인" + "</td><td data-toggle=tooltip data-placement=top title='" + vo.reasons + "'>" + reason[0] + "</td><td>" +
 			    		    "<select name=" + vo.bno + "bpunishment><option value='0'>무죄</option><option value='3'>3일 정지</option><option value='7'>7일 정지</option><option value='15'>15일 정지</option><option value='30'>30일 정지</option><option value='5000'>5000일 정지</option></select></td><td><a href=javascript:baned('" + vo.nickname + "'," + vo.bno + ",'b')>실행</a></td></tr>");
 		    }else{
 					console.log("실패");
