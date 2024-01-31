@@ -37,18 +37,8 @@
                 </script>
     </c:if>
     <h2>문의사항 수정</h2>
-   <form name="dataForm" id="dataForm">
-							<button id="btn-upload" type="button"
-								style="border: 1px solid #ddd; outline: none;">파일 추가</button>
-							<input id="input_file" multiple="multiple" type="file"
-								style="display: none;"> <span
-								style="font-size: 10px; color: gray;">※첨부파일은 최대 10개까지 등록이
-								가능합니다.</span>
-							<div class="data_file_txt" id="data_file_txt"
-								style="margin: 40px;">
-								
-								<div id="articlefileChange"></div>
-							</div>
+   <form style="border-bottom: 1px solid #e5e5e5" name="dataForm" id="dataForm">
+							
 							<div class="form-group">
 								<input type="hidden" name="nickname" value="${user.nickname }"> <input
 									type="hidden" name="qno" value="${board.qno }">
@@ -64,6 +54,16 @@
 							<a class="btn-primary" href="/center/cscenter/fqna">목록으로</a>
 							<button type="button" class="btn btn-primary header-right" data-oper="modify">수정완료</button>
 							<button type="button" class="btn btn-primary header-right maright" data-oper="remove">삭제</button>
+							<button id="btn-upload" type="button"
+								style="padding: 8px 12px 7px;" class="btn-primary">사진첨부 추가</button>
+							<input id="input_file" multiple="multiple" type="file"
+								style="display: none;"> <span
+								style="font-size: 10px; color: gray;"></br>※첨부파일은 최대 10개까지 등록이 가능합니다.</br> ※제외하고 싶은 사진은 클릭하세요</span>
+							<div class="data_file_txt" id="data_file_txt"
+								style="margin: 40px;">
+								
+								<div id="articlefileChange"></div>
+							</div>
 						</form>
 						
    </div>

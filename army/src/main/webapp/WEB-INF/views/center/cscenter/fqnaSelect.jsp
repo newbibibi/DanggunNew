@@ -5,6 +5,14 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<style>
+.recon-body p {
+    word-wrap: break-word; /* 긴 단어가 있는 경우 줄 바꿈 */
+    overflow-wrap: break-word; /* 현대 브라우저를 위한 줄 바꿈 속성 */
+    max-width: 100%; /* 최대 너비 지정 */
+    overflow: hidden; /* 넘치는 내용 숨기기 */
+}
+</style>
 <div id="banner-area" class="banner-area"
 	style="background-color: rgb(50, 137, 76)">
 	<div class="banner-text">
@@ -53,7 +61,9 @@
 				<p>${board.content }</p>
 			</div>
 			<c:if test="${board.answer!=null }">
-				<div class="recon-body">
+				
+				<div style="padding-top: 1rem;" class="recon-body">
+				<h3>답변</h3>
 					<p>${board.answer }</p>
 				</div>
 			</c:if>
@@ -63,7 +73,7 @@
 						id="qno" type="hidden" name="qno" value="${board.qno }">
 				</div>
 				<a class="btn btn-primary" href="/center/cscenter/fqna">목록으로</a>
-				<button id="openModalBtn" type="button" class="btn-primary">첨부그림확인</button>
+				<button style="padding: 8.5px 12px 8.5px;" id="openModalBtn" type="button" class="btn-primary">첨부그림확인</button>
 				<button type="button" class="btn btn-primary header-right"
 					data-oper="remove">삭제</button>
 				<button type="button" class="btn btn-primary header-right maright"
