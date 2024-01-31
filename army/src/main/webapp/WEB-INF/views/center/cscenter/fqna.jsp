@@ -50,6 +50,7 @@
                 </script>
 		</c:if>
 		<c:if test="${!empty user}">
+		<h2>1:1 문의</h2>
 			<div class="shuffle-btn-group">
 				<form id="searchForm" action="/center/cscenter/fqna" method="get">
 					<select id="type" class="" name="type">

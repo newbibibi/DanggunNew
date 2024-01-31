@@ -26,6 +26,7 @@
 </div><!-- Banner area end --> 
 <section id="main-container" class="main-container">
    <div class="container">
+   <h2>군인 혜택</h2>
    <c:if test="${empty user}">
 		<script>
                     // 사용자가 비어 있으면 로그인 페이지로 자동 이동
@@ -53,6 +54,7 @@
 					<option value="J"
 						<c:out value="${pageMaker.cri.type == 'J'?'selected':''}"/>>제주</option>
 				</select>
+				<p style="color:rgb(50 137 76);float: right;">*초록색의 게시글은 프로모션상품이 존재하며 클릭 시 확인할 수 있습니다.</p>
 			</div>
 		</form>
 		<table class="tableset-table table table-hover">
@@ -70,7 +72,6 @@
 						<th><span>혜택내용</span></th>
 						<th><span>혜택시작일</span></th>
 						<th><span>전화번호</span></th>
-						<th><span>링크</span></th>
       				</tr>
       			</thead>
       			<tbody>
@@ -124,28 +125,27 @@
 										"input[name='amount']").val(),
 								type : $("#type").val()
 							},
-							success : function(data) {
-								let boardTbody = $("tbody");
-								$.each(data, function(index, sale) {
-
-									let row = $("<tr>");
-									row.append($("<td>").text(sale.area));
-									row.append($("<td>").text(sale.item));
-									row.append($("<td>").text(sale.salename));
-									row.append($("<td>").text(sale.detail));
-									row.append($("<td>").text(sale.start));
-									row.append($("<td>").text(sale.phone));
-									if (sale.homepage !== null
-											&& sale.homepage !== '') {
-										let link = $("<button>").text("더 보기")
-												.on("click", function() {
-													openPop(sale.homepage);
-												});
-										let linktd = $("<td>").append(link);
-										row.append(linktd);
-									}
-									boardTbody.append(row);
-								});
+							success: function(data) {
+							    let boardTbody = $("tbody");
+							    $.each(data, function(index, sale) {
+							        let row = $("<tr>");
+							        if (sale.homepage !== null && sale.homepage !== '') {
+							            row.css({
+							                "cursor": "pointer",
+							                "color": "rgb(50 137 76)" // 연두색으로 글자색 변경
+							            });
+							            row.on("click", function() {
+							                openPop(sale.homepage);
+							            });
+							        }
+							        row.append($("<td>").text(sale.area));
+							        row.append($("<td>").text(sale.item));
+							        row.append($("<td>").text(sale.salename));
+							        row.append($("<td>").text(sale.detail));
+							        row.append($("<td>").text(sale.start));
+							        row.append($("<td>").text(sale.phone));
+							        boardTbody.append(row);
+							    });
 							},
 							error : function(e) {
 								console.log(e);

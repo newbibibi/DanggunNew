@@ -37,33 +37,33 @@
                     window.location.href = "/login/login";
                 </script>
              </c:if>
-		<form name="dataForm" id="dataForm" onsubmit="return registerAction()">
-			<button id="btn-upload" type="button"
-				style="border: 1px solid #ddd; outline: none;">파일 추가</button>
-			<input id="input_file" multiple="multiple" type="file"
-				style="display: none;"> <span
-				style="font-size: 10px; color: gray;">※첨부파일은 최대 10개까지 등록이 가능합니다.</span>
-			<div class="data_file_txt" id="data_file_txt" style="margin: 40px;">
-				
-				<div id="articlefileChange"></div>
-			</div>
-		</form>
+             <h2>문의사항 작성</h2>
+		
 		<form id="registerForm" action="/center/cscenter/fqnaRegister" method="post" role="form" onsubmit="return registerAction()">
 			<div class="">
 				<input type="hidden" name="nickname" value="${user.nickname }">
 			</div>
 			<div class="">
-				<label>제목</label> <input id="titleinput" class="form-control" name="title">
+				<input id="titleinput" class="form-control" name="title" placeholder="제목">
 			</div>
 			<div class="">
 				<label>내용</label>
 				<textarea id="summernote" class="form-control" rows="5" cols="40" name="content"></textarea>
 			</div>
 
-			<button type="submit" class="btn btn-primary">작성완료</button>
-			<button type="reset" class="btn btn-primary">리셋</button>
+			<button style="float:right;" type="submit" class="btn btn-primary">작성완료</button>
 		</form>
-
+<form style="border-bottom: 1px solid #e5e5e5" name="dataForm" id="dataForm" onsubmit="return registerAction()">
+			<button id="btn-upload" type="button"
+				style="padding: 8px 12px 7px;" class="btn-primary">사진첨부 추가</button>
+			<input id="input_file" multiple="multiple" type="file"
+				style="display: none;"> <span
+				style="font-size: 10px; color: gray;"></br>※첨부파일은 최대 10개까지 등록이 가능합니다.</br> ※제외하고 싶은 사진은 클릭하세요</span>
+			<div class="data_file_txt" id="data_file_txt" style="margin: 40px;">
+				
+				<div id="articlefileChange"></div>
+			</div>
+		</form>
 
 	
 	</div>

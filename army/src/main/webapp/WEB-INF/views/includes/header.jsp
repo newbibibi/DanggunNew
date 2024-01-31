@@ -249,7 +249,7 @@ window.location.href="/login/login";
 						<label for="search-field" class="w-100 mb-0"> <a class="btn btn-primary"
 										href="${pageContext.request.contextPath}/login/logout">로그아웃</a>
 										<a class="btn btn-primary"
-										href="${pageContext.request.contextPath}/user/myPage">마이페이지</a>
+										href="${pageContext.request.contextPath}/user/myCalendar/mySchedule">마이페이지</a>
 						</label> <span class="search-close">&times;</span>
 					</div>
 					<!-- Site search end -->

@@ -5,6 +5,14 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<style>
+.recon-body p {
+    word-wrap: break-word; /* 긴 단어가 있는 경우 줄 바꿈 */
+    overflow-wrap: break-word; /* 현대 브라우저를 위한 줄 바꿈 속성 */
+    max-width: 100%; /* 최대 너비 지정 */
+    overflow: hidden; /* 넘치는 내용 숨기기 */
+}
+</style>
 <script src="/resources/summernote-0.8.18-dist/summernote-lite.js"></script>
 <script src="/resources/summernote-0.8.18-dist/lang/summernote-ko-KR.js"></script>
 
@@ -37,6 +45,7 @@
 <!-- Banner area end -->
 <section id="main-container" class="main-container">
 	<div class="container">
+	<h2>고객문의사항 답변</h2>
 	<div class="panel-body">
 <form id="answerForm" role="form">
 <div class="form-group">
@@ -60,8 +69,8 @@
 			
 			
 			<a class="btn-primary" href="/admin/adminFqna">목록으로</a>
-			<button type="button" class="btn btn-primary" data-oper="modify">답변완료</button>
-			<button id="openModalBtn" type="button" class="btn-primary">첨부그림확인</button>
+			<button style="padding: 10.5px 20px 9px; float: right;" type="button" class="btn btn-primary" data-oper="modify">답변완료</button>
+			<button style="padding: 8px 12px 7.5px;" id="openModalBtn" type="button" class="btn-primary">첨부그림확인</button>
 		</form>
 
 			<div>
@@ -126,7 +135,7 @@
                 ['table', ['table']], // 테이블 삽입 옵션
                 ['para', ['ul', 'ol', 'paragraph']], // 문단 스타일, 순서 없는 목록, 순서 있는 목록 옵션
                 ['height', ['height']], // 에디터 높이 조절 옵션
-                ['insert', ['picture', 'link', 'video']], // 이미지 삽입, 링크 삽입, 동영상 삽입 옵션
+                ['insert', ['link', 'video']], // 이미지 삽입, 링크 삽입, 동영상 삽입 옵션
                 ['view', ['codeview', 'help']], // 코드 보기, 전체 화면, 도움말 옵션
             ],
 
