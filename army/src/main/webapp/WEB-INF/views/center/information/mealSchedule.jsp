@@ -128,7 +128,7 @@ th:nth-child(7) span, td:nth-child(7) span {
     </div><!-- Container end -->
   </div><!-- Banner text end -->
 </div><!-- Banner area end -->
-<section id="main-container" class="main-container">
+<section style="background-color:white;" id="main-container" class="main-container">
    <div class="container">
    <h2>월간 식단표</h2>
   <div>
