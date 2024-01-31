@@ -4,73 +4,70 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="/resources/css/login.css">
-<link rel="icon" href="/resources/images/favicon.png" type="image/x-icon">
+<link rel="icon" href="/resources/images/favicon.png"
+	type="image/x-icon">
 <title>회원가입</title>
 <style type="text/css">
+::placeholder { /* Modern browsers */
+	text-align: center;
+}
+/* 전체 폼 스타일 */
 .form-style {
-	width: 50%;
-	height: 10%;
-	margin-top: 10px;
-	height: 10%;
-}
-
-.selectBox {
-	position: relative;
-	width: 150px;
-	height: 35px;
-	border-radius: 4px;
-	border: 2px solid;
-	background: #1f2029;
-	color: #c4c3ca;
-}
-
-.selectBox .select {
-	width: inherit;
-	height: inherit;
-	background: transparent;
-	border: 0 none;
-	outline: 0 none;
-	padding: 0 5px;
-	position: relative;
-	z-index: 3;
-	//
-	select가
-	위로
-	올라와야
-	함
-}
-
-.selectBox .select option {
-	background: lightcoral;
-	color: #fff;
-	padding: 3px 0;
+	width: 95%;
+	padding: 10px;
 	font-size: 16px;
 }
-
-.selectBox .icoArrow {
+.container{
+	margin-top:10vh;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	}
+/* 입력 필드 아이콘 스타일 */
+.input-icon {
 	position: absolute;
-	top: 0;
-	right: 0;
-	z-index: 1;
-	width: 35px;
-	height: inherit;
-	border-left: 2px solid lightcoral;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	top: 50%;
+	transform: translateY(-50%);
+	right: 10px;
+	color: #888;
 }
 
-.selectBox .icoArrow img {
-	width: 50%;
-	transition: .3s;
-	//
-	부드럽게
-	회전
+/* 확인 버튼 스타일 */
+.btn {
+	background-color: #4CAF50;
+	color: white;
+	padding: 10px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
 }
 
-.selectBox .select:focus+.icoArrow img {
-	transform: rotate(180deg);
+
+/* 이메일 스타일 */
+#m {
+	font-weight: bold;
+	margin-left: 5px;
+}
+
+/* 선택 박스 스타일 */
+.selectBox {
+	margin-top: 5px;
+	width: 20%;
+	height: 5vh;
+}
+
+/* 페이지 스타일 */
+body {
+	font-family: Arial, sans-serif;
+}
+
+/* 컨테이너 스타일 */
+.container {
+	max-width: 600px;
+	margin: 0 auto;
+	padding: 20px;
+}
+.form-group{
+	margin-top:4vh;
 }
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -101,7 +98,6 @@
 		let emailRegex=/\b\d{13}\b/
 		// 최소 8자 이상, 대문자와 소문자, 숫자가 각각 1개 이상 포함되어야 함
 		
-		var pattern = 
 		nick.bind("blur", function() {
 			$.ajax({
 				url : '../../login/checker',
@@ -245,7 +241,7 @@
 			$("#authcheck").remove();
 			$("#checkconfirm").remove();
 			$("#limit").remove();
-			$("#eauth").after("<input type='text' class='form-style' id='authcheck'>");
+			$("#eauth").after("<div class='form-group mt-2'><input type='text' class='form-style' id='authcheck' style='width:78%'></div>");
 			$("#authcheck").after("&nbsp;<button type='button' class='btn' id='checkconfirm'>인증 확인</button> <div id='limit'></div>");
 			
 			let time=180;
@@ -286,6 +282,9 @@
 		pwc.bind("blur", function() {
 			if (pw.val() == null || pw.val() == "") {
 				pw.focus();
+				pw.css("border", "2px solid red");
+				pwc.css("border", "2px solid red");
+				pwBox.css("color", "red");
 				pwBox.text("비밀번호를 먼저 입력하세요.");
 			} else {
 				if(pwRegex.test(pw.val())){
@@ -336,80 +335,57 @@
 </head>
 <body>
 	<form action="../login/sign" method="post" id="sign" class="form-style">
-		<div class="section">
-			<div class="container">
-				<div class="row full-height justify-content-center">
-					<div class="col-12 text-center align-self-center py-5">
-						<div class="header">
-							<div class="log" style="">대충 로고</div>
-						</div>
-						<div class="section pb-5 pt-5 pt-sm-2 text-center">
-							<div class="card-3d-wrap mx-auto"
-								style="margin-left: 20vw; width: 70vw; height: 80vh;">
-								<div class="card-3d-wrapper">
-									<div class="card-front">
-										<div class="center-wrap">
-											<div class="section text-center"
-												style="position: relative; left: 15%;">
-												<h1 class="mb-4 pb-3">회원가입</h1>
-
-												<div class="form-group">
-													<input type="text" placeholder="닉네임" class="form-style"
-														name="nickname" required="required" autocomplete="off">
-													<i class="input-icon uil uil-user"></i>
-												</div>
-												<div class="nickCheck box"></div>
-												<div class="form-group mt-2">
-													<input type="text" placeholder="아이디" name="id"
-														class="form-style" autocomplete="off" required="required"><i
-														class="input-icon uil uil-at"></i>
-												</div>
-												<div class="idCheck box"></div>
-												<div class="form-group mt-2">
-													<input required="required" type="password"
-														placeholder="비밀번호" name="pw" class="form-style"> <i
-														class="input-icon uil uil-lock-alt"></i>
-												</div>
-												<div class="form-group mt-2">
-													<input required="required" type="password"
-														placeholder="비밀번호 확인" name="pwc" class="form-style"><i
-														class="input-icon uil uil-lock-alt"></i>
-												</div>
-												<div class="pwCheck box"></div>
-												<div class="form-group mt-2">
-													<input required="required" type="text"
-														placeholder="나라사랑 이메일" maxlength="13" name="email" class="form-style"
-														autocomplete="off" style="width: 33%;"><i
-														class="input-icon uil uil-lock-alt"></i><span id="m">@narasarang.or.kr</span>
-												</div>
-												<div class="emailCheck box"></div>
-												<div class="form-group mt-2">
-													<input required="required" type="date" class="form-style"
-														placeholder="입대일" name="enlisting" style="width: 30%">
-													<select class="selectBox"
-														style="margin-top: 5px; width: 20%; height: 5vh;"
-														name="armygroup" required="required">
-														<optgroup label="군종"></optgroup>
-														<option value="earth">육군</option>
-														<option value="sea">해군</option>
-														<option value="fly">공군</option>
-													</select> <input type="hidden" name="sns" value="${snsID}">
-												</div>
-												<div class="form-group mt-2">
-													<button id="signup" class="btn"
-														style="width: 60%; margin-top: 5px;">확인</button>
-												</div>
-												<div class="lastBox box"></div>
-
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+		<div class="container">
+			<div class="header">
+				<div class="log" style="">대충 로고</div>
 			</div>
+			<h1 class="mb-4 pb-3">회원가입</h1>
+
+			<div class="form-group">
+				<input type="text" placeholder="닉네임" class="form-style"
+					name="nickname" required="required" autocomplete="off"> <i
+					class="input-icon uil uil-user"></i>
+			</div>
+			<div class="nickCheck box"></div>
+			<div class="form-group mt-2">
+				<input type="text" placeholder="아이디" name="id" class="form-style"
+					autocomplete="off" required="required"><i
+					class="input-icon uil uil-at"></i>
+			</div>
+			<div class="idCheck box"></div>
+			<div class="form-group mt-2">
+				<input required="required" type="password" placeholder="비밀번호"
+					name="pw" class="form-style"> <i
+					class="input-icon uil uil-lock-alt"></i>
+			</div>
+			<div class="form-group mt-2">
+				<input required="required" type="password" placeholder="비밀번호 확인"
+					name="pwc" class="form-style"><i
+					class="input-icon uil uil-lock-alt"></i>
+			</div>
+			<div class="pwCheck box"></div>
+			<div class="form-group mt-2">
+				<input required="required" type="text" placeholder="나라사랑 이메일"
+					maxlength="13" name="email" class="form-style" autocomplete="off"
+					style="width: 45%;"><i class="input-icon uil uil-lock-alt"></i><span
+					id="m" style="font-size: 1.4em;">@narasarang.or.kr</span>
+			</div>
+			<div class="emailCheck box"></div>
+			<div class="form-group mt-2">
+				<input required="required" type="date" class="form-style"
+					placeholder="입대일" name="enlisting" style="width: 30%"> <select
+					class="selectBox" style="margin-top: 5px; width: 20%; height: 5vh;"
+					name="armygroup" required="required">
+					<optgroup label="군종"></optgroup>
+					<option value="earth">육군</option>
+					<option value="sea">해군</option>
+					<option value="fly">공군</option>
+				</select> <input type="hidden" name="sns" value="${snsID}">
+			</div>
+			<div class="form-group mt-2">
+				<button id="signup" class="btn" style="width: 100%; margin-top: 5px;">확인</button>
+			</div>
+			<div class="lastBox box"></div>
 		</div>
 	</form>
 </body>

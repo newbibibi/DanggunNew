@@ -46,7 +46,6 @@
 <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
 
-
 <script type="text/javascript">
 $(document).ready(() => {
     $(".signup").click(() => {
@@ -114,14 +113,14 @@ $(document).ready(() => {
 <div class="modal fade" id="view" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header" style="background-color: #32894c;">
-        <h5 class="modal-title" id="exampleModalLabel">ID/PW 찾기</h5>
+      <div class="modal-header" style="background-color: #32894c;" >
+        <h5 class="modal-title" id="exampleModalLabel" style="color:white;">ID/PW 찾기</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body" style="height:40vh;">
+      <div class="modal-body" style="height:40vh; b">
         <iframe id="modalIframe" src="" style="width: 100%; height: 100%;"></iframe>
       </div>
-      <div class="modal-footer">
+      <div class="modal-footer" style="border:none;">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
       </div>
     </div>

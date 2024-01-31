@@ -226,15 +226,17 @@ $("document").ready(()=>{
 		        let tr = $("<tr></tr>");
 		        let td = $("<td colspan=9></td>");
 		        tr.append(td);
-		        for (let i = 1; i < response.pageMaker.endPage + 1; i++) {
-		        	let pm = response.pageMaker;
-		            let p = "";
-		            p += pm.prev ? "<a href='javascript:paging(" + pm.startPage + ")'>이전</a>" : "";
-		            p += i==num ? "<a class='activePage' href=javascript:paging(" + i + ")>" + i + "</a> " :"<a href=javascript:paging(" + i + ")>" + i + "</a> ";
-		            p += pm.next ? "<a href='javascript:paging(" + pm.endPage + ")'>다음</a>" : "";
-		            td.append(p);
-		            $("#viewer").append(tr);
+		        let pm = response.pageMaker;
+	            let p = "";
+	            p += pm.prev ? "<a href='javascript:paging(" + (pm.startPage-1) + ")'>이전</a>" : "";
+	            
+		        for (let i = pm.startPage; i < response.pageMaker.endPage + 1; i++) {
+		        	p += i==num ? "<a class='activePage' href=javascript:paging(" + i + ")>" + i + "</a> " :"<a href=javascript:paging(" + i + ")>" + i + "</a> ";
 		        }
+		        p += pm.next ? "<a href='javascript:paging(" + pm.endPage + ")'>다음</a>" : "";
+	            td.append(p);
+	            $("#viewer").append(tr);
+	        
 		    }
 		    else{
 		    	$("#viewer").append("<tr><td colspan=7>검색된 유저가 없습니다.</td></tr>");	

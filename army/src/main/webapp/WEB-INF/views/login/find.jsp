@@ -6,75 +6,196 @@
 <head>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/resources/css/login.css">
-<link rel="icon" href="/resources/images/favicon.png" type="image/x-icon">
+<link rel="icon" href="/resources/images/favicon.png"
+	type="image/x-icon">
 <meta charset="UTF-8">
-<style>
-	.idpw{
-		display: flex;
-		flex-direction: row;
-		justify-content: space-around;
-		padding-top: 10px;
-	}
-	
-	
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+<style type="text/css">
+
+
+.btn1 {
+	box-sizing: border-box;
+	appearance: none;
+	background-color: transparent;
+	border: 2px solid #e74c3c;
+	border-radius: 0.6em;
+	color: #e74c3c;
+	cursor: pointer;
+	display: flex;
+	justify-content: center; align-self : center;
+	font-size: 0.8em;
+	font-weight: 400;
+	line-height: 1;
+	padding: 1.2em 2.8em;
+	text-decoration: none;
+	text-align: center;
+	text-transform: uppercase;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 700;
+	align-self: center;
+}
+
+.btn1:hover, .btn1:focus {
+	color: #fff;
+	outline: 0;
+}
+
+.fifth {
+	border-color: #8e44ad;
+	border-radius: 0;
+	color: #8e44ad;
+	position: relative;
+	overflow: hidden;
+	z-index: 1;
+	transition: color 150ms ease-in-out;
+}
+
+.fifth:after {
+	content: '';
+	position: absolute;
+	display: block;
+	top: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 0;
+	height: 100%;
+	background: #8e44ad;
+	z-index: -1;
+	transition: width 150ms ease-in-out;
+}
+
+.fifth:hover {
+	color: #fff;
+}
+
+.fifth:hover:after {
+	width: 110%;
+}
+
+.fifth1 {
+	border-color: green;
+	border-radius: 0;
+	color: green;
+	position: relative;
+	overflow: hidden;
+	z-index: 1;
+	transition: color 150ms ease-in-out;
+}
+
+.fifth1:after {
+	content: '';
+	position: absolute;
+	display: block;
+	top: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 0;
+	height: 100%;
+	background: green;
+	z-index: -1;
+	transition: width 150ms ease-in-out;
+}
+
+.fifth1:hover {
+	color: #fff;
+}
+
+.fifth1:hover:after {
+	width: 110%;
+}
+
+body {
+	height: 100%;
+}
+
+.container {
+	height: 100%;
+}
+
+.content {
+	height: 100%;
+	width:100%;
+	display: flex;
+	flex-direction:column;
+	align-items: start;
+	position: relative;
+	top: 25vh;
+}
+
+::placeholder { /* Modern browsers */
+  text-align: center;
+  font-size: 0.8em;
+}
+
+.wrap{
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+#result{
+	font-weight: bolder;
+}
+h1 {
+	color:green;
+	font-weight: bolder;
+}
+
+.con{
+	width: 100%;
+	height: 100%;
+	display: flex;
+}
 </style>
 <title>계정 찾기</title>
 </head>
 <body>
-	<div class="card-front">
-		<!-- 모든걸 감쌈 -->
-		<div class="card-3d-wrapper">
-			<!-- 가운데 정렬해서 위치시킬 박스 -->
-			<div class="idpw">
-				<a class="btn" id="idf" style="width:30%;">ID 찾기</a>
-				<a class="btn" id="pwf" style="width:30%;">PW 찾기</a>
-			</div>
-			<!-- 아이디 찾기를 눌렀을 때 표시할 것 -->
-			<div class="content">
-				<div>
-				    <div class="center-wrap">
-                    <div class="section text-center">
-                      <h4 class="mb-4 pb-3">아이디 찾기</h4>
-                      <div class="form-group" style="display:inline-block;">
-                        <input type=text name=email class='form-style' required=required placeholder='나라사랑 email 입력.' autocomplete='off' style='width:32%; height:10%; padding-left:5px; : red;'>@narasarang.or.kr<i class='input-icon uil uil-at'></i>
-                       <input
-						id="idfinder" class='btn' type="button" value="확인">
-                      </div>  
-
-					<div id="result" style="color:red;"></div>
-                        </div>
-                      </div>
-                    </div>
-				</div>
-			</div>
-			<!-- 종료 -->
+	<!-- 모든걸 감쌈 -->
+	<div class="container">
+		<!-- 가운데 정렬해서 위치시킬 박스 -->
+		<div class="idpw">
+			<a class="fifth1 btn1" id="idf" style="width: 28vw">ID 찾기</a> <a
+				class="fifth btn1" id="pwf" style="width: 28vw">PW 찾기</a>
 		</div>
+		<!-- 아이디 찾기를 눌렀을 때 표시할 것 -->
+		<div class="content">
+				<h1 class="mb-4 pb-3">아이디 찾기</h1>
+				<div class="wrap">
+				<div class="con">
+				<input type=text name=email class='form-control' required=required
+					placeholder='나라사랑 email 입력.' autocomplete='off'
+					style='width: 40%; height: 10%; padding-left: 5px;'> <span style="font-size:1.3em; font-weight:300;">@narasarang.or.kr</span><i
+					class='input-icon uil uil-at'></i>&nbsp; <input id="idfinder"
+					class='btn btn-outline-primary' type="button" style="height: 11vh;" value="확인">
+					</div>
+				</div>
+				<div id="result" style="color: red;"></div>
+		</div>
+	</div>
+	<!-- 종료 -->
 
 	<script type="text/javascript">
-window.onload = function() {
-    let content = $(".content");
-    let ec;
+
+	let content = $(".content");
+	let ec;
     let checker=false;
-	
-  	$("body").on("focus","[type='text']",function(){
-  		$("[type='text']").css("caretColor","red");
-  	});
-    
     $("body").on("click", "#idf", () => {
-    	$("#idf").css("background-color","#102770");
-    	$("#idf").css("color","#ffeba7");
-    	$("#pwf").css("background-color","#ffeba7");
-    	$("#pwf").css("color","#102770");
-        content.html("<div class='center-wrap'><div class='section text-center'><h4 class='mb-4 pb-3'>아이디 찾기</h4><div class='form-group'><input type=text name=email class='form-style' required=required placeholder='나라사랑 email 입력.' autocomplete='off' style='width:30%; height:10%; padding-left:5px;'>@narasarang.or.kr&nbsp<i class='input-icon uil uil-at'></i><input id='idfinder' class='btn' type='button' value='확인'></div><div id='result' style='color:red;'></div></div></div></div>");
+        $("#idf").addClass("fifth1");
+        $("#pwf").removeClass("fifth1");
+        $("#pwf").addClass("fifth");
+    	content.html("");
+        content.html("<h1 class='mb-4 pb-3'>아이디 찾기</h1><div class='wrap'><div class='con'><input type=text name=email class='form-control' required=required placeholder='나라사랑 email 입력.' autocomplete='off' style='width: 40%; height: 10%; padding-left: 5px; : red;'> <span style='font-size:1.3em; font-weight:400;'>@narasarang.or.kr</span><i class='input-icon uil uil-at'></i>&nbsp; <input id='idfinder' class='btn btn-outline-primary' type='button' style='height: 11vh;' value='확인'><div></div>");
+    	$(".con:last").after("<div id='result' style=color:red></div>");
+    });
+    $("body").on("click", "#pwf", () => {
+    	$("#idf").addClass("fifth");
+    	$("#idf").removeClass("fifth1");
+    	$("#pwf").addClass("fifth1");
+    	content.html("");
+        content.html("<h1 class='mb-4 pb-3'>비밀번호 찾기</h1><div class='wrap'><div class='con'><input type='text' name='id' class='form-control' required='required' placeholder='ID 입력' autocomplete='off' style='width:40%; height:10%; padding-left:5px;'><i class='input-icon uil uil-at'></i>&nbsp<input type='button' id='pwfinder' class='btn btn-outline-primary' style='height: 11vh;' value='확인'></div></div>");
+        $(".con:last").after("<div id='result' style=color:red></div>");
     });
 
-    $("body").on("click", "#pwf", () => {
-    	$("#idf").css("background-color","#ffeba7");
-    	$("#idf").css("color","#102770");
-    	$("#pwf").css("background-color","#102770");
-    	$("#pwf").css("color","#ffeba7");
-        content.html("<div class='center-wrap'><div class='section text-center'><h4 class='mb-4 pb-3'>비밀번호 찾기</h4><div class='form-group'><input type='text' name='id' class='form-style' required='required' placeholder='ID 입력' autocomplete='off' style='width:30%; height:10%; padding-left:5px;'><i class='input-icon uil uil-at'></i>&nbsp<input type='button' id='pwfinder' class='btn' value='확인'></div><div id='result' style=color:red></div></div>");
-    });
 
     $("body").on("click", "#idfinder", () => {
     	console.log("email val"+$("[name=email]").val());
@@ -103,6 +224,7 @@ window.onload = function() {
     let limiter;
     let id;
     $("body").on("click","#pwfinder", () => {
+    	
         $("#result").text("로딩 중..")
     	$.ajax({
             url: '../../login/checker',
@@ -113,7 +235,6 @@ window.onload = function() {
             },
             success: function(data) {
             	if(data!=""){
-            		console.log(data.email);
             		$.ajax({
         				url : '../../login/emailauth',
         				method : 'POST',
@@ -124,15 +245,20 @@ window.onload = function() {
         			    	$("#code").remove();
         			        $("#codecheck").remove();
         			        $("#timeout").remove();
+        			        $("#result").remove();
+        			        $(".con:last").after("<div id='result' style=color:red></div>");
         					if (email.includes("나라사랑")||email.includes("유효")) {
         						$("#result").html(email);
         					}
         					else {
         						id=data.id;
         						ec=email;
+        						console.log(ec);
+        						
         						$("#result").html("");
-        						$("#pwfinder").after("<br><input class='form-style' style='width:30%; height:10%; padding-left:5px;' type='text' id='code' placeholder='인증 코드를 입력해주세요.'>&nbsp;<input type='button' class='btn' id='codecheck' value='인증'><div id='timeout'></div>");
-        	                    let timer = 180;
+        						$(".wrap").append("<div class='con' style='width:100%; display:flex; flex-direction:columun;'><input class='form-control' style='width:40%; height:10%; padding-left:5px;' type='text' id='code' placeholder='인증 코드를 입력해주세요.'>&nbsp;<input type='button' class='btn btn-outline-primary' style='height:11vh;' id='codecheck' value='인증'></div>");
+        						$(".move").after("<div id='timeout'></div>");
+        						let timer = 180;
         	                    clearInterval(limiter);
         	                    limiter = setInterval(() => {
         	                        timer -= 1;
@@ -145,6 +271,7 @@ window.onload = function() {
         					}
         				},
         				error : function(xhr, status, error) {
+        					$(".con:last").after("<div id='result' style=color:red></div>");
         					console.error(error);
         				}
         			}); //ajax 종료
@@ -163,10 +290,12 @@ window.onload = function() {
         //이 아래는 인증코드 if문으로 분기
          $("body").on("click","#codecheck",()=>{
         	 console.log(ec);
+        	 $("#result").remove();
+		        $(".con:last").after("<div id='result' style=color:red></div>");
         	if($("#code").val()==ec){
         		console.log("인증 성공");
         		$('.idpw').html("<h1>비밀번호 수정</h1>");
-        		content.html("<div class='section text-center'><div class='form-group' style='left:25%; width:50%;'><input type='password' id='pw' placeholder='변경할 비밀번호 입력' class='form-style' style='width:60%; height:10%; padding-left:5px;'><input type='button' style='width:25%; height:25vh; float:right;' class='btn' id='modify' value='변경하기'><br><input type='password' id='pwc' placeholder='비밀번호 확인' class='form-style' style='width:60%; height:10%; padding-left:5px;'><br><div id='pwBox'></div></div>");
+        		content.html("<div class='wrap'><input type='password' id='pw' placeholder='변경할 비밀번호 입력' class='form-control' style='width:60%; height:10%; padding-left:5px;'><input type='password' id='pwc' placeholder='비밀번호 확인' class='form-control' style='width:60%; height:10%; padding-left:5px;'><input type='button' class='btn btn-outline-primary' style='width:25%; height:20vh; position:relative; top:-21vh; left:60vw;' id='modify' value='변경하기'><br><div id='pwBox' style='margin-top:-15vh'></div>");
         	}else{
         		$("#result").html("인증코드가 일치하지 않습니다.");
         	}
@@ -206,33 +335,53 @@ window.onload = function() {
         	});
         
 		$("body").on("blur","#pwc", function() {
+			let pwRegex=/^(?=.*[a-zA-Z])(?=.*\d)[A-Za-z\d\S]{8,20}$/;
 			let pw=$("#pw");
 			let pwc=$("#pwc");
+			$("#pwBox").css("color","red");
+			if(pwRegex.test(pw.val())){
 			if (pw.val() == null || pw.val() == "") {
 				pw.focus();
 				$("#pwBox").text("비밀번호를 먼저 입력하세요.");
-				$("#pwBox").css("color","red");
+				pw.css("border-color","red");
+				pwc.css("border-color","red");
 				
 			} else {
 				if (pwc.val() != pw.val()) {
-					pw.css("border", "2px solid red");
-					pwc.css("border", "2px solid red");
+					pw.css("border-color","red");
+					pwc.css("border-color","red");
 					$("#pwBox").text("비밀번호가 일치하지 않습니다.");
 					pw.focus();
 					checker = false;
 				} else {
-					pw.css("border", "2px solid green");
-					pwc.css("border", "2px solid green");
+					pw.css("border-color","green");
+					pwc.css("border-color","green");
 					$("#pwBox").html("");
 					checker = true;
 				}
 			}
-		});
+			}else{
+				pw.css("border-color","red");
+				pwc.css("border-color","red");
+				$("#pwBox").text("비밀번호는 8자 이상, 20자 이하 (대/소문자)/숫자가 최소 1개 이상 포함되어야 합니다.");
+			}
+			});
 		
    		 $("body").on("blur","#pw", function() {
+   			let pw=$("#pw");
+   			let pwRegex=/^(?=.*[a-zA-Z])(?=.*\d)[A-Za-z\d\S]{8,20}$/;
+   			if(pwRegex.test(pw.val())){
+   				
+   			}else{
+   				checker = false;
+				pw.css("border-color","red");
+				pwc.css("border-color","red");
+   				$("#pwBox").css("color","red");
+				$("#pwBox").text("비밀번호는 8자 이상, 20자 이하 (대/소문자)/숫자가 최소 1개 이상 포함되어야 합니다.");
+			}
 			$("#pwBox").html("");
 		});
-}
+
 </script>
 
 </body>

@@ -243,16 +243,17 @@ function report(pageNum){
 		    let tr = $("<tr></tr>");
 			let td = $("<td colspan=10></td>");
 			tr.append(td);
-		    for(let i=1; i<data.pageMaker.endPage+1; i++){
-		    	let pm=data.pageMaker;
-		    	let p="";
-		    	p+=pm.prev ? "<a href='javascript:report(${"+pm.startPage+"})'>이전</a>" : "";
+			let pm=data.pageMaker;
+	    	let p="";
+	    	p+=pm.prev ? "<a href='javascript:report(${"+(pm.startPage-1)+"})'>이전</a>" : "";
+	    	
+		    for(let i=pm.startPage; i<data.pageMaker.endPage+1; i++){
 		    	p+=pageNum==i?"<a class='activePage' href=javascript:report("+i+")>"+i+" </a>":"<a href=javascript:report("+i+")>"+i+"</a>";
-		    	p+=pm.next ? "<a href='javascript:report(${"+pm.endPage+"})'>다음</a>" : "";
-		    	td.append(p);
-		    	$("#viewer").append(tr);
-	    	}
-		    
+		    }
+		    td.append(p);
+			p+=pm.next ? "<a href='javascript:report(${"+(pm.endPage+1)+"})'>다음</a>" : "";
+			$("#viewer").append(tr);
+	    	
 		    }
 		  },
 		  error: function(xhr, status, error) {
