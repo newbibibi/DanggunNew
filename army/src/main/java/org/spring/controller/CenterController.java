@@ -203,7 +203,10 @@ public class CenterController {
 	}
 	
 	@GetMapping({"/notice/modify","/notice/get"})
-	public void getnl(@RequestParam("nno") int nno, Model model){
+	public void getnl(@RequestParam("nno") int nno, Model model, Criteria cri){
+		int total = centerService.getTN(cri);
+		PageDTO pageResult = new PageDTO(cri, total);
+		model.addAttribute("pageMaker", pageResult);
 		log.info(centerService.selectNotice(nno));
 		model.addAttribute("vo",centerService.selectNotice(nno));
 	}
