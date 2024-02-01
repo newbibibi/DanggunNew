@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@ include file="../../includes/header.jsp" %>
 		
-			<form id="form" class="col-x" action="/user/myCalendar/scheduleRegister" method="post">
+			<form id="form" class="container" action="/user/myCalendar/scheduleRegister" method="post">
 				<input type="hidden" name="calNo" value="${vo.calNo }">
 				<input type="hidden" name="nickname" value="${vo.nickname }">
 				<div class="calc">
