@@ -82,8 +82,8 @@ window.location.href="/login/login";
 						<div class="row align-items-center">
 							<div
 								class="logo col-lg-3 text-center text-lg-left mb-3 mb-md-5 mb-lg-0">
-								<a class="d-block" href="${pageContext.request.contextPath}/login/main""> <img loading="lazy"
-									src="../../../resources/images/logo3.PNG" alt="Constra">
+								<a class="d-block" href="${pageContext.request.contextPath}/login/main""> <img style="height:45px;" loading="lazy"
+									src="../../../resources/images/logo4.PNG" alt="Constra">
 								</a>
 							</div>
 							<!-- logo end -->
