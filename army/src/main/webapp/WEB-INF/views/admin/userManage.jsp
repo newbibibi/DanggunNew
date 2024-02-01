@@ -233,7 +233,7 @@ $("document").ready(()=>{
 		        for (let i = pm.startPage; i < response.pageMaker.endPage + 1; i++) {
 		        	p += i==num ? "<a class='activePage' href=javascript:paging(" + i + ")>" + i + "</a> " :"<a href=javascript:paging(" + i + ")>" + i + "</a> ";
 		        }
-		        p += pm.next ? "<a href='javascript:paging(" + pm.endPage + ")'>다음</a>" : "";
+		        p += pm.next ? "<a href='javascript:paging(" + (pm.endPage+1) + ")'>다음</a>" : "";
 	            td.append(p);
 	            $("#viewer").append(tr);
 	        

@@ -4,6 +4,23 @@
 
 <!-- 상대경로를 유일하게 쓰는 곳 -->
 <%@include file="../includes/header.jsp"%>
+<style>
+table:first-child {
+	font-weight: bolder;
+}
+tr td:nth-child(2) {
+	background-color : #cacdcceb;
+}
+td{
+	border: 2px solid #eff1f3 !important;
+}
+
+input {
+	text-align: center;
+}
+
+</style>
+
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -93,7 +110,7 @@
 										value="${user.email}"></td>
 								</tr>
 								<tr id="resulter">
-									<td class="bg-dark">SNS 연동</td>
+									<td class="bg-dark" style="color: white;">SNS 연동</td>
 									<td><img style="width:30px; height:30px;" alt=""
 										src="/resources/images/<c:if test='${user.sns.startsWith("n")}'>NaverBtn.png</c:if><c:if test='${user.sns.startsWith("k")}'>KakaoBtn.png</c:if><c:if test='${user.sns.startsWith("g")}'>GoogleBtn.png</c:if><c:if test='${empty user.sns}'>x.png</c:if>
 									">
@@ -102,9 +119,6 @@
 								<tr>
 									<td colspan="2"><a class="btn btn-outline-primary" href="javascript:modify();">수정하기</a>&nbsp;&nbsp;&nbsp;<a class="btn btn-outline-danger" href="javascript:delUser();">회원탈퇴</a></td>
 								</tr>
-									
-
-
 							</c:if>
 						</table>
 					</div>

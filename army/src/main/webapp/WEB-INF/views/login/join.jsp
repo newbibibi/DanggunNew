@@ -65,6 +65,7 @@ body {
 	max-width: 600px;
 	margin: 0 auto;
 	padding: 20px;
+	margin-top: 5%;
 }
 .form-group{
 	margin-top:4vh;
@@ -337,7 +338,7 @@ body {
 	<form action="../login/sign" method="post" id="sign" class="form-style">
 		<div class="container">
 			<div class="header">
-				<div class="log" style="">대충 로고</div>
+				<div class="log" style="width: 20%; height:6vh;"><a href="/login/main"><img style="width: 100%; height: 100%" alt="logo" src="/resources/images/logo.PNG"></a></div>
 			</div>
 			<h1 class="mb-4 pb-3">회원가입</h1>
 
@@ -374,7 +375,7 @@ body {
 			<div class="form-group mt-2">
 				<input required="required" type="date" class="form-style"
 					placeholder="입대일" name="enlisting" style="width: 30%"> <select
-					class="selectBox" style="margin-top: 5px; width: 20%; height: 5vh;"
+					class="selectBox" style="margin-top: 5px; width: 20%; text-align:center; height: 5vh;"
 					name="armygroup" required="required">
 					<optgroup label="군종"></optgroup>
 					<option value="earth">육군</option>
