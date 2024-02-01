@@ -23,7 +23,7 @@
     </div><!-- Container end -->
   </div><!-- Banner text end -->
 </div><!-- Banner area end --> 
-<form id="registerForm" class="col-x">
+<form id="registerForm" class="container">
 	<div class="notheader">
 	<input type="text" name="title" placeholder="제목을 입력해주세요.">
 	<select name="category">
