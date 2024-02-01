@@ -33,8 +33,8 @@
 	</div>
 	<textarea id="summernote" name="content" required="required"></textarea>
 	
-	<button type="submit" class="btn" data-oper="create">글 작성</button>
-	<button type="submit" class="btn" data-oper="delete">취소</button>
+	<button type="submit" class="btn btn-primary" data-oper="create">글 작성</button>
+	<button type="submit" class="btn btn-primary" data-oper="delete">취소</button>
 </form>
 <script src="/resources/summernote-0.8.18-dist/summernote-lite.js"></script>
 <script src="/resources/summernote-0.8.18-dist/lang/summernote-ko-KR.js"></script>
