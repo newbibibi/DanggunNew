@@ -87,7 +87,6 @@
   </div><!-- Container end -->
 </section><!-- Action end -->
 
-<section id="ts-features" class="ts-features">
   <div class="container">
   </div>
         </div><!-- Col end -->
@@ -172,11 +171,10 @@
         
     </div><!-- Row end -->
   </div><!-- Container end -->
-</section><!-- Feature are end -->
 
 
 
-<section id="project-area" class="project-area solid-bg">
+<section style="padding-top:30px;" id="project-area" class="project-area solid-bg">
   <div class="container">
     <div class="row text-center">
      
