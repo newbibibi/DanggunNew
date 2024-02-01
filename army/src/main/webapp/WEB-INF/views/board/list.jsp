@@ -208,6 +208,13 @@ if (userVO == null || userVO.getNickname() == null || userVO.getNickname().isEmp
 						            category: $("#searchForm select[name='category']").val()
 						        },
 						        success: function (data) {
+						        	if (data.length === 0) {
+						                let boardTable = $("#boardTable");
+						                let boardTbody = boardTable.find("tbody");
+						                boardTbody.empty(); // Clear the table body
+						                boardTbody.append('<tr><td colspan="7" class="text-center">데이터가 없습니다.</td></tr>');
+						                return;
+						            }
 						        	 let boardTable = $("#boardTable");
 						             let boardTbody = boardTable.find("tbody");
 						             let boardThead = boardTable.find("thead");
