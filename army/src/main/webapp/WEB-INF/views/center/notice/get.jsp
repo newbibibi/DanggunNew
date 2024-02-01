@@ -16,7 +16,7 @@
     </div><!-- Container end -->
   </div><!-- Banner text end -->
 </div><!-- Banner area end --> 
-<div class="col-x">
+<div class="container">
 	<div class="nogheader">
 	<h2>
 		<span class="scatn">
@@ -40,7 +40,7 @@
 		${vo.content }
 	</div>
 	<c:if test="${user.admin == 1 }">
-	<button type="button" ><a href="/center/notice/modify?nno=${vo.nno }">수정</a></button>
+	<button class="btn btn-primary" type="button" ><a href="/center/notice/modify?nno=${vo.nno }">수정</a></button>
 	</c:if>
 </div>
 	
