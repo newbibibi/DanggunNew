@@ -16,4 +16,5 @@ public interface UserMapper {
 	public CalendarVO showCal(int calNo);
 	public List<CalendarVO> showAllCal(String nickname);
 	public int deleteUser(String id);
+	public List<CalendarVO> showCalList(@Param("date") String date,@Param("nickname") String nickname);
 }
