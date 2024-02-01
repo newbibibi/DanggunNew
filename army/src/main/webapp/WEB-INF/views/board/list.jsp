@@ -61,7 +61,7 @@ if (userVO == null || userVO.getNickname() == null || userVO.getNickname().isEmp
 		
 		<form id="searchForm" action="/board/list" method="get">
 			<div class="form-group col-xs-4">
-			<div class="col-xs-6" style="float: right; padding-top: 13px;">
+			<div class="col-xs-6" style="float: right; padding-top: 5px;">
 			<div class="form-group input-group"
 				style="margin-top: 8px; margin-left: 8px">
 				<input type='text' name='keyword'
