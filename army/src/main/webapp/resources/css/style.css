@@ -22,6 +22,132 @@ Description: Constra - Construction Html5 Template
 @font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 700;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.otf) format('opentype');}
 
 @font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 900;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.otf) format('opentype');}
+.tableset-table1{
+	   text-overflow: ellipsis;
+    white-space: nowrap;
+}
+ .marg{
+ margin:auto;
+ }
+.calc{
+	height: 38px;
+	width: 50%;
+	padding: 10px;
+	margin-bottom: 10px;
+}
+.calc > input{
+	width: 100%;
+	border: none;
+	border-bottom: 1px solid black;
+	outline:none;
+}
+.calc > input:focus{
+	border-bottom: 2px solid black !important;
+}
+.calc > input:active{
+	
+	border: none;
+	border-bottom: 1px solid black;
+}
+.cald{
+	display:flex;
+	height: 38px;
+	width: 50%;
+	padding: 10px;
+	margin-bottom: 10px;
+	justify-content: space-between;
+}
+.cald>input{
+	height: 38px;
+	width: 40%;
+	padding:10px;
+}
+.calb{
+	width:50%;
+	height : 50px;
+	padding: 10px;
+	margin-bottom: 10px;
+}
+#sideList::-webkit-scrollbar {
+width: 10px;  
+}
+
+#sideList::-webkit-scrollbar-thumb {
+background: rgb(131, 130, 130);
+border-radius: 10px; 
+}
+
+#sideList::-webkit-scrollbar-track {
+background: rgba(172, 167, 167, 0.164);
+        }
+
+#currentDate{
+	display: flex;
+    align-items: center;
+    height: 57px;
+    padding: 14px 0 0 14px;
+    font-size: 12px;
+    box-sizing: border-box;
+}
+#sideList{
+	overflow-y: auto;
+	height:650px;
+}
+.sideh{
+	margin-left: auto;
+    align-items: center;
+    width: 90%;
+    min-height: 64px;
+    padding: 0 16px 0 12px;
+    box-sizing: border-box;
+    border-bottom: 1px solid gray;
+    position: relative;
+    padding: 10px;
+    border-bottom: 1px solid #ccc; 
+}
+.Barea{
+	margin-left: auto;
+	position: relative;
+    display: flex;
+    align-items: center;
+    width: 90%;
+    min-height: 64px;
+    padding: 0 16px 0 12px;
+    box-sizing: border-box;
+    cursor: pointer;
+    border-bottom: 1px solid gray;
+}
+.areaS{
+    flex: 1 1 auto;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    padding: 12px 5px 12px 14px;	
+}
+.side{
+	display:none;
+	 width: auto;
+    height: 100%;
+    overflow:hidden;
+    }
+#progress-container {
+      position: relative;
+    width: 1200px;	
+    height: 30px;
+    background-color: #f1f1f1;
+}
+
+#progress-bar {
+    position: absolute;
+    z-index: 9999;
+  
+    height: 30px;
+    background-color: #4caf50;
+    text-align: center;
+    line-height: 30px;
+    color: black;
+}
 .cut{
 	cursor:pointer;
 }
@@ -113,7 +239,7 @@ input[type="radio"] {
     z-index: 9999;
     height: 20px;;
     background-color: rgba(135, 206, 235,0.8) !important;
-    border-radius: 10px;
+    border-radius: 2px;
     padding-bottom: 5px;
     color:black !important;
         overflow: hidden;
@@ -135,7 +261,7 @@ line-height:20px;
     position:absolute;
     z-index: 9999;
     height: 20px;
-    border-radius: 0px 10px 10px 0px;
+    border-radius: 2px;
     background-color: rgba(135, 206, 235,0.8) !important;
     text-align: left !important;
     padding-left: 15px;
@@ -148,7 +274,7 @@ line-height:20px;
     position:absolute;
     z-index: 9999;
     height: 20px;
-    border-radius: 10px 0px 0px 10px;
+    border-radius: 2px;
     background-color: rgba(135, 206, 235,0.8) !important;
     text-align: left !important;
     padding-left: 15px;
@@ -161,9 +287,14 @@ line-height:20px;
   font-size: 15px
   }
   .modal1-content input[type='date']{
+ 	border:none;
     cursor: pointer;
     width: 149px;
   }
+  .modal1-content input[type='date']:active{
+ 	border:none;
+  }
+  
   .modal1-content input{ 
     width: 313px;
     height: 40px;
@@ -182,6 +313,7 @@ line-height:20px;
     background-color: rgba(0, 0, 0, 0); /* 諛섑닾紐낇븳 諛곌꼍 */
     justify-content: center;
     align-items: center;
+    backdrop-filter: blur(8px);
   }
 
   .modal1-content {
@@ -222,9 +354,7 @@ body {
 }
 
 #calendar{
-  
-  margin-right: auto;
-  width: 640px;
+
   font-family: 'Lato', sans-serif;
 }
 #calendar_weekdays div{
@@ -270,7 +400,7 @@ body {
   width: 100%;
   height: 37px;
   text-align: center;
-  background-color: #FF6860;
+  
   padding: 18px 0;
   -webkit-border-radius: 12px 12px 0px 0px;
   -moz-border-radius: 12px 12px 0px 0px; 
