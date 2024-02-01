@@ -9,11 +9,25 @@
 
 	<!-- 추가적인 SQL 매핑 구문들을 작성할 수 있습니다. -->
 	<insert id="createCal" parameterType="CalendarVO" keyColumn = "calNo" keyProperty = "calNo" useGeneratedKeys = "true">
-		insert into calendar (startDate, endDate, content, nickname) values (#{startDate}, #{endDate}, #{content}, #{nickname})
+		<![CDATA[
+        INSERT INTO calendar (startDate, endDate, content, nickname)
+        VALUES (
+            CASE WHEN #{startDate} <= #{endDate} THEN #{startDate} ELSE #{endDate} END,
+            CASE WHEN #{startDate} <= #{endDate} THEN #{endDate} ELSE #{startDate} END,
+            #{content},
+            #{nickname}
+        )
+    ]]>
 	</insert>
 	<update id="modifyCal" parameterType="CalendarVO" >
-		update calendar set startDate = #{startDate}, endDate=#{endDate}, content = #{content}
-		where calNo = #{calNo}
+		 <![CDATA[
+        update calendar
+        set
+            startDate = CASE WHEN #{startDate} <= #{endDate} THEN #{startDate} ELSE #{endDate} END,
+            endDate = CASE WHEN #{startDate} <= #{endDate} THEN #{endDate} ELSE #{startDate} END,
+            content = #{content}
+        where calNo = #{calNo}
+    ]]>
 	</update>
 	<delete id="removeCal" parameterType="CalendarVO">
 		delete from calendar where calNo = #{calNo}
@@ -27,5 +41,10 @@
 	<delete id="deleteUser" parameterType="String">
 		DELETE FROM USER WHERE id=#{id}
 	</delete>
-	
+	<select id="showCalList" resultType="CalendarVO" parameterType="String">
+		select * from calendar where #{date} 
+		
+			between startDate and endDate and nickname = #{nickname};
+		
+	</select>
 </mapper>
