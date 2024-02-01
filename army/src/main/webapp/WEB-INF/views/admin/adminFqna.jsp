@@ -123,6 +123,11 @@
 							},
 							success : function(data) {
 								let boardTbody = $("tbody");
+								if (data.length === 0) {
+						            let boardThead = $("thead");
+						            boardThead.empty();
+						            boardThead.append("<tr><td>문의사항이 없습니다.</td></tr>");
+						        }else{
 								$.each(data, function(index, fqna) {
 									let regDate = new Date(fqna.regDate);
 									if (
@@ -157,6 +162,7 @@
 									row.append($("<td>").text(formatDate));
 									boardTbody.append(row);
 								});
+								}
 							},
 							error : function(e) {
 								console.log(e);
