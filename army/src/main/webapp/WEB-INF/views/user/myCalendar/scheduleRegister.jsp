@@ -3,8 +3,7 @@
     <%@ include file="../../includes/header.jsp" %>
 		
 			<form id="form" class="container" action="/user/myCalendar/scheduleRegister" method="post">
-				<input type="hidden" name="calNo" value="${vo.calNo }">
-				<input type="hidden" name="nickname" value="${vo.nickname }">
+				<input type="hidden" name="nickname" value="${user.nickname }">
 				<div class="calc">
 				<input name="content" placeholder="제목 입력"  value="${vo.content }" >
 				</div>
