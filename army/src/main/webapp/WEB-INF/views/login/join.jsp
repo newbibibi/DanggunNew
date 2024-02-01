@@ -338,7 +338,7 @@ body {
 	<form action="../login/sign" method="post" id="sign" class="form-style">
 		<div class="container">
 			<div class="header">
-				<div class="log" style="width: 20%; height:6vh;"><a href="/login/main"><img style="width: 100%; height: 100%" alt="logo" src="/resources/images/logo.PNG"></a></div>
+				<div class="log" style="width: 20%; height:6vh;"><a href="/login/main"><img style="width: 100%; height: 100%" alt="logo" src="/resources/images/logo4.PNG"></a></div>
 			</div>
 			<h1 class="mb-4 pb-3">회원가입</h1>
 
