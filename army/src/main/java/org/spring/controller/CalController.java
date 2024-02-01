@@ -24,7 +24,6 @@ public class CalController {
 	private UserService us;
 	@GetMapping("/myCalendar/mySchedule")
 	public void listAll() {
-		log.info("���ؽ�");
 	}
 	
 	@ResponseBody
@@ -80,5 +79,22 @@ public class CalController {
 	@GetMapping("/myModify")
 	public String myModify() {
 		return "user/myModify";
+	}
+	@GetMapping("/myCalendar/dayList")
+	public String dayList() {
+		return "";
+	}
+	@ResponseBody
+	@RequestMapping(value="/myCalendar/dayList", method = RequestMethod.POST)
+	public List<CalendarVO> da(String date, String nickname){
+		log.info(date + nickname);
+		log.info(us.dayList(date,nickname));
+		return us.dayList(date,nickname);
+	}
+	@ResponseBody
+	@RequestMapping(value="/myCalendar/list", method = RequestMethod.POST)
+	public CalendarVO getCal(int calNo){
+		log.info(calNo);
+		return us.list(calNo);
 	}
 }
