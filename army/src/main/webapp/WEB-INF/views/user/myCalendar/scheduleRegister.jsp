@@ -2,7 +2,32 @@
     pageEncoding="UTF-8"%>
     <%@ include file="../../includes/header.jsp" %>
 		
-			<form id="form" class="container" action="/user/myCalendar/scheduleRegister" method="post">
+			 <div id="banner-area" class="banner-area"
+	style="background-color: rgb(50, 137, 76)">
+	<div class="banner-text">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="banner-heading">
+						<h1 class="banner-title">내 일 정</h1>
+						<nav aria-label="breadcrumb">
+							<ol class="breadcrumb justify-content-center">
+								<li class="breadcrumb-item"><a href="/user/myModify">내 정보 수정</a></li>
+								<li class="breadcrumb-item"><a href="/user/myCalendar/mySchedule">내 일 정</a></li>
+								<li class="breadcrumb-item"><a href="/center/cscenter/fqna">내 문 의</a></li>
+							</ol>
+						</nav>
+					</div>
+				</div>
+				<!-- Col end -->
+			</div>
+			<!-- Row end -->
+		</div>
+		<!-- Container end -->
+	</div>
+	<!-- Banner text end -->
+</div>
+			<form id="form" class="container" style="width:40%;height:50vh;padding-top:10%" action="/user/myCalendar/scheduleRegister" method="post">
 				<input type="hidden" name="nickname" value="${user.nickname }">
 				<div class="calc">
 				<input name="content" placeholder="제목 입력"  value="${vo.content }" >
