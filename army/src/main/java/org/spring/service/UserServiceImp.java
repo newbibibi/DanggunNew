@@ -58,5 +58,10 @@ public class UserServiceImp implements UserService{
 		// TODO Auto-generated method stub
 		return mapper.showCal(calNo);
 	}
+	@Override
+	public List<CalendarVO> dayList(String date, String nickname) {
+		
+		return mapper.showCalList(date,nickname);
+	}
 
 }
