@@ -23,7 +23,7 @@
     </div><!-- Container end -->
   </div><!-- Banner text end -->
 </div><!-- Banner area end --> 
-	<form id="form" class="col-x">
+	<form id="form" class="container">
 	<input type="hidden" name="regDate" value="${vo.regDate }">
 	<input type="hidden" name="nno" value="${vo.nno }">
 	<div class="notheader">
@@ -35,8 +35,8 @@
 	</select>
 	</div>
 	<textarea id="summernote" name="content" required="required">${vo.content }</textarea>
-		<button type="submit" class="btn" data-oper="modify">수정</button>
-		<button type="submit" class="btn" data-oper="delete">삭제</button>
+		<button type="submit" class="btn btn-primary" data-oper="modify">수정</button>
+		<button type="submit" class="btn btn-primary" data-oper="delete">삭제</button>
 	</form>
 	
 </body>
