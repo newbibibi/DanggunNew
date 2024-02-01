@@ -140,6 +140,27 @@ input {
 	let nickRegex = /^[가-힣a-zA-Z0-9_-\S]{2,16}$/;
 	let nick=$("[name=nickname]");
 	let modify = function() {
+		if(!checker4){
+		if(pwRegex.test(pw.val())){
+			if (pwc.val() != pw.val()) {
+				pw.css("border", "2px solid red");
+				pwc.css("border", "2px solid red");
+				$("#result").remove();
+				$("#resulter").after("<tr id=result style='color:red;'><td colspan=2></td></tr>");
+				$("#result>td").text("비밀번호가 일치하지 않습니다.");
+				pw.focus();
+			} else {
+				pw.css("border", "2px solid green");
+				pwc.css("border", "2px solid green");
+				$("#result").remove();
+			}
+			}else{
+				pw.css("border", "2px solid red");
+				pwc.css("border", "2px solid red");
+				$("#result").remove();
+				$("#resulter").after("<tr id=result style='color:red;'><td colspan=2>비밀번호는 8자 이상, 20자 이하 (대/소문자)/숫자가 최소 1개 이상 포함되어야 합니다.</td></tr>");
+				}
+		}
 		
 		if(checker4&&checker5){
 		console.log("체커 성공");

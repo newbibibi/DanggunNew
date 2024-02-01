@@ -131,14 +131,14 @@ $(document).ready(() => {
 		<!-- Sign In Start -->
 		<div class="container-fluid">
 			<div class="row h-100 align-items-center justify-content-center"
-				style="min-height: 100vh;">
-					<a href="/login/login" style="text-align:center;"><img alt="당군 이미지" src="/resources/images/logo4.PNG" style="width: 30%; height: 10%; margin: 0 auto;"></a>
+				style="min-height: 100vh; position: relative; top:-70px;">
+					<a href="/login/login" style="text-align:center; position: relative; top:70px;""><img alt="당군 이미지" src="/resources/images/logo4.PNG" style="width: 20%; height: 10%; margin: 0 auto;"></a>
 				
 				<div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4">
 					<div class="bg-light rounded p-4 p-sm-5 my-4 mx-3">
 						<div
 							class="d-flex align-items-center justify-content-between mb-3">
-							<h3>당군 로그인</h3>
+							<h3>로그인</h3>
 						</div>
 						<div class="form-floating mb-3">
 							<input type="text" name="id" class="form-control"
