@@ -1,25 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-			<form id="form">
-				
-				<input type="hidden" name="nickname" value="asd">
-				<input type="date" name="startDate" id="sd" value="${vo.startDate }" >
-				<input type="date" name="endDate" id="ed" value="${vo.endDate }">
-				<textarea name="content" rows="" cols="">
-				${vo.content }
-				</textarea>
-				<button class="btn" type="submit" data-oper="create">dd</button>
-				<button class="btn" type="submit" data-oper="out">&times;</button>
+    <%@ include file="../../includes/header.jsp" %>
+		
+			<form id="form" class="col-x" action="/user/myCalendar/scheduleRegister" method="post">
+				<input type="hidden" name="calNo" value="${vo.calNo }">
+				<input type="hidden" name="nickname" value="${vo.nickname }">
+				<div class="calc">
+				<input name="content" placeholder="제목 입력"  value="${vo.content }" >
+				</div>
+				<div class="cald">
+				<input type="date" name="startDate" id="sd" value="${vo.startDate }" required>
+				<strong style="text-align:center">~</strong>
+				<input type="date" style="float:right" name="endDate" id="ed" value="${vo.endDate }" required>
+				</div>
+				<div class="calb">
+				<button class="btn btn-primary" type="button" data-oper="out">취소</button>
+				<button class="btn btn-primary" id="create" style="float:right" type="submit" data-oper="create">생성</button>
+				</div>
 			</form>
 </body>
-<script src="/resources/assets/js/jquery.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
 	
@@ -30,14 +29,20 @@ $(document).ready(function() {
 			console.log(operation);
 			
 			if(operation == "out"){
-				
+				window.location.href = "/user/myCalendar/mySchedule"
 			}
-			else if(operation == "create"){
-				formObj.attr("action","/user/myCalendar/scheduleRegister")
-				.attr("method", "post");
-			}
-			formObj.submit();
 		});
 	});
+window.addEventListener('keyup', e => {
+    var key = e.keyCode;
+
+    switch (key) {
+      case 13:
+        
+        	document.getElementById('create').click();
+
+        break;
+    }
+  });
 	</script>
-</html>
+<%@ include file="../../includes/footer.jsp" %>	
