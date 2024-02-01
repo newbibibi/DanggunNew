@@ -52,18 +52,15 @@ Description: Constra - Construction Html5 Template
 .cald{
 	display:flex;
 	height: 38px;
-	width: 50%;
 	padding: 10px;
 	margin-bottom: 10px;
 	justify-content: space-between;
 }
 .cald>input{
 	height: 38px;
-	width: 40%;
 	padding:10px;
 }
 .calb{
-	width:50%;
 	height : 50px;
 	padding: 10px;
 	margin-bottom: 10px;
