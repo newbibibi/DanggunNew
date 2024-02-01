@@ -17,9 +17,9 @@
     </div><!-- Container end -->
   </div><!-- Banner text end -->
 </div><!-- Banner area end --> 
-<section id="main-container" class="col-x">
+<section id="main-container" class="container">
    	<c:if test="${user.admin == 1 }">
-   			<button onclick="locate()">글작성</button>
+   			<button class="btn btn-primary" onclick="locate()">글작성</button>
    	</c:if>
    		
 		<form id="searchForm notice-nav" action="/center/notice/noticeList" class="sg" name="type" method="get">
@@ -38,31 +38,40 @@
 		
 			<div class="tableset">
 				<div class="tableset-inner">
-					<table class="tableset-table table table-hover">
+					<table class="tableset-table1 table table-hover">
 						<tbody></tbody>
 					</table>
 				</div>
 			</div>
       
-		<div class="pagiset-ctrl pagiset-list">
-			<ul class="pagination">
-				<c:if test="${pageMaker.prev }">
-					<li class="paginate_button previous"><a
-						href="${pageMaker.startPage -1 }">이전</a></li>
-				</c:if>
-				<c:forEach var="num" begin="${pageMaker.startPage }"
-					end="${pageMaker.endPage }">
-					<li
-						class="paginate_button ${pageMaker.cri.pageNum ==num?'active':'' }">
-						<a href="${num }">${num }</a>
-					</li>
-				</c:forEach>
-				<c:if test="${pageMaker.next }">
-					<li class="paginate_button next"><a
-						href="${pageMaker.endPage +1 }">다음</a></li>
-				</c:if>
-			</ul>
-		</div>
+		<nav class="pagiset pagiset-circ">
+
+						<div class="pagiset-ctrl paginate_button">
+							<c:if test="${pageMaker.prev }">
+								<a class="fas fa-angle-left pagiset-link pagiset-prev"
+									href="${pageMaker.startPage - 1 }"></a>
+							</c:if>
+
+						</div>
+						<div
+							class="pagiset-list paginate_button ${pageMaker.cri.pageNum ==num?'active':'' }">
+							<c:forEach var="num" begin="${pageMaker.startPage }"
+								end="${pageMaker.endPage }">
+								<a
+									class="pagiset-link ${pageMaker.cri.pageNum == num ? 'active-fill' : ''}"
+									href="${num }">${num }</a>
+							</c:forEach>
+						</div>
+						<div class="pagiset-ctrl paginate_button">
+							<c:if test="${pageMaker.next }">
+								<a class="fas fa-angle-right pagiset-link pagiset-next"
+									href="${pageMaker.endPage + 1 }"></a>
+							</c:if>
+
+						</div>
+
+					</nav>
+
 		<form id="actionForm" action="/center/notice/noticeList" name="test"
 			method="get">
 			<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
