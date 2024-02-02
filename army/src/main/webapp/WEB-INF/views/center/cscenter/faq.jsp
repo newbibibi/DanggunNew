@@ -5,6 +5,11 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<style>
+.accordion-group .card-body img {
+    max-width: 300px;
+}
+</style>
     <div id="banner-area" class="banner-area" style="background-color: rgb(50 137 76)">
   <div class="banner-text">
     <div class="container">
