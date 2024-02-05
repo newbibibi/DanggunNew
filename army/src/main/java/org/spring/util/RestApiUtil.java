@@ -9,19 +9,17 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Properties;
 import java.util.Random;
-
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import javax.net.ssl.HttpsURLConnection;
-
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.spring.domain.SnsAuthResponse;
 import org.spring.domain.SnsTokenResponse;
+import org.springframework.mail.MailException;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
-
 import lombok.extern.log4j.Log4j;
 
 @Log4j
@@ -34,7 +32,6 @@ public class RestApiUtil {
 		sender.setPort(587);
 		sender.setUsername("rparPwjs10@gmail.com");
 		sender.setPassword("hhga iwql ewxz gtva");
-
 		Properties javaMailProperties = new Properties();
 		javaMailProperties.put("mail.transport.protocol", "smtp");
 		javaMailProperties.put("mail.smtp.auth", "true");
@@ -43,23 +40,15 @@ public class RestApiUtil {
 		javaMailProperties.put("mail.debug", "true");
 		javaMailProperties.put("mail.smtp.ssl.trust", "smtp.gmail.com");
 		javaMailProperties.put("mail.smtp.ssl.protocols", "TLSv1.2");
-
 		sender.setJavaMailProperties(javaMailProperties);
-		
 		MimeMessage mailContent = sender.createMimeMessage();
 		MimeMessageHelper helper;
 		String randomASKII="";
 		String code="";
-		for(int i=65; i<=90; i++) {
-			randomASKII+=(char)i;
-		}
-		for(int i=97; i<=122; i++) {
-			randomASKII+=(char)i;
-		}
-		for(int i=0; i<=9; i++) {
-			randomASKII+=i+"";
-		}
-		System.out.println(randomASKII);
+		
+		for(int i=65; i<=90; i++) {randomASKII+=(char)i;}
+		for(int i=97; i<=122; i++) {randomASKII+=(char)i;}
+		for(int i=0; i<=9; i++) {randomASKII+=i+"";}
 		Random random=new Random();
 		for(int i=0; i<8; i++) {
 			code+=randomASKII.charAt(random.nextInt(randomASKII.length()));
@@ -73,10 +62,9 @@ public class RestApiUtil {
 			helper.setSubject("당군 이메일 인증");
 			helper.setText(content,true);
 			sender.send(mailContent);
-		} catch (MessagingException e) {
-			code="유효하지 않은 이메일입니다.";
-			e.printStackTrace();
-		}
+		} catch (Exception e) {
+			code="올바른 이메일을 입력하세요.";
+        }
 		return code;
 	}
 
@@ -98,12 +86,12 @@ public class RestApiUtil {
 		gmap.put("client_id", "701798029806-45sh6d0gnheca5ka2e29ktr2ude0du1g.apps.googleusercontent.com");
 		gmap.put("redirect_uri", "http://localHost:8090/login/auth?v=g");
 		gmap.put("scope", "email");
-
+		
 		kmap.put("uri", "https://kauth.kakao.com/oauth/authorize");
 		kmap.put("response_type", "code");
 		kmap.put("client_id", "db298f996b480565adcb0c586b747932");
 		kmap.put("redirect_uri", "http://localHost:8090/login/auth?v=k");
-
+		
 		switch (v) {
 		case "n":
 			smap = nmap;
@@ -115,6 +103,7 @@ public class RestApiUtil {
 			smap = kmap;
 			break;
 		}
+		
 		uri += smap.get("uri");
 		smap.remove("uri");
 		log.info("log" + smap);
@@ -206,7 +195,6 @@ public class RestApiUtil {
 
 		nheader.put("Authorization", "Bearer " + token.getAccess_token());
 		gheader.put("Authorization", token.getToken_type() + token.getAccess_token());
-
 		kheader.put("Authorization", token.getToken_type() + " " + token.getAccess_token());
 		kheader.put("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
 		try {
@@ -227,7 +215,6 @@ public class RestApiUtil {
 				result = postHttpConn(url, header, null);
 				break;
 			}
-
 			JSONObject obj = new JSONObject(result);
 			snsID = portal.equals("n") ? "n/" + obj.getJSONObject("response").getString("id")
 					: portal.equals("k") ? "k/" + obj.getLong("id")
@@ -393,11 +380,8 @@ public class RestApiUtil {
 			}
 		} else {
 		}
-
 		conn.setDoOutput(true); // false : Get, true : Post
-
 		// String postData
-
 		// HttpURLConnection객체에서 출력 스트림 얻기
 		// :요청을 받는 곳에서 데이터를 읽고 쓸수있도록 해줌
 		if (postData != null) {
@@ -415,7 +399,6 @@ public class RestApiUtil {
 		} else {
 			rd = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
 		}
-
 		StringBuilder sb = new StringBuilder();
 		String line;
 		while ((line = rd.readLine()) != null) {

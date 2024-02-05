@@ -40,41 +40,37 @@ public class UserController {
 	private AdminService as;
 
 	
-	@RequestMapping("/login") // / 시 로그인 화면으로
+	@RequestMapping("/login")
 	public String start() {
 		return "login/login";
 	}
 
-	@RequestMapping("/logout") // / 시 로그인 화면으로
+	@RequestMapping("/logout")
 	public String end(HttpServletRequest request) {
 		request.getSession().invalidate();
 		return "redirect:../login/login";
 	}
 	// SNS!!!!!!!!!!!!!!!!!!!
-	@RequestMapping(value = "/authReq", method = RequestMethod.GET) // SNS 버튼 눌렀을 시 해당 메서드
+	@RequestMapping(value = "/authReq", method = RequestMethod.GET)
 	public String snsLogin(@RequestParam("v") String portal) {
-		// portal은 google, kakao, naver 구분자 앞 한글자 값을 받음
-		String link = ls.getAuthLink(portal); // SNS 인가 사이트 URL로 이동
+		String link = ls.getAuthLink(portal);
 		log.info(link);
 		return "redirect:" + link;
 	}
 
-	@RequestMapping(value = "/auth") // 위 인가 과정 완료 후 돌아오는 메서드(GET)
+	@RequestMapping(value = "/auth")
 	public String snsAuth(@RequestParam("v") String portal, SnsAuthResponse response, Model model,
-			HttpServletRequest request) { // portal은 naver, kakao, google 식별자, AuthResponse로 인가 응답값 받음
-		String snsID = ls.getUserData(portal, ls.getToken(portal, response)); // ls.getToken으로 토큰 정보 받아와서
-																				// ls.getUserData에 토큰 전달 후 User sns 고유
-																				// 식별자 받아옴
+			HttpServletRequest request) {
+		String snsID = ls.getUserData(portal, ls.getToken(portal, response)); 
 		String url = "";
 		log.info(snsID);
-		if (ls.snsLogin(snsID) == 0) { // USER DB에서 sns 컬럼에 동일한 것이 있는지 확인
-			url = "login/snsHide"; // 없다면 snsHide.jsp로 이동 후 바로 회원가입으로 redirect(snsID를 숨기기 위함)
+		if (ls.snsLogin(snsID) == 0) {
+			url = "login/snsHide";
 			model.addAttribute("snsID", snsID);
 			model.addAttribute("url", "../login/login/join");
 		} else {
-			url = "redirect:../login/main"; // 있다면 sns로 이미 회원가입한 회원이 있다는 뜻이므로 main page로 이동
-			request.getSession().setAttribute("user", ls.getUser("sns", snsID)); // 첫번째 매개변수는 가져올 컬럼 두번째 매개변수는 비교할 값(유저
-																					// VO를 세션에 저장)
+			url = "redirect:../login/main";
+			request.getSession().setAttribute("user", ls.getUser("sns", snsID)); 
 		}
 		return url;
 	}
@@ -91,14 +87,13 @@ public class UserController {
 	// SNS 종료!!!!!!!!!!
 
 	// 회원가입!!!!!!!!!
-	@RequestMapping(value = "/login/join") // 회원 가입 화면 이동 메서드
+	@RequestMapping(value = "/login/join")
 	public String userJoin(@RequestParam(value = "snsID", required = false) String snsID, Model model) {
 		model.addAttribute("snsID", snsID);
 		return "login/join";
 	}
 
-	@RequestMapping(value = "/login/sign", method = RequestMethod.POST) // 회원 가입에서 가입하기 버튼을 누르면 가입하는 메서드 가입 완료 후 main으로
-																		// 이동시킴
+	@RequestMapping(value = "/login/sign", method = RequestMethod.POST)
 	public String userSignup(UserVO vo, Model model, HttpServletRequest request) {
 		log.info(vo);
 		vo.setEmail(vo.getEmail()+"@narasarang.or.kr");
@@ -117,7 +112,7 @@ public class UserController {
 	// 회원가입 종료!!!!!!!!!
 
 	// 아이디/비번 찾기
-	@RequestMapping("/login/find") // ID 찾기 버튼 누르면 새창으로 이동 시키기 위함
+	@RequestMapping("/login/find")
 	public String findID() {
 		return "login/find";
 	}
@@ -126,14 +121,14 @@ public class UserController {
 	@ResponseBody
 	@RequestMapping(value = "/checker", method = RequestMethod.POST)
 	public UserVO duplicateCheck(@RequestParam(value = "checkValue") String value,
-			@RequestParam(value = "checkColumn") String Column) { // 중복 check ajax
+			@RequestParam(value = "checkColumn") String Column) {
 		return ls.getUser(Column, value);
 	}
 
 	// 계정 정보 변경
 	@ResponseBody
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
-	public int modify(@RequestBody Map<String, String> map,HttpServletRequest request) { // 유저 정보 다중 변경
+	public int modify(@RequestBody Map<String, String> map,HttpServletRequest request) {
 		int result = 1;
 		for (String key : map.keySet()) {
 			if (!key.equals("id")) {
@@ -184,7 +179,7 @@ public class UserController {
 		if (email != null) {
 			code = ls.checkEmail(email);
 		} else {
-			code = "나라사랑 이메일을 입력하세요";
+			code = "이메일 정보를 입력받지 못했습니다.";
 		}
 		return code;
 	}

@@ -17,11 +17,12 @@
 	padding: 10px;
 	font-size: 16px;
 }
-.container{
-	margin-top:10vh;
+
+.container {
+	margin-top: 10vh;
 	border: 1px solid #ccc;
 	border-radius: 5px;
-	}
+}
 /* 입력 필드 아이콘 스타일 */
 .input-icon {
 	position: absolute;
@@ -40,7 +41,6 @@
 	border-radius: 5px;
 	cursor: pointer;
 }
-
 
 /* 이메일 스타일 */
 #m {
@@ -67,14 +67,15 @@ body {
 	padding: 20px;
 	margin-top: 5%;
 }
-.form-group{
-	margin-top:4vh;
+
+.form-group {
+	margin-top: 4vh;
 }
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	window.onload = function() {
-		let ec;
+		let ec="";
 		let nick = $("[name=nickname]");
 		let id = $("[name=id]");
 		let email = $("[name=email]");
@@ -215,8 +216,9 @@ body {
 			});
 		});
 		let timeout;
-		$("body").on("click",'#eauth',function()
-		{ // 인증 버튼을 누르게 되면 ajax로 ec에 랜덤코드 넣어줌
+		$("body").on("click",'#eauth',function(){
+			ec="";
+			emailBox.text("Loading...");
 			$.ajax({
 				url : '../../login/emailauth',
 				method : 'POST',
@@ -224,45 +226,43 @@ body {
 					email : email.val()+"@narasarang.or.kr"
 				},
 				success : function(data) {
-					if (data.includes("나라사랑")) {
-						emailBox.text(data);
-					}else if(data.includes("유효")){
-						emailBox.text(data);
+					if (data.includes("올바른 이메일을 입력하세요.")) {
+						emailBox.css("color", "green");
+						emailBox.html(data);
 					}
 					else {
 						emailBox.html("");
-						ec = data;
+						ec=data;
+						clearInterval(timeout);
+						$("#authcheck").parent().remove();
+						$("#checkconfirm").parent().remove();
+						$("#limit").remove();
+						$("#eauth").after("<div class='form-group mt-2'><input type='text' class='form-style' id='authcheck' style='width:78%'></div>");
+						$("#authcheck").after("&nbsp;<button type='button' class='btn' id='checkconfirm'>인증 확인</button> <div id='limit' style='color:red;'></div>");
+						let time=180;
+						timeout=setInterval(() => {
+							if(time==0){
+								ec="";
+								clearInterval(timeout);
+								$("#authcheck").parent().remove();
+								$("#checkconfirm").parent().remove();
+								$("#limit").remove();
+								emailBox.css("color", "red");
+								emailBox.html("제한시간이 초과되었습니다.");
+							}else{
+								time-=1;
+							}
+							$("#limit").html(Math.floor(time / 60) + "분 " + (time % 60) + "초");
+						}, 1000);
 					}
 				},
 				error : function(xhr, status, error) {
 					console.error(error);
 				}
-			}); //ajax 종료
-			clearInterval(timeout);
-			$("#authcheck").remove();
-			$("#checkconfirm").remove();
-			$("#limit").remove();
-			$("#eauth").after("<div class='form-group mt-2'><input type='text' class='form-style' id='authcheck' style='width:78%'></div>");
-			$("#authcheck").after("&nbsp;<button type='button' class='btn' id='checkconfirm'>인증 확인</button> <div id='limit'></div>");
-			
-			let time=180;
-			timeout=setInterval(() => {
-			if(time==0){
-					ec="";
-				clearInterval(timeout);
-				$("#authcheck").remove();
-				$("#checkconfirm").remove();
-				$("#limit").remove();
-			}else{
-				time-=1;
-			}
-				$("#limit").html(Math.floor(time / 60) + "분 " + (time % 60) + "초");
-			}, 1000);
-			
-		}); //eauth 종료
+			});
+		});
 
 		$("body").on("click","#checkconfirm",function() {
-			console.log(ec);
 			if (ec == $("#authcheck").val()) {
 				clearInterval(timeout);
 				$("#limit").remove();
@@ -270,8 +270,8 @@ body {
 				emailBox.css("color", "green");
 				checker5 = true;
 				$("#eauth").remove();
-				$("#authcheck").remove();
-				$("#checkconfirm").remove();
+				$("#authcheck").parent().remove();
+				$("#checkconfirm").parent().remove();
 				
 			} else {
 				emailBox.text("값이 올바르지 않습니다.");
@@ -338,7 +338,10 @@ body {
 	<form action="../login/sign" method="post" id="sign" class="form-style">
 		<div class="container">
 			<div class="header">
-				<div class="log" style="width: 20%; height:6vh;"><a href="/login/main"><img style="width: 100%; height: 100%" alt="logo" src="/resources/images/logo4.PNG"></a></div>
+				<div class="log" style="width: 20%; height: 6vh;">
+					<a href="/login/main"><img style="width: 100%; height: 100%"
+						alt="logo" src="/resources/images/logo4.PNG"></a>
+				</div>
 			</div>
 			<h1 class="mb-4 pb-3">회원가입</h1>
 
@@ -375,7 +378,8 @@ body {
 			<div class="form-group mt-2">
 				<input required="required" type="date" class="form-style"
 					placeholder="입대일" name="enlisting" style="width: 30%"> <select
-					class="selectBox" style="margin-top: 5px; width: 20%; text-align:center; height: 5vh;"
+					class="selectBox"
+					style="margin-top: 5px; width: 20%; text-align: center; height: 5vh;"
 					name="armygroup" required="required">
 					<optgroup label="군종"></optgroup>
 					<option value="earth">육군</option>
@@ -384,7 +388,8 @@ body {
 				</select> <input type="hidden" name="sns" value="${snsID}">
 			</div>
 			<div class="form-group mt-2">
-				<button id="signup" class="btn" style="width: 100%; margin-top: 5px;">확인</button>
+				<button id="signup" class="btn"
+					style="width: 100%; margin-top: 5px;">확인</button>
 			</div>
 			<div class="lastBox box"></div>
 		</div>
