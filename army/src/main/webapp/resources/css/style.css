@@ -31,7 +31,6 @@ Description: Constra - Construction Html5 Template
  }
 .calc{
 	height: 38px;
-	width: 50%;
 	padding: 10px;
 	margin-bottom: 10px;
 }
@@ -187,6 +186,7 @@ input[type="radio"] {
 }
 .ncon{
 	padding:50px 0;
+	border-bottom: 1px solid black;
 }
 .article_date{
 	 margin-top: 3px;

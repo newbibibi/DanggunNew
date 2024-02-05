@@ -663,10 +663,10 @@ function showReportForm(cno) {
     }
  // 댓글 숨기기/나타나기 토글 함수
  
-   var userNickname = '<%=nickname%>';
+   
    
  function likeComment(cno, no) {
-	 
+	 var userNickname = '<%=nickname%>';
     $.ajax({
         url: '/board/likeComment',
         type: 'POST',
