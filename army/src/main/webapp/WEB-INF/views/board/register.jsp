@@ -162,7 +162,7 @@
                     // Insert the clicked image into the Summernote editor
                     var imgSrc = '/resources/boardImage/' + fileName;
                     if (imgSrc) {
-                    	$('#summernote').summernote('pasteHTML', '<img src="' + imgSrc + '" style="width:100%;" alt="' + fileName + '"/>');
+                    	$('#summernote').summernote('pasteHTML', '<img src="' + imgSrc + '" style="max-width: 600px;" alt="' + fileName + '"/>');
                     }
                 });
             }
