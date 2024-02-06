@@ -55,7 +55,7 @@ String contextPath = request.getContextPath();
 		</div>
 		<div>
 			<label for="image">이미지:</label> <input type="file" id="image"
-				name="image" onchange="showImagesPreview(this)" multiple="multiple">
+				name="image" onchange="showImagePreviews(this)" multiple="multiple">
 		</div>
 		<div id="imagePreviewContainer">
 			<c:forEach var="image" items="${imageList}">
@@ -150,42 +150,40 @@ String contextPath = request.getContextPath();
 
    
 </script>
-<script>
 
+ <script>
     // 이미지 미리보기 함수
-   function showImagePreviews(input) {
-    var imagePreviewsContainer = document.getElementById('imagePreviewsContainer');
-    imagePreviewsContainer.innerHTML = ""; // 이미지 미리보기를 초기화
-
-    if (input.files && input.files.length > 0) {
-        for (var i = 0; i < input.files.length; i++) {
-            var reader = new FileReader();
-            var fileName = input.files[i].name;
-            reader.onload = function (e) {
-                // 이미지 미리보기를 생성하고 컨테이너에 추가
-                var imagePreview = document.createElement('img');
-                imagePreview.src = e.target.result;
-                imagePreview.style.width = '100px'; // 이미지 미리보기의 너비 조절
-                imagePreview.style.height = 'auto'; // 높이 자동 조절
-                imagePreviewsContainer.appendChild(imagePreview);
-
-                // Add click event to each image
-                imagePreview.addEventListener('click', function () {
-                    // Insert the clicked image into the Summernote editor
-                    var imgSrc = '/resources/boardImage/' + fileName;
-                    if (imgSrc) {
-                        $('#summernote').summernote('pasteHTML', '<img src="' + imgSrc + '" style="width:100%;"/>');
-                    }
-                });
+    function showImagePreviews(input) {
+        var imagePreviewsContainer = document.getElementById('imagePreviewContainer');
+        imagePreviewsContainer.innerHTML = ""; // 이미지 미리보기를 초기화
+        if (input.files && input.files.length > 0) {
+            for (var i = 0; i < input.files.length; i++) {
+                var reader = new FileReader();
+                var fileName = input.files[i].name;
+                reader.onload = function (e) {
+                    // 이미지 미리보기를 생성하고 컨테이너에 추가
+                    var imagePreview = document.createElement('img');
+                    imagePreview.src = e.target.result;
+                    imagePreview.style.width = '100px'; // 이미지 미리보기의 너비 조절
+                    imagePreview.style.height = 'auto'; // 높이 자동 조절
+                    imagePreviewsContainer.appendChild(imagePreview);
+                    // Add click event to each image
+                    imagePreview.addEventListener('click', function () {
+                        // Insert the clicked image into the Summernote editor
+                        var imgSrc = '/resources/boardImage/' + fileName;
+                        if (imgSrc) {
+                            $('#summernote').summernote('pasteHTML', '<img src="' + imgSrc + '" style="width:100%;" alt="' + fileName + '"/>');
+                        }
+                    });
+                }
+                reader.readAsDataURL(input.files[i]);
             }
-
-            reader.readAsDataURL(input.files[i]);
+            // 이미지 미리보기 컨테이너를 보여줌
+            imagePreviewsContainer.style.display = 'block';
         }
-
-        // 이미지 미리보기 컨테이너를 보여줌
-        imagePreviewsContainer.style.display = 'block';
     }
-}
+
+
 
     // 이미지 제거 함수
     function removeImage() {
