@@ -327,11 +327,11 @@ if (userVO == null || userVO.getNickname() == null || userVO.getNickname().isEmp
 								<!-- 싫어요 버튼 -->
 								<button class="btn-post" type="button" style="float: right;"
 									onclick="likeComment(${comment.cno}, 0)">👎
-									${comment.dislikes}</button>
+									${comment.dislikes}</button><span style="float: right;"> / </span>
 								<!-- 좋아요 버튼 -->
 								<button class="btn-post" type="button" style="float: right;"
 									onclick="likeComment(${comment.cno}, 1)">👍
-									${comment.likes} /</button>
+									${comment.likes}</button>
 								<!-- 댓글 삭제 버튼 -->
 								<c:if test="${user != null}">
 									<c:set var="userRole" value="${user.admin}" />
@@ -444,12 +444,12 @@ if (userVO == null || userVO.getNickname() == null || userVO.getNickname().isEmp
 
 										<button class="btn-post" type="button"
 											onclick="likeComment(${reply.cno}, 0)" style="float: right;">👎
-											${reply.dislikes}</button>
+											${reply.dislikes}</button><span style="float: right;"> / </span>
 										<!-- 좋아요 버튼 -->
 
 										<button class="btn-post" type="button"
 											onclick="likeComment(${reply.cno}, 1)" style="float: right;">👍
-											${reply.likes} /</button>
+											${reply.likes}</button>
 										<!-- 수정 -->
 
 
@@ -665,8 +665,8 @@ function showReportForm(cno) {
  
    
    
- function likeComment(cno, no) {
-	 var userNickname = '<%=nickname%>';
+function likeComment(cno, no) {
+    var userNickname = '<%=nickname%>';
     $.ajax({
         url: '/board/likeComment',
         type: 'POST',
@@ -678,8 +678,15 @@ function showReportForm(cno) {
         }),
         success: function(data) {
             if (data.success) {
-                const button = $(`button[onclick="likeComment(${cno})"]`);
-                location.reload();
+                const button = $('button[onclick="likeComment(' + cno + ', ' + no + ')"]');
+                const likeCount = data.likes;
+                let icon = '';
+                if (no === 1) {
+                    icon = '👍';
+                } else {
+                    icon = '👎';
+                }
+                button.html(icon + ' ' + likeCount);
             } else {
                 alert('좋아요 처리에 실패하였습니다.');
             }
