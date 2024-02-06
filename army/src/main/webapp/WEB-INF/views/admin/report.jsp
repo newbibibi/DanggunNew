@@ -207,7 +207,9 @@ $("body").on("change","[name='sel']", function() {
 		$("[type='checkbox']").prop("checked", false);
 	}
 	});
-
+function removeHtmlTags(html) {
+	  return html.replace(/<.*?>/g, '');
+	}
 function report(pageNum){
 	console.log(pageNum);
 	$.ajax({
@@ -222,8 +224,8 @@ function report(pageNum){
 		    	$("#viewer").append("<tr><td colspan=10>신고된 게시글이 없습니다.</td></tr>");
 		    }else{
 		    for(let vo of data.reportList){
-		    	let title=vo.title==null?"X":vo.title.length>9 ? vo.title.substring(0,15)+"...":vo.title;
-		    	let content=vo.content.length>49 ? vo.content.substring(0,50)+"...":vo.content;
+		    	let title=vo.title==null?"X":vo.title.length>9 ? removeHtmlTags(vo.title.substring(0,15))+"...":removeHtmlTags(vo.title);
+		    	let content=vo.content.length>49 ? removeHtmlTags(vo.content.substring(0,50))+"...":removeHtmlTags(vo.content);
 		    	let reporter= vo.reporter.split("/");
 		    	let reason= vo.reasons.split("/");
 		    	let detail= vo.details.split("/");
@@ -236,7 +238,7 @@ function report(pageNum){
 		    				"></td><td><a href='javascript:modalBoard("+vo.cbno+")'>댓글</a></td><td>"+title+"</td><td"+ (content.includes("...") ? " data-toggle=tooltip data-placement=top title='" + vo.content + "'" : "") +">"+content+"</td><td>"+vo.nickname+"</td><td data-toggle=tooltip data-placement=top title="+vo.reporter+">"+reporter[0]+" 외 "+(reporter.length-1)+"인"+"<td data-toggle=tooltip data-placement=top title="+vo.reasons+">"+reason[0]+"</td>"+"<td data-toggle=tooltip data-placement=top title="+vo.details+">"+detail[0]+"</td><td><select name="+vo.cno+"cpunishment><option value='0'>무죄</option><option value='3'>3일 정지</option><option value='7'>7일 정지</option><option value='15'>15일 정지</option><option value='30'>30일 정지</option><option value='5000'>5000일 정지</option></select></td><td><a href=javascript:baned('"+vo.nickname+"',"+vo.cno+",'c')>실행</a></td></tr>");
 			    }else if(vo.cno==null){
 			    	$("#viewer").append("<tr><td><input type=checkbox value=b/" + vo.bno + "/" + vo.nickname + "></td><td><a href='javascript:modalBoard("+vo.bno+")'>글</a></td><td" + (title.includes("...") ? " data-toggle=tooltip data-placement=top title='" + vo.title + "'" : "") + ">" + title + "</td><td" + (content.includes("...") ? " data-toggle=tooltip data-placement=top title='" + vo.content + "'" : "") + ">" + content + "</td><td>" + vo.nickname + "</td><td data-toggle=tooltip data-placement=top title='" + vo.reporter + "'>" + reporter[0] + " 외 " + (reporter.length - 1) + "인"+"</td><td data-toggle=tooltip data-placement=top title='" + vo.reasons + "'>" + reason[0] + "</td><td data-toggle=tooltip data-placement=top title="+vo.details+">"+detail[0]+"</td><td><select name=" + vo.bno + "bpunishment><option value='0'>무죄</option><option value='3'>3일 정지</option><option value='7'>7일 정지</option><option value='15'>15일 정지</option><option value='30'>30일 정지</option><option value='5000'>5000일 정지</option></select></td><td><a href=javascript:baned('" + vo.nickname + "'," + vo.bno + ",'b')>실행</a></td></tr>");
-		    }else{
+		   		}else{
 					console.log("실패");
 			    }
 		    }

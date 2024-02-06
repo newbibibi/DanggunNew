@@ -184,14 +184,13 @@ public class UserController {
 		return code;
 	}
 
-	@RequestMapping(value = "/login/login", produces = "text/plain;charset=UTF-8") // 로그인 버튼 누르면 로그인 결과 전달
+	@RequestMapping(value = "/login/login", produces = "text/plain;charset=UTF-8")
 	@ResponseBody
 	public String loginCheck(UserVO vo, HttpServletRequest request) {
 		String result = "";
 		UserVO login = ls.getUser("id", vo.getId());
 		if (login != null) {
 			if (login.getPw().equals(vo.getPw())) {
-				
 				if(login.getBaned()!=null) {
 					if(login.getBaned().before(new Timestamp(System.currentTimeMillis()))) {
 						result = "로그인 성공";
@@ -217,5 +216,4 @@ public class UserController {
 		log.info(result);
 		return result;
 	}
-	
 }

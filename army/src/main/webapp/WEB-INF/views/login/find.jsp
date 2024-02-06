@@ -224,7 +224,6 @@ h1 {
     let limiter;
     let id;
     $("body").on("click","#pwfinder", () => {
-    	
         $("#result").text("로딩 중..")
     	$.ajax({
             url: '../../login/checker',
@@ -245,33 +244,32 @@ h1 {
         			    	$("#code").remove();
         			        $("#codecheck").remove();
         			        $("#timeout").remove();
-        			        $("#result").remove();
-        			        $(".con:last").after("<div id='result' style=color:red></div>");
-        					if (email.includes("나라사랑")||email.includes("유효")) {
+        			        $("#result").html("");
+        			        $(".con1").remove();
+        					if (email.includes("이메일")) {
         						$("#result").html(email);
         					}
         					else {
         						id=data.id;
         						ec=email;
-        						console.log(ec);
+        						$("#result").css("color","red");
+        						$("#result").before("<div id='timeout'></div>");
+        						$("#timeout").before("<div class='con1' style='width:100%; display:flex; flex-direction:columun;'><input class='form-control' style='width:40%; height:10%; padding-left:5px;' type='text' id='code' placeholder='인증 코드를 입력해주세요.'>&nbsp;<input type='button' class='btn btn-outline-primary' style='height:11vh;' id='codecheck' value='인증'></div>");
         						
-        						$("#result").html("");
-        						$(".wrap").append("<div class='con' style='width:100%; display:flex; flex-direction:columun;'><input class='form-control' style='width:40%; height:10%; padding-left:5px;' type='text' id='code' placeholder='인증 코드를 입력해주세요.'>&nbsp;<input type='button' class='btn btn-outline-primary' style='height:11vh;' id='codecheck' value='인증'></div>");
-        						$(".move").after("<div id='timeout'></div>");
         						let timer = 180;
         	                    clearInterval(limiter);
         	                    limiter = setInterval(() => {
         	                        timer -= 1;
         	                        $("#timeout").html(Math.floor(timer / 60) + "분 " + (timer % 60) + "초");
         	                        if (timer == 0) {
-        	                            ec="";
-        	                        	clearInterval(limiter);
+        	                        	ec="";
+        	                       		clearInterval(limiter);
         	                        }
         	                    }, 1000);
+        	                    lmiter();
         					}
         				},
         				error : function(xhr, status, error) {
-        					$(".con:last").after("<div id='result' style=color:red></div>");
         					console.error(error);
         				}
         			}); //ajax 종료
@@ -291,7 +289,7 @@ h1 {
          $("body").on("click","#codecheck",()=>{
         	 console.log(ec);
         	 $("#result").remove();
-		        $(".con:last").after("<div id='result' style=color:red></div>");
+		        $("#timeout").after("<div id='result' style=color:red></div>");
         	if($("#code").val()==ec){
         		console.log("인증 성공");
         		$('.idpw').html("<h1>비밀번호 수정</h1>");
@@ -322,8 +320,6 @@ h1 {
         	               		alert("치명적인 에러 관리자에게 문의해주세요.");
         	               		window.parent.modalClose();
         	               	}
-        	                
-        	                
         	            },
         	            error: function (e) {
         	                console.log(e);

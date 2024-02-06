@@ -16,6 +16,7 @@
 	width: 95%;
 	padding: 10px;
 	font-size: 16px;
+	text-align: center;
 }
 
 .container {
@@ -71,6 +72,7 @@ body {
 .form-group {
 	margin-top: 4vh;
 }
+
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
@@ -321,12 +323,12 @@ body {
 
 		$("#signup").click(
 				function() {
-					console.log(checker1 && checker2 && checker3 && checker4
-							&& checker5);
 					if (checker1 && checker2 && checker3 && checker4
 							&& checker5) {
 						$("#sign").unbind("submit");
 						$("#sign").submit();
+					}else if(!checker5){
+						
 					}
 				});
 	} //onload 종료
