@@ -69,7 +69,7 @@ String contextPath = request.getContextPath();
 		<div>
 			<input type="hidden" name="bno" value="${board.bno}"> 
 			<input type="hidden" name="nickname" value="${board.nickname}"> 
-			<input type="submit" value="게시물 수정">
+			<input class="btn-primary" type="submit" value="게시물 수정">
 		</div>
 	</form>
 <script src="/resources/summernote-0.8.18-dist/summernote-lite.js"></script>
