@@ -337,7 +337,7 @@ if (userVO == null || userVO.getNickname() == null || userVO.getNickname().isEmp
 									<c:set var="userRole" value="${user.admin}" />
 
 									<c:if
-										test="${userRole == 1 || user.nickname eq board.nickname}">
+										test="${userRole == 1 || user.nickname eq comment.nickname}">
 										<form action="/board/cmtDelete" method="post"
 											style="float: left;"
 											onsubmit="return confirm('정말 삭제하시겠습니까?');">
@@ -485,7 +485,7 @@ if (userVO == null || userVO.getNickname() == null || userVO.getNickname().isEmp
 											<c:set var="userRole" value="${user.admin}" />
 
 											<c:if
-												test="${userRole == 1 || user.nickname eq board.nickname}">
+												test="${userRole == 1 || user.nickname eq reply.nickname}">
 												<form action="/board/cmtDelete" method="post"
 													style="float: left;"
 													onsubmit="return confirm('정말 삭제하시겠습니까?');">
