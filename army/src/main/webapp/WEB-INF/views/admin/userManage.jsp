@@ -169,24 +169,23 @@ $("document").ready(()=>{
 		paging(1);
 	}
 	
-	function baned(nick){ // 번호와 게시글 댓글 구분
+	function baned(nick){
 		let banDate;
-		console.log(nick);
 		if($("."+nick).val()!=0){
 			banDate=new Date(new Date().getTime() + ($("."+nick).val()*24*60*60*1000+(60*1000*60*9)));
 		}else{
 			banDate=null;
 		}
 		$.ajax({
-			  url: '/admin/baned', // 요청을 보낼 서버의 URL을 입력하세요.
-			  method: 'POST', // 요청 메서드를 선택하세요(GET, POST, 등).
+			  url: '/admin/baned',
+			  method: 'POST',
 			  contentType: 'application/json',
-			  data: JSON.stringify({"nickname":nick,"no":0,"gubun":"없음", "baned":banDate}), // 요청에 포함될 데이터를 객체 형태로 입력하세요.
+			  data: JSON.stringify({"nickname":nick,"no":0,"gubun":"없음", "baned":banDate}),
 			  success: function(data) {
 			  	paging(1);
 			  },
 			  error: function(xhr, status, error) {
-			    console.log(error); // 에러 메시지를 출력하거나 에러 처리를 수행하세요.
+			    console.log(error);
 			  }
 			});
 	}
@@ -200,9 +199,7 @@ $("document").ready(()=>{
 			  let td = $("<th>").text(th[i]);
 			  tr.append(td);
 		}
-		
 		viewer.append($("<thead>").append(tr));
-		
 		$.ajax({
 		    url: '../admin/userList',
 		    method: 'POST',
@@ -213,7 +210,6 @@ $("document").ready(()=>{
 		    },
 		    dataType: 'json',
 		    success: function(response) {
-		        // 성공적으로 응답을 받았을 때 실행할 코드
 		        console.log(response);
 		        if(response.userList!=null){
 		        for (let list of response.userList) {
@@ -222,21 +218,15 @@ $("document").ready(()=>{
 		            tr.append(value);
 		            $("#viewer").append(tr);
 		        }
-		        
-		        let tr = $("<tr></tr>");
-		        let td = $("<td colspan=9></td>");
-		        tr.append(td);
-		        let pm = response.pageMaker;
-	            let p = "";
-	            p += pm.prev ? "<a href='javascript:paging(" + (pm.startPage-1) + ")'>이전</a>" : "";
-	            
+		        let tr = $("<tr></tr>"); let td = $("<td colspan=9></td>"); tr.append(td);
+		        let pm = response.pageMaker; let p = "";
+	            p += pm.prev ? "<a href='javascript:paging(" + (pm.startPage-1) + ")'>이전</a>&nbsp;" : "";
 		        for (let i = pm.startPage; i < response.pageMaker.endPage + 1; i++) {
 		        	p += i==num ? "<a class='activePage' href=javascript:paging(" + i + ")>" + i + "</a> " :"<a href=javascript:paging(" + i + ")>" + i + "</a> ";
 		        }
-		        p += pm.next ? "<a href='javascript:paging(" + (pm.endPage+1) + ")'>다음</a>" : "";
+		        p += pm.next ? "&nbsp;<a href='javascript:paging(" + (pm.endPage+1) + ")'>다음</a>" : "";
 	            td.append(p);
 	            $("#viewer").append(tr);
-	        
 		    }
 		    else{
 		    	$("#viewer").append("<tr><td colspan=7>검색된 유저가 없습니다.</td></tr>");	
@@ -248,10 +238,7 @@ $("document").ready(()=>{
 		        console.log("AJAX 요청 실패:", error);
 		    }
 		});
-
 	}
-	
-
 
 </script>
 
