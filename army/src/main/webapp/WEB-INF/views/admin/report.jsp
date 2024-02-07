@@ -209,7 +209,7 @@ $("body").on("change","[name='sel']", function() {
 	});
 function removeHtmlTags(html) {
 	  return html.replace(/<.*?>/g, '');
-	}
+}
 function report(pageNum){
 	console.log(pageNum);
 	$.ajax({
@@ -229,15 +229,14 @@ function report(pageNum){
 		    	let reporter= vo.reporter.split("/");
 		    	let reason= vo.reasons.split("/");
 		    	let detail= vo.details.split("/");
-		    	
 		    	let tip1="";
 		    	let tip2="";
-		    	
+		    	console.log(vo.details);
 		    	if(vo.bno==null){
 		    		$("#viewer").append("<tr><td><input type=checkbox value=c/"+vo.cno+"/"+vo.nickname+
-		    				"></td><td><a href='javascript:modalBoard("+vo.cbno+")'>댓글</a></td><td>"+title+"</td><td"+ (content.includes("...") ? " data-toggle=tooltip data-placement=top title='" + vo.content + "'" : "") +">"+content+"</td><td>"+vo.nickname+"</td><td data-toggle=tooltip data-placement=top title="+vo.reporter+">"+reporter[0]+" 외 "+(reporter.length-1)+"인"+"<td data-toggle=tooltip data-placement=top title="+vo.reasons+">"+reason[0]+"</td>"+"<td data-toggle=tooltip data-placement=top title="+vo.details+">"+detail[0]+"</td><td><select name="+vo.cno+"cpunishment><option value='0'>무죄</option><option value='3'>3일 정지</option><option value='7'>7일 정지</option><option value='15'>15일 정지</option><option value='30'>30일 정지</option><option value='5000'>5000일 정지</option></select></td><td><a href=javascript:baned('"+vo.nickname+"',"+vo.cno+",'c')>실행</a></td></tr>");
+		    				"></td><td><a href='javascript:modalBoard("+vo.cbno+")'>댓글</a></td><td>"+title+"</td><td"+ (content.includes("...") ? " data-toggle=tooltip data-placement=top title='" + removeHtmlTags(vo.content) + "'" : "") +">"+content+"</td><td>"+vo.nickname+"</td><td data-toggle=tooltip data-placement=top title="+vo.reporter+">"+reporter[0]+" 외 "+(reporter.length-1)+"인"+"<td data-toggle=tooltip data-placement=top title="+vo.reasons+">"+reason[0]+"</td>"+"<td data-toggle=tooltip data-placement=top title="+vo.details.replace(/ /g, '&nbsp;')+">"+detail[0]+"</td><td><select name="+vo.cno+"cpunishment><option value='0'>무죄</option><option value='3'>3일 정지</option><option value='7'>7일 정지</option><option value='15'>15일 정지</option><option value='30'>30일 정지</option><option value='5000'>5000일 정지</option></select></td><td><a href=javascript:baned('"+vo.nickname+"',"+vo.cno+",'c')>실행</a></td></tr>");
 			    }else if(vo.cno==null){
-			    	$("#viewer").append("<tr><td><input type=checkbox value=b/" + vo.bno + "/" + vo.nickname + "></td><td><a href='javascript:modalBoard("+vo.bno+")'>글</a></td><td" + (title.includes("...") ? " data-toggle=tooltip data-placement=top title='" + vo.title + "'" : "") + ">" + title + "</td><td" + (content.includes("...") ? " data-toggle=tooltip data-placement=top title='" + vo.content + "'" : "") + ">" + content + "</td><td>" + vo.nickname + "</td><td data-toggle=tooltip data-placement=top title='" + vo.reporter + "'>" + reporter[0] + " 외 " + (reporter.length - 1) + "인"+"</td><td data-toggle=tooltip data-placement=top title='" + vo.reasons + "'>" + reason[0] + "</td><td data-toggle=tooltip data-placement=top title="+vo.details+">"+detail[0]+"</td><td><select name=" + vo.bno + "bpunishment><option value='0'>무죄</option><option value='3'>3일 정지</option><option value='7'>7일 정지</option><option value='15'>15일 정지</option><option value='30'>30일 정지</option><option value='5000'>5000일 정지</option></select></td><td><a href=javascript:baned('" + vo.nickname + "'," + vo.bno + ",'b')>실행</a></td></tr>");
+			    	$("#viewer").append("<tr><td><input type=checkbox value=b/" + vo.bno + "/" + vo.nickname + "></td><td><a href='javascript:modalBoard("+vo.bno+")'>글</a></td><td" + (title.includes("...") ? " data-toggle=tooltip data-placement=top title='" + vo.title + "'" : "") + ">" + title + "</td><td" + (content.includes("...") ? " data-toggle=tooltip data-placement=top title='" + removeHtmlTags(vo.content) + "'" : "") + ">" + content + "</td><td>" + vo.nickname + "</td><td data-toggle=tooltip data-placement=top title='" + vo.reporter + "'>" + reporter[0] + " 외 " + (reporter.length - 1) + "인"+"</td><td data-toggle=tooltip data-placement=top title='" + vo.reasons + "'>" + reason[0] + "</td><td data-toggle=tooltip data-placement=top title="+vo.details.replace(/ /g, '&nbsp;')+">"+detail[0]+"</td><td><select name=" + vo.bno + "bpunishment><option value='0'>무죄</option><option value='3'>3일 정지</option><option value='7'>7일 정지</option><option value='15'>15일 정지</option><option value='30'>30일 정지</option><option value='5000'>5000일 정지</option></select></td><td><a href=javascript:baned('" + vo.nickname + "'," + vo.bno + ",'b')>실행</a></td></tr>");
 		   		}else{
 					console.log("실패");
 			    }
@@ -255,7 +254,6 @@ function report(pageNum){
 		    td.append(p);
 			p+=pm.next ? "<a href='javascript:report(${"+(pm.endPage+1)+"})'>다음</a>" : "";
 			$("#viewer").append(tr);
-	    	
 		    }
 		  },
 		  error: function(xhr, status, error) {

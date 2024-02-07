@@ -164,7 +164,7 @@ h1 {
 				<div class="con">
 				<input type=text name=email class='form-control' required=required
 					placeholder='나라사랑 email 입력.' autocomplete='off'
-					style='width: 40%; height: 10%; padding-left: 5px;'> <span style="font-size:1.3em; font-weight:300;">@narasarang.or.kr</span><i
+					style='width: 40%; height: 10%; padding-left: 5px;' maxlength="13"> <span style="font-size:1.3em; font-weight:300;">@narasarang.or.kr</span><i
 					class='input-icon uil uil-at'></i>&nbsp; <input id="idfinder"
 					class='btn btn-outline-primary' type="button" style="height: 11vh;" value="확인">
 					</div>
@@ -184,7 +184,7 @@ h1 {
         $("#pwf").removeClass("fifth1");
         $("#pwf").addClass("fifth");
     	content.html("");
-        content.html("<h1 class='mb-4 pb-3'>아이디 찾기</h1><div class='wrap'><div class='con'><input type=text name=email class='form-control' required=required placeholder='나라사랑 email 입력.' autocomplete='off' style='width: 40%; height: 10%; padding-left: 5px; : red;'> <span style='font-size:1.3em; font-weight:400;'>@narasarang.or.kr</span><i class='input-icon uil uil-at'></i>&nbsp; <input id='idfinder' class='btn btn-outline-primary' type='button' style='height: 11vh;' value='확인'><div></div>");
+        content.html("<h1 class='mb-4 pb-3'>아이디 찾기</h1><div class='wrap'><div class='con'><input type=text maxlength=13 name=email class='form-control' required=required placeholder='나라사랑 email 입력.' autocomplete='off' style='width: 40%; height: 10%; padding-left: 5px; : red;'> <span style='font-size:1.3em; font-weight:400;'>@narasarang.or.kr</span><i class='input-icon uil uil-at'></i>&nbsp; <input id='idfinder' class='btn btn-outline-primary' type='button' style='height: 11vh;' value='확인'><div></div>");
     	$(".con:last").after("<div id='result' style=color:red></div>");
     });
     $("body").on("click", "#pwf", () => {

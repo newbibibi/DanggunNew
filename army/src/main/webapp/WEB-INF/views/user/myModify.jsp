@@ -163,8 +163,6 @@ input {
 		}
 		
 		if(checker4&&checker5){
-		console.log("체커 성공");
-			
 		let id = $("[name=id]");
 		let pw = $("[name=pw]");
 		let nickname = $("[name=nickname]");
@@ -173,7 +171,6 @@ input {
 			"pw" : pw.val(),
 			"nickname" : nickname.val()
 		}
-
 		let xhr = new XMLHttpRequest();
 		xhr.open("POST", "../login/modify", true);
 		xhr.setRequestHeader("Content-Type", "application/json");
@@ -185,13 +182,9 @@ input {
 				} else {
 					alert("변경 실패 지속 시 1:1 문의 부탁드립니다.");
 				}
-
 			}
 		};
 		xhr.send(JSON.stringify(data));
-		}else{
-			console.log("체커 실패");
-			
 		}
 	}
 	
