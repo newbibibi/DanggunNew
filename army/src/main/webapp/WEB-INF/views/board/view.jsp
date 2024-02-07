@@ -266,8 +266,8 @@ if (userVO == null || userVO.getNickname() == null || userVO.getNickname().isEmp
 						<input type="hidden" name="bno" value="${board.bno}"> <input
 							type="hidden" name="nickname" value="${board.nickname}">
 						<input type="hidden" name="reporter" value=<%=nickname%>><br>
-						<label style="display:flex" for="reason">신고 이유:</label> <select name="reason"
-							id="reason">
+						<label style="display: flex" for="reason">신고 이유:</label> <select
+							name="reason" id="reason">
 							<option value="광고">광고</option>
 							<option value="도배">도배</option>
 							<option value="음란물">음란물</option>
@@ -327,7 +327,8 @@ if (userVO == null || userVO.getNickname() == null || userVO.getNickname().isEmp
 								<!-- 싫어요 버튼 -->
 								<button class="btn-post" type="button" style="float: right;"
 									onclick="likeComment(${comment.cno}, 0)">👎
-									${comment.dislikes}</button><span style="float: right;"> / </span>
+									${comment.dislikes}</button>
+								<span style="float: right;"> / </span>
 								<!-- 좋아요 버튼 -->
 								<button class="btn-post" type="button" style="float: right;"
 									onclick="likeComment(${comment.cno}, 1)">👍
@@ -370,8 +371,8 @@ if (userVO == null || userVO.getNickname() == null || userVO.getNickname().isEmp
 											<input type="hidden" name="nickname"
 												value="${board.nickname}"> <input type="hidden"
 												name="reporter" value=<%=nickname%>><br> <label
-												style="display:flex" for="reason">신고 이유:</label> <select name="reason"
-												id="reason">
+												style="display: flex" for="reason">신고 이유:</label> <select
+												name="reason" id="reason">
 												<option value="광고">광고</option>
 												<option value="도배">도배</option>
 												<option value="음란물">음란물</option>
@@ -433,9 +434,9 @@ if (userVO == null || userVO.getNickname() == null || userVO.getNickname().isEmp
 										<!-- 대댓글 -->
 										<button class="btn-post" type="button"
 											onclick="toggleReplyForm(${reply.cno})">&nbsp;답글</button>
-										
+
 										<c:if test="${user.nickname != board.nickname}">
-										<span> / </span>
+											<span> / </span>
 											<button class="btn-post" id="reportBtnR${reply.cno}"
 												type="button" onclick="showReportForm(${reply.cno})">신고</button>
 										</c:if>
@@ -444,7 +445,8 @@ if (userVO == null || userVO.getNickname() == null || userVO.getNickname().isEmp
 
 										<button class="btn-post" type="button"
 											onclick="likeComment(${reply.cno}, 0)" style="float: right;">👎
-											${reply.dislikes}</button><span style="float: right;"> / </span>
+											${reply.dislikes}</button>
+										<span style="float: right;"> / </span>
 										<!-- 좋아요 버튼 -->
 
 										<button class="btn-post" type="button"
@@ -461,10 +463,10 @@ if (userVO == null || userVO.getNickname() == null || userVO.getNickname().isEmp
 												<form action="/board/report" method="post">
 													<input type="hidden" name="cno" value="${reply.cno}">
 													<input type="hidden" name="nickname"
-														value="${board.nickname}"> <input style="display:flex" type="hidden"
-														name="reporter" value=<%=nickname%>><br> <label
-														for="reason">신고 이유:</label> <select name="reason"
-														id="reason">
+														value="${board.nickname}"> <input
+														style="display: flex" type="hidden" name="reporter"
+														value=<%=nickname%>><br> <label for="reason">신고
+														이유:</label> <select name="reason" id="reason">
 														<option value="광고">광고</option>
 														<option value="도배">도배</option>
 														<option value="음란물">음란물</option>
@@ -496,16 +498,13 @@ if (userVO == null || userVO.getNickname() == null || userVO.getNickname().isEmp
 													<c:if test="${user.nickname eq board.nickname}">
 
 														<button class="btn-post" type="button"
-															onclick="editComment(${reply.cno})">수정</button><span> / </span>
+															onclick="editComment(${reply.cno})">수정</button>
+														<span> / </span>
 													</c:if>
 												</form>
 											</c:if>
 										</c:if>
-
-
-
-
-
+										
 										<div id="replyForm${reply.cno}" style="display: none;">
 											<form action="/board/commentAdd" method="post">
 												<input type="hidden" name="nickname" value=<%=nickname%> />
