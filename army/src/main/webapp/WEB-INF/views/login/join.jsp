@@ -387,7 +387,21 @@ body {
 					<option value="earth">육군</option>
 					<option value="sea">해군</option>
 					<option value="fly">공군</option>
+				</select>
+				<select
+					class="selectBox"
+					style="margin-top: 5px; width: 20%; text-align: center; height: 5vh;"
+					name="region" required="required">
+					<option value="">관심지역</option>
+					<option value="S">서울</option>
+					<option value="G">경기</option>
+					<option value="W">강원</option>
+					<option value="C">충청</option>
+					<option value="L">전라</option>
+					<option value="Y">경상</option>
+					<option value="J">제주</option>
 				</select> <input type="hidden" name="sns" value="${snsID}">
+				
 			</div>
 			<div class="form-group mt-2">
 				<button id="signup" class="btn"

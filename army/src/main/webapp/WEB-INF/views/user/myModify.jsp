@@ -93,6 +93,22 @@ input {
 									<td><input type="password" name="pwc"></td>
 								</tr>
 								<tr>
+									<td class="bg-danger">관심지역</td>
+									<td>
+										<select
+												class="selectBox"
+												name="region" required="required">
+												<option value="">관심지역</option>
+												<option value="S">서울</option>
+												<option value="G">경기</option>
+												<option value="W">강원</option>
+												<option value="C">충청</option>
+												<option value="L">전라</option>
+												<option value="Y">경상</option>
+												<option value="J">제주</option>
+											</select></td>
+								</tr>
+								<tr>
 									<td class="bg-warning">군종</td>
 									<%UserVO u=(UserVO)request.getSession().getAttribute("user");
 										String result=u.getArmygroup().equals("earth") ? "육군" : u.getArmygroup().equals("sea") ? "해군" : "공군";%>
@@ -166,10 +182,12 @@ input {
 		let id = $("[name=id]");
 		let pw = $("[name=pw]");
 		let nickname = $("[name=nickname]");
+		let region = $("[name=region]");
 		let data = {
 			"id" : id.val(),
 			"pw" : pw.val(),
-			"nickname" : nickname.val()
+			"nickname" : nickname.val(),
+			"region" : region.val()
 		}
 		let xhr = new XMLHttpRequest();
 		xhr.open("POST", "../login/modify", true);

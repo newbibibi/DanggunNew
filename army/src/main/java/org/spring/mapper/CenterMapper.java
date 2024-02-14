@@ -48,4 +48,5 @@ public interface CenterMapper {
 	
 	//메인
 	public List<NoticeVO> mainNotice();
+	public List<SaleVO> mainBenefit(String Region);
 }

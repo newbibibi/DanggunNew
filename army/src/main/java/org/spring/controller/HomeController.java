@@ -2,8 +2,12 @@ package org.spring.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.spring.domain.BoardVO;
 import org.spring.domain.NoticeVO;
+import org.spring.domain.SaleVO;
+import org.spring.domain.UserVO;
 import org.spring.service.CenterService;
 import org.spring.service.Board.BoardService;
 import org.springframework.stereotype.Controller;
@@ -47,5 +51,17 @@ public class HomeController {
 	public List<NoticeVO> getnoticelist(){
 		
 		return centerService.mainNList();
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/main/benefitlist",method = RequestMethod.POST)
+	public List<SaleVO> getbenefitlist(HttpServletRequest request){
+		UserVO user = (UserVO) request.getSession().getAttribute("user");
+		String userRegion = "all";
+		if(user.getRegion()!=null) {
+			userRegion = user.getRegion();
+		}
+		
+		return centerService.mainBList(userRegion);
 	}
 }

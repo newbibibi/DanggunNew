@@ -88,6 +88,37 @@
 </section><!-- Action end -->
 
   <div class="container">
+  <div class="text-center rounded p-4 ">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <h6 class="mb-0">맞춤 혜택(관심지역:
+                        <c:if test="${user.region == null}">없음)</c:if>
+                        <c:if test="${user.region == 'S'}">서울)</c:if>
+                        <c:if test="${user.region == 'G'}">경기도)</c:if>
+                        <c:if test="${user.region == 'W'}">강원도)</c:if>
+                        <c:if test="${user.region == 'C'}">충청도)</c:if>
+                        <c:if test="${user.region == 'L'}">전라도)</c:if>
+                        <c:if test="${user.region == 'Y'}">경상도)</c:if>
+                        <c:if test="${user.region == 'J'}">제주도)</c:if>
+                        </h6>
+                        <a href="/center/information/benefit">더 보기</a>
+                    </div>
+                    <div class="table-responsive">
+                        <table id="mainbenefit" class="table text-start align-middle table-bordered table-hover mb-0">
+                            <thead>
+                                <tr class="text-dark">
+                                    <th scope="col" class="short">지역</th>
+                                    <th scope="col">혜택목록</th>
+                                    <th scope="col" class="short">혜택내용</th>
+                                    <th scope="col" class="short">전화번호</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                            </tbody>
+                        </table>
+                        
+                    </div>
+                </div>
   </div>
         </div><!-- Col end -->
 	<section id="news" class="news">
@@ -183,6 +214,7 @@
 
     <div class="row">
 <div class="container-fluid pt-4 px-4">
+				
                 <div class="bg-light text-center rounded p-4">
                     <div class="d-flex align-items-center justify-content-between mb-4">
                         <h6 class="mb-0">공지사항 게시판</h6>
@@ -240,6 +272,7 @@
 				loadTableData();
 
 				function loadTableData() {
+					
 					$.ajax({
 						url : "/main/boardlist",
 						type : "POST",
@@ -343,6 +376,29 @@
 								
 								row.append($("<td>").text(formatDate));
 								noticeTbody.append(row);
+							});
+						},
+						error : function(e) {
+							console.log(e);
+						}
+					});
+					
+					$.ajax({
+						url : "/main/benefitlist",
+						type : "POST",
+						dataType : "json",
+						data : {
+						},
+						success : function(data) {
+							let benefitTbody = $("#mainbenefit tbody");
+							$.each(data, function(index, sale) {
+								let row = $("<tr>");
+						        row.append($("<td>").text(sale.area));
+						        row.append($("<td>").text(sale.item));
+						        row.append($("<td>").text(sale.detail));
+						        row.append($("<td>").text(sale.phone));
+						        benefitTbody.append(row);
+								
 							});
 						},
 						error : function(e) {

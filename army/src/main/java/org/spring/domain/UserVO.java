@@ -15,4 +15,6 @@ public class UserVO {
 	private Timestamp baned;
 	private int admin;
 	private String sns;
+	
+	private String region;
 }

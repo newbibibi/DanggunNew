@@ -34,9 +34,9 @@
 
 	<!-- SQL 문장들과 매핑되는 SQL 매핑 구문들을 작성합니다. -->
 	<insert id="userRegister" parameterType="UserVO">
-		INSERT INTO USER(id, pw, armygroup, enlisting, nickname, email, sns)
+		INSERT INTO USER(id, pw, armygroup, enlisting, nickname, email, region, sns)
 		VALUES(#{id}, #{pw}, #{armygroup}, #{enlisting}, #{nickname},
-		#{email},
+		#{email}, #{region},
 		<if test="sns != null and sns != ''">
 			#{sns}
 		</if>

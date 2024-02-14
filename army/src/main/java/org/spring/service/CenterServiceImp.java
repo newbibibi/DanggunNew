@@ -162,4 +162,9 @@ public class CenterServiceImp implements CenterService{
 		return centerMapper.mainNotice();
 	}
 
+	@Override
+	public List<SaleVO> mainBList(String userRegion) {
+		return centerMapper.mainBenefit(userRegion);
+	}
+
 }

@@ -43,4 +43,6 @@ public interface CenterService {
 	public List<MenuVO> getMenu();
 	
 	public List<NoticeVO> mainNList();
+	
+	public List<SaleVO> mainBList(String userRegion);
 }

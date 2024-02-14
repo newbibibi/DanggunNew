@@ -212,4 +212,36 @@ select count(nno) from notice
 		limit 5
 	</select>
 	
+	<select id="mainBenefit" resultType="SaleVO"
+		parameterType="org.spring.domain.UserVO">
+		SELECT * FROM sale
+			<where>
+				<choose>
+					<when test='region.equals("S")'>
+						area LIKE "서울"
+					</when>
+					<when test='region.equals("G")'>
+						area IN ("경기","인천")
+					</when>
+					<when test='region.equals("W")'>
+						area LIKE "강원"
+					</when>
+					<when test='region.equals("C")'>
+						area IN ("충청","충남","충북")
+					</when>
+					<when test='region.equals("L")'>
+						area IN ("전라","전남","전북")
+					</when>
+					<when test='region.equals("Y")'>
+						area IN ("경상",'경남','경북','대구','부산')
+					</when>
+					<when test='region.equals("J")'>
+						area LIKE "제주"
+					</when>
+				</choose>
+			</where>
+		ORDER BY 'sno' DESC
+		LIMIT 5
+	</select>
+	
 </mapper>
